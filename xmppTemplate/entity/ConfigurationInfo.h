@@ -2,7 +2,7 @@
 //  ConfigurationInfo.h
 //  hg-ios-class-display
 //
-//  Created by Anthony Perritano on 9/7/13.
+//  Created by Anthony Perritano on 9/18/13.
 //  Copyright (c) 2013 Learning Technologies Group. All rights reserved.
 //
 
@@ -14,7 +14,11 @@
 @interface ConfigurationInfo : NSManagedObject
 
 @property (nonatomic) float harvest_calculator_bout_length_in_minutes;
+@property (nonatomic) float maximum_harvest;
+@property (nonatomic) float predation_penalty_length_in_seconds;
+@property (nonatomic) float prospering_threshold;
 @property (nonatomic, retain) NSString * run_id;
+@property (nonatomic) float starving_threshold;
 @property (nonatomic, retain) NSSet *patches;
 @property (nonatomic, retain) NSSet *players;
 @end

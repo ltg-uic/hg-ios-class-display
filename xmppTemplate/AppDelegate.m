@@ -824,19 +824,29 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                                  NSString *boutLength = [someConfig objectForKey:@"harvest_calculator_bout_length_in_minutes"];
                                                  NSArray *patches = [someConfig objectForKey:@"patches"];
                                                  
-                                                
-                                                 ConfigurationInfo *ci = [self insertConfigurationWithRunId:run_id withHarvestCalculatorBoutLengthInMinutes:[boutLength floatValue]];
+                                                 NSString *maximum_harvest = [someConfig objectForKey:@"maximum_harvest"];
+                                                 NSString *predation_penalty_length_in_seconds = [someConfig objectForKey:@"predation_penalty_length_in_seconds"];
+                                                 NSString *prospering_threshold = [someConfig objectForKey:@"prospering_threshold"];
+                                                 NSString *starving_threshold = [someConfig objectForKey:@"starving_threshold"];
+                                                 
+                                                 
+                                                 ConfigurationInfo *ci = [self insertConfigurationWithRunId:run_id withHarvestCalculatorBoutLengthInMinutes:[boutLength floatValue] WithMaximumHarvest:[maximum_harvest floatValue] WithPredationPenalty: [predation_penalty_length_in_seconds floatValue] WithProperingThreshold: [prospering_threshold floatValue] WithStravingThreshold: [starving_threshold floatValue ]];
                                                  
                                                  for(NSDictionary *somePatch in patches) {
                                                      
                                                      NSString *patch_id = [somePatch objectForKey:@"patch_id"];
-                                                     float richness = [[somePatch objectForKey:@"richness"] floatValue];
+                                                     NSString *patch_label = [somePatch objectForKey:@"patch_label"];
+                                                     float reader_id = [[somePatch objectForKey:@"reader_id"] floatValue];
+                                                     NSString * risk_label = [somePatch objectForKey:@"risk_label"];
+                                                     float risk_percent_per_second = [[somePatch objectForKey:@"risk_percent_per_second"] floatValue];
+                                                     NSString *quality = [somePatch objectForKey:@"quality"];
                                                      float qualityPerMinute = [[somePatch objectForKey:@"quality_per_minute"] floatValue];
                                                      float qualityPerSecond = [[somePatch objectForKey:@"quality_per_second"] floatValue];
                                                      
-                                                
+                                            
+                                                     PatchInfo *pi = [self insertPatchInfoWithPatchId:patch_id WithPatchLabel:patch_label WithReaderId:reader_id withQuality:quality withQualityPerSecond:qualityPerSecond withQualityPerMinute:qualityPerMinute WithRiskLabel:risk_label WithRiskPercentPerSecond:risk_percent_per_second];
                                                      
-                                                     PatchInfo *pi = [self insertPatchInfoWithPatchId:patch_id withRichness:richness withQualityPerSecond: qualityPerSecond withQualityPerMinute:qualityPerMinute];
+                                                     
                                                      [ci addPatchesObject:pi];
                                                  }
                                                  
@@ -902,7 +912,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                              for (NSDictionary *someStudent in students) {
                                                  
                                                  
-                                                 PlayerDataPoint *pdp = [self insertPlayerDataPointWithColor:[someStudent objectForKey:@"color"] WithLabel:[someStudent objectForKey:@"lable"] WithPatch:nil WithRfid:[someStudent objectForKey:@"rfid_tag"] WithScore:[NSNumber numberWithInt:0] WithId:[someStudent objectForKey:@"_id"]];
+                                                 PlayerDataPoint *pdp = [self insertPlayerDataPointWithColor:[someStudent objectForKey:@"color"] WithLabel:[someStudent objectForKey:@"label"] WithPatch:nil WithRfid:[someStudent objectForKey:@"rfid_tag"] WithScore:[NSNumber numberWithInt:0] WithId:[someStudent objectForKey:@"_id"]];
                                                  
                                                  [configurationInfo addPlayersObject:pdp];
                                              }
@@ -943,28 +953,39 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
 }
 
+
 #pragma mark CORE DATA INSERTS
 
--(PatchInfo *)insertPatchInfoWithPatchId: (NSString *)patch_id withRichness:(float) richness withQualityPerSecond: (float)richness_per_second withQualityPerMinute:(float)richness_per_minute {
+-(PatchInfo *)insertPatchInfoWithPatchId: (NSString *)patch_id WithPatchLabel:(NSString *)patch_label WithReaderId:(float)reader_id withQuality:(NSString*)quality withQualityPerSecond: (float)quality_per_second withQualityPerMinute:(float)quality_per_minute WithRiskLabel:(NSString*)risk_label WithRiskPercentPerSecond:(float)risk_percent_per_second {
     
     PatchInfo *pi = [NSEntityDescription insertNewObjectForEntityForName:@"PatchInfo"
                                                   inManagedObjectContext:self.managedObjectContext];
     
     pi.patch_id = patch_id;
-    pi.richness = richness;
-    pi.quality_per_minute = richness_per_second;
-    pi.quality_per_minute = richness_per_minute;
+    pi.reader_id = reader_id;
+    pi.patch_label = patch_label;
+    pi.quality = quality;
+    pi.quality_per_minute = quality_per_minute;
+    pi.quality_per_second = quality_per_second;
+    pi.risk_percent_per_second = risk_percent_per_second;
     
     return pi;
 }
 
--(ConfigurationInfo *)insertConfigurationWithRunId: (NSString *)run_id withHarvestCalculatorBoutLengthInMinutes:(float)harvest_calculator_bout_length_in_minutes {
+
+
+-(ConfigurationInfo *)insertConfigurationWithRunId: (NSString *)run_id withHarvestCalculatorBoutLengthInMinutes:(float)harvest_calculator_bout_length_in_minutes WithMaximumHarvest:(float)maximum_harvest WithPredationPenalty: (float)predation_penalty_length_in_seconds WithProperingThreshold: (float)prospering_threshold WithStravingThreshold: (float)starving_threshold {
+
     
     ConfigurationInfo *ci = [NSEntityDescription insertNewObjectForEntityForName:@"ConfigurationInfo"
                                                   inManagedObjectContext:self.managedObjectContext];
     
     ci.run_id = run_id;
     ci.harvest_calculator_bout_length_in_minutes = harvest_calculator_bout_length_in_minutes;
+    ci.maximum_harvest = maximum_harvest;
+    ci.predation_penalty_length_in_seconds = predation_penalty_length_in_seconds;
+    ci.prospering_threshold = prospering_threshold;
+    ci.starving_threshold = starving_threshold;
     ci.players = nil;
 
     return ci;

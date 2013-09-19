@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F37" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="ConfigurationInfo" representedClassName="ConfigurationInfo" syncable="YES">
+        <attribute name="harvest_calculator_bout_length_in_minutes" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="maximum_harvest" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="predation_penalty_length_in_seconds" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="prospering_threshold" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="run_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="starving_threshold" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="patches" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PatchInfo" inverseName="configurationInfo" inverseEntity="PatchInfo" syncable="YES"/>
+        <relationship name="players" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PlayerDataPoint" inverseName="configurationInfo" inverseEntity="PlayerDataPoint" syncable="YES"/>
+    </entity>
+    <entity name="EventInfo" representedClassName="EventInfo" syncable="YES">
+        <attribute name="event_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rfid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="score" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="PatchInfo" representedClassName="PatchInfo" syncable="YES">
+        <attribute name="patch_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="patch_label" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quality_per_minute" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="quality_per_second" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="reader_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="richness" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="risk_label" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="risk_percent_per_second" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="configurationInfo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ConfigurationInfo" inverseName="patches" inverseEntity="ConfigurationInfo" syncable="YES"/>
+    </entity>
+    <entity name="PlayerDataPoint" representedClassName="PlayerDataPoint" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currentPatch" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="player_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rfid_tag" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="score" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="configurationInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ConfigurationInfo" inverseName="players" inverseEntity="ConfigurationInfo" syncable="YES"/>
+    </entity>
+    <fetchRequest name="allConfigurationInfos" entity="ConfigurationInfo"/>
+    <fetchRequest name="allPatchInfos" entity="PatchInfo"/>
+    <fetchRequest name="allPlayerDataPoints" entity="PlayerDataPoint"/>
+    <fetchRequest name="configurationInfoWithRunId" entity="ConfigurationInfo" predicateString="run_id == run_id"/>
+    <fetchRequest name="playerDataPointWithRFID" entity="PlayerDataPoint" predicateString="rfid == rfid"/>
+    <elements>
+        <element name="ConfigurationInfo" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="EventInfo" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PatchInfo" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PlayerDataPoint" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
+</model>
