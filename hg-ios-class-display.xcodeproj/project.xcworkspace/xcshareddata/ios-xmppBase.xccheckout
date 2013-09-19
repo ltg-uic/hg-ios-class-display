@@ -5,19 +5,19 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>F3F4D323-734B-4D0D-A962-FA4374BECB2B</string>
+	<string>2F7E2C50-636D-4235-81FE-EE3F56413ACA</string>
 	<key>IDESourceControlProjectName</key>
 	<string>ios-xmppBase</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>934EB9A3-4DCD-4C61-9D18-61F52D7EB2A6</key>
+		<key>57552B4C-63B0-46A1-89C5-F453DA9C7407</key>
 		<string>https://github.com/ltg-uic/hg-ios-class-display.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>ios-xmppBase.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>934EB9A3-4DCD-4C61-9D18-61F52D7EB2A6</key>
+		<key>57552B4C-63B0-46A1-89C5-F453DA9C7407</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>934EB9A3-4DCD-4C61-9D18-61F52D7EB2A6</string>
+	<string>57552B4C-63B0-46A1-89C5-F453DA9C7407</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>934EB9A3-4DCD-4C61-9D18-61F52D7EB2A6</string>
+			<string>57552B4C-63B0-46A1-89C5-F453DA9C7407</string>
 			<key>IDESourceControlWCCName</key>
 			<string>hg-ios-class-display</string>
 		</dict>

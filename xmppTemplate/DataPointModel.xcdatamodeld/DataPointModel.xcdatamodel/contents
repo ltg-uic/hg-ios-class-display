@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F37" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ConfigurationInfo" representedClassName="ConfigurationInfo" syncable="YES">
         <attribute name="harvest_calculator_bout_length_in_minutes" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="run_id" optional="YES" attributeType="String" syncable="YES"/>
@@ -14,9 +14,9 @@
     </entity>
     <entity name="PatchInfo" representedClassName="PatchInfo" syncable="YES">
         <attribute name="patch_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quality_per_minute" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="quality_per_second" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="richness" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="richness_per_minute" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="richness_per_second" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="configurationInfo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ConfigurationInfo" inverseName="patches" inverseEntity="ConfigurationInfo" syncable="YES"/>
     </entity>
     <entity name="PlayerDataPoint" representedClassName="PlayerDataPoint" syncable="YES">
