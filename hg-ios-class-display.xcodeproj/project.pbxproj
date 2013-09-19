@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		700450FF17B5C99E000A83F1 /* DataPointModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 700450FD17B5C99E000A83F1 /* DataPointModel.xcdatamodeld */; };
-		700B8B2B17DBC961001E1C0A /* ConfigurationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 700B8B2A17DBC961001E1C0A /* ConfigurationInfo.m */; };
 		700C3A52160427DA005A9E34 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3A51160427DA005A9E34 /* UIKit.framework */; };
 		700C3A54160427DA005A9E34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3A53160427DA005A9E34 /* Foundation.framework */; };
 		700C3A56160427DA005A9E34 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3A55160427DA005A9E34 /* CoreGraphics.framework */; };
@@ -20,6 +19,8 @@
 		700C3A9E16042944005A9E34 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3A9D16042944005A9E34 /* CFNetwork.framework */; };
 		700C3B2E16042BBD005A9E34 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3B2D16042BBD005A9E34 /* Security.framework */; };
 		700C3B3A160430DA005A9E34 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3B39160430DA005A9E34 /* SystemConfiguration.framework */; };
+		7012E54E17EA7F1B004433BC /* ConfigurationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7012E54D17EA7F1B004433BC /* ConfigurationInfo.m */; };
+		7012E55A17EA9A51004433BC /* PatchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7012E55917EA9A51004433BC /* PatchInfo.m */; };
 		7013B01117E4CF9C00194BA5 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7013B01017E4CF9C00194BA5 /* SWRevealViewController.m */; };
 		7025949B17C3FFE7006E596B /* WizardStudentPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025949A17C3FFE7006E596B /* WizardStudentPageViewController.m */; };
 		7025949E17C40065006E596B /* WizardStudentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025949D17C40065006E596B /* WizardStudentCell.m */; };
@@ -28,7 +29,6 @@
 		703D870017D938C900523417 /* awareness.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 703D86FF17D938C900523417 /* awareness.xcassets */; };
 		704AA4C117E3F3E200A7FF9C /* PlayerMapUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 704AA4C017E3F3E200A7FF9C /* PlayerMapUIView.m */; };
 		704AA4C317E3F6E400A7FF9C /* PlayerMapUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704AA4C217E3F6E400A7FF9C /* PlayerMapUIView.xib */; };
-		70503CFB17EA17A4006D02F5 /* PatchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 70503CFA17EA17A4006D02F5 /* PatchInfo.m */; };
 		7056212417C9DBB3007D117B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7056212117C9D9C3007D117B /* QuartzCore.framework */; };
 		705AE0BE17D5949A005F69B7 /* EventInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 705AE0BD17D5949A005F69B7 /* EventInfo.m */; };
 		705AE0D517D595CC005F69B7 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 705AE0C217D595CC005F69B7 /* SBJsonParser.m */; };
@@ -187,8 +187,6 @@
 
 /* Begin PBXFileReference section */
 		700450FE17B5C99E000A83F1 /* DataPointModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataPointModel.xcdatamodel; sourceTree = "<group>"; };
-		700B8B2917DBC961001E1C0A /* ConfigurationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfigurationInfo.h; path = entity/ConfigurationInfo.h; sourceTree = "<group>"; };
-		700B8B2A17DBC961001E1C0A /* ConfigurationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigurationInfo.m; path = entity/ConfigurationInfo.m; sourceTree = "<group>"; };
 		700B8B2C17DBD885001E1C0A /* PlayerDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerDataDelegate.h; sourceTree = "<group>"; };
 		700C3A4D160427DA005A9E34 /* hg-ios-class-display.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hg-ios-class-display.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		700C3A51160427DA005A9E34 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -206,6 +204,11 @@
 		700C3A9D16042944005A9E34 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		700C3B2D16042BBD005A9E34 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		700C3B39160430DA005A9E34 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7012E54B17EA7E20004433BC /* DataPointModelQuality - Predation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DataPointModelQuality - Predation.xcdatamodel"; sourceTree = "<group>"; };
+		7012E54C17EA7F1B004433BC /* ConfigurationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfigurationInfo.h; path = entity/ConfigurationInfo.h; sourceTree = "<group>"; };
+		7012E54D17EA7F1B004433BC /* ConfigurationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigurationInfo.m; path = entity/ConfigurationInfo.m; sourceTree = "<group>"; };
+		7012E55817EA9A51004433BC /* PatchInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatchInfo.h; sourceTree = "<group>"; };
+		7012E55917EA9A51004433BC /* PatchInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatchInfo.m; sourceTree = "<group>"; };
 		7013B00F17E4CF9C00194BA5 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		7013B01017E4CF9C00194BA5 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		7025949917C3FFE7006E596B /* WizardStudentPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardStudentPageViewController.h; sourceTree = "<group>"; };
@@ -220,8 +223,6 @@
 		704AA4C017E3F3E200A7FF9C /* PlayerMapUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerMapUIView.m; sourceTree = "<group>"; };
 		704AA4C217E3F6E400A7FF9C /* PlayerMapUIView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerMapUIView.xib; sourceTree = "<group>"; };
 		70503CF817EA15C5006D02F5 /* DataPointModelQuality.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataPointModelQuality.xcdatamodel; sourceTree = "<group>"; };
-		70503CF917EA17A4006D02F5 /* PatchInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatchInfo.h; sourceTree = "<group>"; };
-		70503CFA17EA17A4006D02F5 /* PatchInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatchInfo.m; sourceTree = "<group>"; };
 		7056211F17C9D914007D117B /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		7056212117C9D9C3007D117B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		705AE0BC17D5949A005F69B7 /* EventInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventInfo.h; path = entity/EventInfo.h; sourceTree = "<group>"; };
@@ -644,13 +645,13 @@
 			children = (
 				70C567E017DE41A100466AF0 /* PlayerDataPoint.h */,
 				70C567E117DE41A100466AF0 /* PlayerDataPoint.m */,
-				700B8B2917DBC961001E1C0A /* ConfigurationInfo.h */,
-				700B8B2A17DBC961001E1C0A /* ConfigurationInfo.m */,
 				705AE0BC17D5949A005F69B7 /* EventInfo.h */,
 				705AE0BD17D5949A005F69B7 /* EventInfo.m */,
 				700450FD17B5C99E000A83F1 /* DataPointModel.xcdatamodeld */,
-				70503CF917EA17A4006D02F5 /* PatchInfo.h */,
-				70503CFA17EA17A4006D02F5 /* PatchInfo.m */,
+				7012E55817EA9A51004433BC /* PatchInfo.h */,
+				7012E55917EA9A51004433BC /* PatchInfo.m */,
+				7012E54C17EA7F1B004433BC /* ConfigurationInfo.h */,
+				7012E54D17EA7F1B004433BC /* ConfigurationInfo.m */,
 			);
 			name = entity;
 			sourceTree = "<group>";
@@ -1790,7 +1791,6 @@
 				705BEE2417EA643A0042D313 /* XMPPResourceCoreDataStorageObject.m in Sources */,
 				700C3A62160427DA005A9E34 /* AppDelegate.m in Sources */,
 				705BEE2717EA643A0042D313 /* XMPPUserCoreDataStorageObject.m in Sources */,
-				70503CFB17EA17A4006D02F5 /* PatchInfo.m in Sources */,
 				70CF3D7017C5570D006F363C /* WizardReviewPageViewController.m in Sources */,
 				70E866F217C66E76003C5BD2 /* fishhook.c in Sources */,
 				705BEE3217EA643A0042D313 /* XMPPPrivacy.m in Sources */,
@@ -1819,6 +1819,7 @@
 				700450FF17B5C99E000A83F1 /* DataPointModel.xcdatamodeld in Sources */,
 				705BED3817EA64140042D313 /* DDFileLogger.m in Sources */,
 				705BEE4F17EA643A0042D313 /* XMPPResultSet.m in Sources */,
+				7012E55A17EA9A51004433BC /* PatchInfo.m in Sources */,
 				705BEE3E17EA643A0042D313 /* XMPPMessage+XEP0045.m in Sources */,
 				705BEE7217EA643A0042D313 /* XMPPMessage+XEP_0308.m in Sources */,
 				705BEE6917EA643A0042D313 /* XMPPAutoPing.m in Sources */,
@@ -1852,6 +1853,7 @@
 				705BEE2317EA643A0042D313 /* XMPPGroupCoreDataStorageObject.m in Sources */,
 				705BECFD17EA64000042D313 /* NSData+XMPP.m in Sources */,
 				705BED3E17EA64140042D313 /* NSString+DDXML.m in Sources */,
+				7012E54E17EA7F1B004433BC /* ConfigurationInfo.m in Sources */,
 				705BEE6617EA643A0042D313 /* XMPPPresence+XEP_0172.m in Sources */,
 				705BED0517EA64000042D313 /* XMPPParser.m in Sources */,
 				7025949E17C40065006E596B /* WizardStudentCell.m in Sources */,
@@ -1880,7 +1882,6 @@
 				705BEE6317EA643A0042D313 /* XMPPMessageArchiving.m in Sources */,
 				705BEE2C17EA643A0042D313 /* XMPPSystemInputActivityMonitor.m in Sources */,
 				705BECFF17EA64000042D313 /* NSXMLElement+XMPP.m in Sources */,
-				700B8B2B17DBC961001E1C0A /* ConfigurationInfo.m in Sources */,
 				705BEE3617EA643A0042D313 /* XMPPRoomOccupantCoreDataStorageObject.m in Sources */,
 				705BEE4E17EA643A0042D313 /* NSXMLElement+XEP_0059.m in Sources */,
 				705AE0D717D595CC005F69B7 /* SBJsonStreamParserAccumulator.m in Sources */,
@@ -2067,10 +2068,11 @@
 		700450FD17B5C99E000A83F1 /* DataPointModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				7012E54B17EA7E20004433BC /* DataPointModelQuality - Predation.xcdatamodel */,
 				70503CF817EA15C5006D02F5 /* DataPointModelQuality.xcdatamodel */,
 				700450FE17B5C99E000A83F1 /* DataPointModel.xcdatamodel */,
 			);
-			currentVersion = 70503CF817EA15C5006D02F5 /* DataPointModelQuality.xcdatamodel */;
+			currentVersion = 7012E54B17EA7E20004433BC /* DataPointModelQuality - Predation.xcdatamodel */;
 			path = DataPointModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
