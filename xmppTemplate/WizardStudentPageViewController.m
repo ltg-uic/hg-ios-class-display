@@ -34,7 +34,7 @@
 {
     if(self = [super initWithCoder:aDecoder])
     {
-        
+       
     }
     return self;
 }
@@ -43,15 +43,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    playerPoints = [[_configurationInfo players] allObjects];
+    
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"player_id" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+    
+    [playerPoints sortedArrayUsingDescriptors:@[sort]];
 	
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    playerPoints = [[_configurationInfo players] allObjects];
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"player_id" ascending:YES];
-    
-    [playerPoints sortedArrayUsingDescriptors:@[sort]];
+   
 
     
 

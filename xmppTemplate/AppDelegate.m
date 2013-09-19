@@ -995,7 +995,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     PlayerDataPoint *pdp = [NSEntityDescription insertNewObjectForEntityForName:@"PlayerDataPoint"
                                                          inManagedObjectContext:self.managedObjectContext];
     pdp.color = color;
-    pdp.label = label;
     pdp.currentPatch = patch;
     pdp.rfid_tag = rfid_tag;
     pdp.score = score;

@@ -21,6 +21,7 @@
 		700C3B3A160430DA005A9E34 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3B39160430DA005A9E34 /* SystemConfiguration.framework */; };
 		7012E54E17EA7F1B004433BC /* ConfigurationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7012E54D17EA7F1B004433BC /* ConfigurationInfo.m */; };
 		7012E55A17EA9A51004433BC /* PatchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7012E55917EA9A51004433BC /* PatchInfo.m */; };
+		7012E55D17EAA78B004433BC /* PlayerDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7012E55C17EAA78B004433BC /* PlayerDataPoint.m */; };
 		7013B01117E4CF9C00194BA5 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7013B01017E4CF9C00194BA5 /* SWRevealViewController.m */; };
 		7025949B17C3FFE7006E596B /* WizardStudentPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025949A17C3FFE7006E596B /* WizardStudentPageViewController.m */; };
 		7025949E17C40065006E596B /* WizardStudentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025949D17C40065006E596B /* WizardStudentCell.m */; };
@@ -170,7 +171,6 @@
 		70AFBDD417C7E9DF00868211 /* sidebar_icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70AFBDD317C7E9DF00868211 /* sidebar_icons.xcassets */; };
 		70B4119017B4600900F61347 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B44C1C17B35B4B00C47B61 /* libxml2.2.dylib */; };
 		70BC894D17CBB35300DC0AD1 /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BC894C17CBB35300DC0AD1 /* UIColor-Expanded.m */; };
-		70C567E217DE41A100466AF0 /* PlayerDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C567E117DE41A100466AF0 /* PlayerDataPoint.m */; };
 		70CD9B3417B4988E008625BF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CD9B3317B4988E008625BF /* AudioToolbox.framework */; };
 		70CD9B3617B49BF2008625BF /* logon_sound.aif in Resources */ = {isa = PBXBuildFile; fileRef = 70CD9B3517B49BF2008625BF /* logon_sound.aif */; };
 		70CEF76417C8443A00ED0CBE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70CEF76317C8443A00ED0CBE /* Default-568h@2x.png */; };
@@ -209,6 +209,8 @@
 		7012E54D17EA7F1B004433BC /* ConfigurationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigurationInfo.m; path = entity/ConfigurationInfo.m; sourceTree = "<group>"; };
 		7012E55817EA9A51004433BC /* PatchInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatchInfo.h; sourceTree = "<group>"; };
 		7012E55917EA9A51004433BC /* PatchInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatchInfo.m; sourceTree = "<group>"; };
+		7012E55B17EAA78B004433BC /* PlayerDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerDataPoint.h; path = ../PlayerDataPoint.h; sourceTree = "<group>"; };
+		7012E55C17EAA78B004433BC /* PlayerDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerDataPoint.m; path = ../PlayerDataPoint.m; sourceTree = "<group>"; };
 		7013B00F17E4CF9C00194BA5 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		7013B01017E4CF9C00194BA5 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		7025949917C3FFE7006E596B /* WizardStudentPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardStudentPageViewController.h; sourceTree = "<group>"; };
@@ -591,8 +593,6 @@
 		70B44C1F17B3607A00C47B61 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = usr/lib/libiconv.2.4.0.dylib; sourceTree = SDKROOT; };
 		70BC894B17CBB35300DC0AD1 /* UIColor-Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-Expanded.h"; sourceTree = "<group>"; };
 		70BC894C17CBB35300DC0AD1 /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-Expanded.m"; sourceTree = "<group>"; };
-		70C567E017DE41A100466AF0 /* PlayerDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerDataPoint.h; path = entity/PlayerDataPoint.h; sourceTree = "<group>"; };
-		70C567E117DE41A100466AF0 /* PlayerDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerDataPoint.m; path = entity/PlayerDataPoint.m; sourceTree = "<group>"; };
 		70CD9B3317B4988E008625BF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		70CD9B3517B49BF2008625BF /* logon_sound.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = logon_sound.aif; sourceTree = "<group>"; };
 		70CEF76317C8443A00ED0CBE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -643,8 +643,8 @@
 		7004510317B5CA4E000A83F1 /* entity */ = {
 			isa = PBXGroup;
 			children = (
-				70C567E017DE41A100466AF0 /* PlayerDataPoint.h */,
-				70C567E117DE41A100466AF0 /* PlayerDataPoint.m */,
+				7012E55B17EAA78B004433BC /* PlayerDataPoint.h */,
+				7012E55C17EAA78B004433BC /* PlayerDataPoint.m */,
 				705AE0BC17D5949A005F69B7 /* EventInfo.h */,
 				705AE0BD17D5949A005F69B7 /* EventInfo.m */,
 				700450FD17B5C99E000A83F1 /* DataPointModel.xcdatamodeld */,
@@ -1833,12 +1833,12 @@
 				705BEE3A17EA643A0042D313 /* XMPPRoomOccupantHybridMemoryStorageObject.m in Sources */,
 				705BEE3B17EA643A0042D313 /* XMPPRoomMemoryStorage.m in Sources */,
 				705BEE3517EA643A0042D313 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
-				70C567E217DE41A100466AF0 /* PlayerDataPoint.m in Sources */,
 				705BED0C17EA64000042D313 /* XMPPSRVResolver.m in Sources */,
 				705AE0D617D595CC005F69B7 /* SBJsonStreamParser.m in Sources */,
 				707FE57117D9412B0036DBAB /* PatchMapUIView.m in Sources */,
 				706857E317C51A2600BF8AAF /* AFJSONRequestOperation.m in Sources */,
 				705BEE6017EA643A0042D313 /* XMPPMessageArchiving_Contact_CoreDataObject.m in Sources */,
+				7012E55D17EAA78B004433BC /* PlayerDataPoint.m in Sources */,
 				705BEE6517EA643A0042D313 /* XMPPMessage+XEP_0172.m in Sources */,
 				705BEE3717EA643A0042D313 /* XMPPRoomHybrid.xcdatamodeld in Sources */,
 				705BECD417EA63EF0042D313 /* XMPPXFacebookPlatformAuthentication.m in Sources */,

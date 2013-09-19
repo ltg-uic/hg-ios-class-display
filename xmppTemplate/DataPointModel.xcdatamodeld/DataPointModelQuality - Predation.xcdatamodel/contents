@@ -30,7 +30,6 @@
     <entity name="PlayerDataPoint" representedClassName="PlayerDataPoint" syncable="YES">
         <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="currentPatch" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="player_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rfid_tag" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="score" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
