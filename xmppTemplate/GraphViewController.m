@@ -16,7 +16,6 @@
     
     NSMutableDictionary *localColorMap;
     NSArray *localPatches;
-    NSSet *patchInfos;
     NSTimer *timer;
 
     //corePlot
@@ -84,7 +83,7 @@
 #pragma mark - VIEWS
 
 -(void)viewDidAppear:(BOOL)animated {
-    //[self initPlot];
+    [self initPlot];
 }
 
 - (void)viewDidLoad
@@ -102,7 +101,8 @@
     [self.revealButtonItem setAction: @selector( revealToggle: )];
     [self.navigationController.navigationBar addGestureRecognizer: self.revealViewController.panGestureRecognizer];
 
-    [self initPlot];
+   // [self setupDelegates];
+   // [self initPlot];
     //[self.graphView.];
     
     //[graph reloadData];
@@ -123,11 +123,12 @@
     maxNumPlayers = [[self getPlayerDataPoints] count];
     
     minYield = 0.0f;
-    maxYield = 1000.0f;
+    maxYield = [self getMaximumHarvest];
     
     [self setupGraph];
     [self setupAxes];
     [self setupBarPlot];
+    [self setupAnnotations];
    
     [harvestBarPlot setHidden:NO];
     
@@ -158,6 +159,10 @@
     
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(minYield) length:CPTDecimalFromFloat(maxYield)];
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(minNumPlayers) length:CPTDecimalFromFloat(maxNumPlayers)];
+    
+//    CPTLayer *subLayer = [[CPTLayer alloc]initWithFrame:CGRectMake(0, 0, 200, 200)];
+//    subLayer.backgroundColor = [UIColor redColor].CGColor;
+//    [self.graphView.layer addSublayer:subLayer];
 }
 
 
@@ -178,6 +183,99 @@
     
     harvestBarPlot.lineStyle = barLineStyle;
     [graph addPlot:harvestBarPlot toPlotSpace:graph.defaultPlotSpace];
+}
+
+-(void)setupAnnotations {
+    CPTLayer *subLayer = [[CPTLayer alloc]initWithFrame:CGRectMake(0, 0, 200, 200)];
+    subLayer.backgroundColor = [UIColor redColor].CGColor;
+    
+    CPTPlotSpaceAnnotation *imageAnnotation;
+    
+    
+    //    CGPoint plotAreaPoint = [graph convertPoint:point toLayer:graph.plotAreaFrame.plotArea];
+    //    [plotSpace plotPoint:plotPoint forPlotAreaViewPoint:plotAreaPoint];
+    //
+    //    NSNumber *x = [[harvestBarPlot. objectAtIndex:index] valueForKey:@"x"];
+    //    NSNumber *y = [[plotData objectAtIndex:index] valueForKey:@"y"];
+    //    NSArray *anchorPoint = [NSArray arrayWithObjects:x, y, nil];
+    //    NSLog(@"x %@, y %@",[[plotData objectAtIndex:index] valueForKey:@"x"],y);
+    //
+    //    imageAnnotation = [[CPTPlotSpaceAnnotation alloc] initWithPlotSpace:plotSpace anchorPlotPoint:nil];
+    //    imageAnnotation.contentLayer = subLayer;
+    //    [harvestBarPlot addAnnotation:imageAnnotation];
+    
+    double plotPoint[2] = {20, 20};
+    
+    CGPoint viewPoint = [harvestBarPlot.plotSpace plotAreaViewPointForDoublePrecisionPlotPoint: plotPoint];
+    
+    
+    
+    
+    
+    
+    
+    
+    CPTLayer * logoLayer = [(CPTLayer *)[CPTBorderedLayer alloc]
+                                    initWithFrame:   CGRectMake(100, 0, 200,
+                                                                    200)      ];
+//    logoLayer.paddingBottom = 0;
+    //logoLayer.paddingLeft = 0;
+   // logoLayer.paddingRight = 0;
+//    logoLayer.paddingTop = 0;
+    logoLayer.backgroundColor = [[CPTColor colorWithComponentRed:255 green:255 blue:0 alpha:.5] cgColor ];
+//    CPTFill *fillImage = [CPTFill fillWithColor:[CPTColor colorWithComponentRed:255 green:255 blue:0 alpha:.5]];
+//    logoLayer.fill = fillImage;
+//    
+    NSNumber *x          = [NSNumber numberWithFloat:20];
+    NSNumber *y          = [NSNumber numberWithFloat:20];
+    
+    
+     NSArray *anchorPoint = [NSArray arrayWithObjects:x, y, nil];
+    
+    CPTPlotSpaceAnnotation *instructionsAnnotation = [[CPTPlotSpaceAnnotation alloc] initWithPlotSpace:harvestBarPlot.plotSpace  anchorPlotPoint:anchorPoint];
+    instructionsAnnotation.contentLayer = logoLayer;
+    instructionsAnnotation.displacement =  viewPoint;
+    [harvestBarPlot.plotArea addAnnotation:instructionsAnnotation];
+    
+    CPTMutableTextStyle *hitAnnotationTextStyle = [CPTMutableTextStyle textStyle];
+    hitAnnotationTextStyle.color    = [CPTColor blueColor];
+    hitAnnotationTextStyle.fontSize = 16.0f;
+    hitAnnotationTextStyle.fontName = @"Helvetica-Bold";
+    
+    
+    CPTTextLayer *textLayer = [[CPTTextLayer alloc] initWithText:@"hellodfdfdfdfdfdfdfdfdf" style:hitAnnotationTextStyle];
+    CPTPlotSpaceAnnotation *symbolTextAnnotation              = [[CPTPlotSpaceAnnotation alloc] initWithPlotSpace:graph.defaultPlotSpace anchorPlotPoint:anchorPoint];
+    symbolTextAnnotation.contentLayer = textLayer;
+    symbolTextAnnotation.displacement = viewPoint;
+    [graph.plotAreaFrame.plotArea addAnnotation:symbolTextAnnotation];
+    
+//    CPTColor *areaColor       = [CPTColor colorWithComponentRed:1.0 green:1.0 blue:1.0 alpha:0.6];
+//    CPTGradient *areaGradient = [CPTGradient gradientWithBeginningColor:areaColor endingColor:[CPTColor clearColor]];
+//    areaGradient.angle = -90.0f;
+//    CPTFill *areaGradientFill = [CPTFill fillWithGradient:areaGradient];
+//    
+//    CPTPlotSpaceAnnotation *ann = [[CPTPlotSpaceAnnotation alloc] initWithPlotSpace:graph.defaultPlotSpace  anchorPlotPoint:anchorPoint];
+//    ann.contentLayer = areaGradient;
+//    ann.displacement =  viewPoint;
+//    [graph.plotAreaFrame.plotArea addAnnotation:ann];
+    
+    
+    // Create a new annotation
+    //    CPTAnnotation *annot = [[CPTAnnotation alloc]init];
+    //    annot.contentLayer = logoLayer;
+    //annot.displacement = CGPointMake(50,50);
+    
+    //     [graph.plotAreaFrame.plotArea addAnnotation:annot];
+    
+    //    double plotPoint[2] = {0, 240};
+    //    CGPoint viewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:plotPoint];
+    
+    //    CPTLayerAnnotation *instructionsAnnotation = [[CPTLayerAnnotation alloc] initWithAnchorLayer:graph.plotAreaFrame.plotArea];
+    //    instructionsAnnotation.contentLayer       = subLayer;
+    ////    instructionsAnnotation.rectAnchor         = CPTRectAnchorBottom;
+    //   instructionsAnnotation.contentAnchorPoint = viewPoint;
+    ////    instructionsAnnotation.displacement       = CGPointMake(0.0, 10.0);
+    //    [graph.plotAreaFrame.plotArea addAnnotation:instructionsAnnotation];
 }
 
 -(void)setupAxes {
@@ -369,6 +467,18 @@
 
 -(NSArray *)getPatches {
     return [[[[self appDelegate] configurationInfo ] patches ] allObjects];
+}
+
+-(float)getMaximumHarvest {
+    return [[[self appDelegate] configurationInfo ] maximum_harvest];
+}
+
+-(float)getStarvingThreshold {
+    return [[[self appDelegate] configurationInfo ] starving_threshold];
+}
+
+-(float)getProsperingThreshold {
+    return [[[self appDelegate] configurationInfo ] prospering_threshold];
 }
 
 

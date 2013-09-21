@@ -29,7 +29,7 @@
     [super viewDidLoad];
     
     
-    [yesButton setTitle:[[_choosen_student uppercaseString] stringByAppendingString:@" - YES"] forState: UIControlStateNormal];
+    [yesButton setTitle:[[_choosen_student uppercaseString] stringByAppendingString:@" - YES!!"] forState: UIControlStateNormal];
 
 	// Do any additional setup after loading the view.
 }

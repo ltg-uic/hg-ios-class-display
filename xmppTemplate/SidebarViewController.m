@@ -185,16 +185,16 @@
         if ( ![frontNavigationController.topViewController isKindOfClass:[GraphViewController class]] )
         {
             
-            GraphViewController *graphViewController = [_controllerMap objectForKey:@"graphController"];
+           // GraphViewController *graphViewController = [_controllerMap objectForKey:@"graphController"];
             
-            if( graphViewController == nil ) {
+           // if( graphViewController == nil ) {
                 UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad"
                                                                          bundle: nil];
-                   graphViewController = (GraphViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"graphViewController"];
+                   GraphViewController *graphViewController = (GraphViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"graphViewController"];
                 
-                [_controllerMap setObject:graphViewController forKey:@"graphViewController"];
+                //[_controllerMap setObject:graphViewController forKey:@"graphViewController"];
                 
-            }
+           // }
             
 			UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:graphViewController];
 			[revealController setFrontViewController:navigationController animated:YES];

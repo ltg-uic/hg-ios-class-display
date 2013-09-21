@@ -48,7 +48,7 @@
     
     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"player_id" ascending:YES selector:@selector(caseInsensitiveCompare:)];
     
-    [playerPoints sortedArrayUsingDescriptors:@[sort]];
+    playerPoints = [playerPoints sortedArrayUsingDescriptors:@[sort]];
 	
 }
 

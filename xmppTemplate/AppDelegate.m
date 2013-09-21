@@ -55,6 +55,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [self setupInterface];
     [self clearUserDefaults];
     
+    //[self pullConfigurationData];
+    //Failed to instantiate the default view controller for UIMainStoryboardFile 'MainStoryboard_iPad' - perhaps the designated entry point is not set?[self setupTestUser];
+    //[self setupConfigurationAndRosterWithRunId:@"5ag"];
     //[self customizeGlobalAppearance];
     
     
@@ -65,13 +68,16 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [self deleteAllObjects:@"PatchInfo"];
     [self deleteAllObjects:@"ConfigurationInfo"];
     
+    
+    [self pullConfigurationData];
+    
     //[self importTestData];
   
     
     //setup test user
     //[self setupTestUser];
     
-    [self pullConfigurationData];
+   
     
     //
     
@@ -691,7 +697,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 -(void)setupConfigurationAndRosterWithRunId:(NSString *)run_id {
     
     _configurationInfo = [self getConfigurationInfoWithRunId:run_id];
-    _playerDataPoints  = [[_configurationInfo players] allObjects];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"player_id" ascending:NO selector:@selector(caseInsensitiveCompare:)];
+    
+    _playerDataPoints  = [[[_configurationInfo players] allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     _patcheInfos = [[_configurationInfo patches] allObjects];
     _refreshRate = .2f;
     
@@ -878,6 +887,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         if ( [self hasActiveOperations: operations] ) {
             //[spinner startAnimating];
         } else {
+            //[self setupConfigurationAndRosterWithRunId:@"5ag"];
              [self checkConnectionWithUser];
             //[spinner stopAnimating];
         }
@@ -982,10 +992,13 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     ci.run_id = run_id;
     ci.harvest_calculator_bout_length_in_minutes = harvest_calculator_bout_length_in_minutes;
-    ci.maximum_harvest = maximum_harvest;
+    //ci.maximum_harvest = maximum_harvest;
+    ci.maximum_harvest = 3000;
+    ci.prospering_threshold = 270;
+    ci.starving_threshold = 240;
     ci.predation_penalty_length_in_seconds = predation_penalty_length_in_seconds;
-    ci.prospering_threshold = prospering_threshold;
-    ci.starving_threshold = starving_threshold;
+//    ci.prospering_threshold = prospering_threshold;
+//    ci.starving_threshold = starving_threshold;
     ci.players = nil;
 
     return ci;
@@ -997,7 +1010,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     pdp.color = color;
     pdp.currentPatch = patch;
     pdp.rfid_tag = rfid_tag;
-    pdp.score = score;
+    pdp.score = [NSNumber numberWithInt:240];
     pdp.player_id = player_id;
     
     
