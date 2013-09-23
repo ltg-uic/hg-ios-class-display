@@ -87,7 +87,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     // Setup the XMPP stream
     
-	[self setupStream];
+	
     
 
     return YES;
@@ -129,7 +129,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 }
 
 -(void)checkConnectionWithUser {
-    if (![self connect])
+    if (![self connect] || _xmppStream == nil)
 	{
 		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.0 * NSEC_PER_SEC);
 		dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -237,9 +237,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     if( isMultiUserChat ) {
     //setup of room
-        XMPPJID *roomJID = [XMPPJID jidWithString:ROOM_JID];
-    
-        _xmppRoom = [[XMPPRoom alloc] initWithRoomStorage:self jid:roomJID];
+  
+        
+        _xmppRoom = [[XMPPRoom alloc] initWithRoomStorage:self jid:[self getRoomJID]];
         [_xmppRoom  activate:_xmppStream];
         [_xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
     }
@@ -255,6 +255,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	allowSSLHostNameMismatch = NO;
 }
 
+-(XMPPJID *) getRoomJID {
+    NSString *roomJID = [[NSUserDefaults standardUserDefaults] objectForKey:kXMPProomJID];
+    XMPPJID *fullRoomJID = [XMPPJID jidWithString:[roomJID stringByAppendingString:XMPP_CONFERENCE_TAIL]];
+    return fullRoomJID;
+}
 - (void)teardownStream
 {
 	[_xmppStream removeDelegate:self];
@@ -694,7 +699,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 #pragma CONFIGURATION SETUP
 
--(void)setupConfigurationAndRosterWithRunId:(NSString *)run_id {
+-(void)setupConfigurationAndRosterWithRunId:(NSString *)run_id WithPatchId: (NSString*)currentPatchId {
     
     _configurationInfo = [self getConfigurationInfoWithRunId:run_id];
     
@@ -702,12 +707,24 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     _playerDataPoints  = [[[_configurationInfo players] allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     _patcheInfos = [[_configurationInfo patches] allObjects];
+    
+    
+    
     _refreshRate = .2f;
     
     [_playerDataDelegate playerDataDidUpdate];
     
     [self setupPlayerMap];
-    [self startTimer];
+    
+    if( _xmppStream == nil ) {
+        [self setupStream];
+    } else {
+        [_xmppRoom deactivate];
+        _xmppRoom = [[XMPPRoom alloc] initWithRoomStorage:self jid:[self getRoomJID]];
+        [_xmppRoom  activate:_xmppStream];
+
+    }
+    
 }
 
 -(void)setupPlayerMap {
@@ -1120,7 +1137,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     [self importCoreDataDefaultGraphWithConfigurationInfo:ci];
     
-    [self setupConfigurationAndRosterWithRunId:@"test-run"];
+    //[self setupConfigurationAndRosterWithRunId:@"test-run"];
     
     
 //    [self insertDataPointWith:@"Obama" To:@"Biden" WithMessage:@"Don't fuck up"];

@@ -53,9 +53,13 @@
     
     [[NSUserDefaults standardUserDefaults] setObject:xmppId forKey:kXMPPmyPassword];
     
+    [[NSUserDefaults standardUserDefaults] setObject:_configurationInfo.run_id forKey:kXMPProomJID];
+
+    
     [self dismissViewControllerAnimated:YES completion:^(void){
         
-        [[self appDelegate] setupConfigurationAndRosterWithRunId:_configurationInfo.run_id];
+        [[self appDelegate] setupConfigurationAndRosterWithRunId:_configurationInfo.run_id WithPatchId:nil];
+
         [[self appDelegate] disconnect];
         [[self appDelegate] connect];
     }];

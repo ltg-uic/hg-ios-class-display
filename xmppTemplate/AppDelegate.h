@@ -44,6 +44,7 @@
 @property (strong, nonatomic) NSArray *playerDataPoints;
 @property (strong, nonatomic) NSMutableDictionary *colorMap;
 @property (strong, nonatomic) ConfigurationInfo *configurationInfo;
+
 @property (nonatomic) float refreshRate;
 
 
@@ -61,7 +62,8 @@
 - (void)goOnline;
 - (void)goOffline;
 
--(void)setupConfigurationAndRosterWithRunId:(NSString *)run_id;
+-(void)setupConfigurationAndRosterWithRunId:(NSString *)run_id WithPatchId:(NSString*)current_patchId;
+
 
 
 @end
