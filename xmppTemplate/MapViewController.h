@@ -16,4 +16,6 @@
 @property(retain) IBOutletCollection(PatchMapUIView) NSArray *patchUIViews;
 @property(nonatomic) BOOL hasInitialized;
 
+-(void)checkGameReset;
+
 @end

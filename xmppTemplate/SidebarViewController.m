@@ -168,6 +168,16 @@
             
             
 			UINavigationController *navigationController = (UINavigationController*)[_controllerMap objectForKey:@"mapViewController"];
+            
+            UIViewController *rootViewController = navigationController.viewControllers[0];
+            
+            if( rootViewController != nil ) {
+                MapViewController *mapc = (MapViewController *)rootViewController;
+                [mapc checkGameReset];
+            }
+
+            
+            
 //			UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:frontViewController];
 			[revealController setFrontViewController:navigationController animated:YES];
         }

@@ -22,9 +22,11 @@
 #define harvestPlotId       @"harvest_plot"
 #define graphViewTitle      @"Harvest Graph"
 #define helveticaNeueMedium @"HelveticaNeue-Medium"
+#define helveticaNeueRegular @"HelveticaNeue"
 #define helveticaBold       @"Helvetica-Bold"
 #define ARRIVED             @"ARRIVED"
 #define DEPARTED            @"DEPARTED"
+#define GAME_RESET          @"GAME_RESET"
 
 
 #endif

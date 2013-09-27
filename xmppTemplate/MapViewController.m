@@ -22,6 +22,7 @@
 
 @implementation MapViewController
 
+
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder])
     {
@@ -33,7 +34,6 @@
 -(void)setupPatches {
     
      patchInfos = [[[[self appDelegate] configurationInfo ] patches ] allObjects];
-    
     
     for (int i = 0; i < _patchUIViews.count; i++) {
         PatchMapUIView *pmap = _patchUIViews[i];
@@ -52,6 +52,26 @@
         [self setupPatches];
  
 }
+
+-(void)checkGameReset {
+    
+    if( self.appDelegate.hasReset == YES ) {
+        for(PatchMapUIView *mapView in _patchUIViews) {
+            for (PlayerMapUIView *pmp in mapView.players) {
+                if( pmp.hidden == NO ) {
+                    pmp.backgroundColor = [UIColor clearColor];
+                    pmp.player_id = nil;
+                    pmp.nameLabel.text = nil;
+                    pmp.hidden = YES;
+                    [pmp setNeedsDisplay];
+                }
+                
+            }
+        }
+        
+    }
+}
+
 
 
 -(void)playerDataDidUpdateWithArrival:(NSString *)arrival_patch_id WithDeparture:(NSString *)departure_patch_id WithPlayerDataPoint:(PlayerDataPoint *)playerDataPoint {
@@ -156,13 +176,9 @@
 
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    
-    
-    //[self setupPatches];
-    
-    
-
+   
 }
+
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

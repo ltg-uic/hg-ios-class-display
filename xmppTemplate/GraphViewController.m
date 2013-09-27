@@ -173,7 +173,7 @@
     // 2 - Set up line style
     CPTMutableLineStyle *barLineStyle = [[CPTMutableLineStyle alloc] init];
     barLineStyle.lineColor = [CPTColor blackColor];
-    barLineStyle.lineWidth = 1;
+    barLineStyle.lineWidth = 0;
     
     // 3 - Add plot to graph
     harvestBarPlot.dataSource = self;
@@ -291,12 +291,12 @@
     
     // Text styles
     CPTMutableTextStyle *labelTitleTextStyleBlue = [CPTMutableTextStyle textStyle];
-    labelTitleTextStyleBlue.fontName = helveticaNeueMedium;
+    labelTitleTextStyleBlue.fontName = helveticaNeueRegular;
     labelTitleTextStyleBlue.fontSize = 28.0;
     labelTitleTextStyleBlue.color = blueColor;
     
     CPTMutableTextStyle *labelTitleTextStyleBlack = [CPTMutableTextStyle textStyle];
-    labelTitleTextStyleBlack.fontName = helveticaNeueMedium;
+    labelTitleTextStyleBlack.fontName = helveticaNeueRegular;
     labelTitleTextStyleBlack.fontSize = 28.0;
     labelTitleTextStyleBlack.color = [CPTColor blackColor];
     
@@ -363,7 +363,7 @@
 
 -(CPTLayer *)dataLabelForPlot:(CPTPlot *)plot recordIndex:(NSUInteger)index {
     CPTMutableTextStyle *axisTitleTextStyle = [CPTMutableTextStyle textStyle];
-    axisTitleTextStyle.fontName = helveticaNeueMedium;
+    axisTitleTextStyle.fontName = helveticaNeueRegular;
     axisTitleTextStyle.fontSize = 26.0;
     
    
@@ -401,6 +401,8 @@
 -(void)playerDataDidUpdate {
     
 }
+
+-(void)gameReset {}
 
 -(void)playerDataDidUpdateWithArrival:(NSString *)arrival_patch_id WithDeparture:(NSString *)departure_patch_id WithPlayerDataPoint:(PlayerDataPoint *)playerDataPoint {
     [self startTimer];
