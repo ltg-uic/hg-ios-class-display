@@ -308,6 +308,8 @@
     y.tickDirection               = CPTSignNone;
     y.axisLineStyle               = axisLineStyle;
     y.majorTickLength             = 0.0f;
+    y.labelOffset                 = 5.5f;
+
 
 
     NSMutableSet *newAxisLabels = [NSMutableSet set];

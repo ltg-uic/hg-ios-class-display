@@ -1045,17 +1045,27 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     pdp.color = color;
     pdp.currentPatch = patch;
     pdp.rfid_tag = rfid_tag;
-    pdp.score = score;
+    pdp.score = [NSNumber numberWithInt:(arc4random() % 1000)];
     pdp.player_id = player_id;
-    
-    
-    UIColor *hexColor = [UIColor colorWithHexString:[color stringByReplacingOccurrencesOfString:@"#" withString:@""]];
     
     if( _colorMap == nil ) {
         _colorMap = [[NSMutableDictionary alloc] init];
     }
     
-    [_colorMap setObject:hexColor forKey:color];
+    if( color != nil ) {
+        UIColor *hexColor = [UIColor colorWithHexString:[color stringByReplacingOccurrencesOfString:@"#" withString:@""]];
+        [_colorMap setObject:hexColor forKey:color];
+    } else {
+        
+        color = [NSString stringWithFormat:@"black%d",(arc4random() % 10)];
+        pdp.color = color;
+        [_colorMap setObject:[UIColor redColor] forKey:color];
+    }
+   
+    
+   
+    
+    
     
     return pdp;
 }

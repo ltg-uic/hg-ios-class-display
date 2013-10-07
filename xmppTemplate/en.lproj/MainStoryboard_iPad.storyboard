@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
@@ -9,7 +9,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="WizardClassPageViewController" autoresizesArchivedViewToFullSize="NO" title="Class Chooser" modalPresentationStyle="currentContext" id="wzZ-Et-LzK" customClass="WizardClassPageViewController" sceneMemberID="viewController">
                     <tableView key="view" autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleAspectFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="150" sectionHeaderHeight="22" sectionFooterHeight="22" id="mGa-jY-l1q">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="3188"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="scrollIndicatorInsets" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
@@ -18,10 +18,10 @@
                         <color key="sectionIndexTrackingBackgroundColor" red="0.26274511220000002" green="0.60784316059999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="wizcell_class" rowHeight="150" id="O2r-Ei-HGF" customClass="WizardClassCell">
-                                <rect key="frame" x="0.0" y="66" width="1024" height="150"/>
+                                <rect key="frame" x="0.0" y="66" width="768" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O2r-Ei-HGF" id="7a9-TF-SRS">
-                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="150"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5w2-7c-yKc">
@@ -67,7 +67,6 @@
                         <barButtonItem key="backBarButtonItem" title="Class" id="FAu-ti-Usi"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aEZ-7g-7q0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -78,7 +77,7 @@
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" title="WizardStudentPageViewController" modalPresentationStyle="currentContext" id="B93-el-CwP" customClass="WizardStudentPageViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="Ejr-No-Nvx">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="3144"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="TMk-tL-8Sm">
@@ -151,7 +150,7 @@
                         <viewControllerLayoutGuide type="bottom" id="88c-On-rVh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CR1-C1-sWK">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="3144"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <userGuides>
                             <userLayoutGuide location="259" affinity="minY"/>
@@ -349,33 +348,33 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gxr-GN-VVz" customClass="PatchMapUIView">
-                                <rect key="frame" x="385" y="133" width="205" height="205"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gxr-GN-VVz" customClass="PatchEView">
+                                <rect key="frame" x="10" y="72" width="260" height="260"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F8H-As-UTc" customClass="PatchMapUIView">
-                                <rect key="frame" x="65" y="133" width="205" height="205"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F8H-As-UTc" customClass="PatchDView">
+                                <rect key="frame" x="10" y="334" width="294" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JUL-ig-5t4" customClass="PatchMapUIView">
-                                <rect key="frame" x="65" y="448" width="205" height="205"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JUL-ig-5t4" customClass="PatchCView">
+                                <rect key="frame" x="10" y="500" width="260" height="260"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="odp-aS-pmx" customClass="PatchMapUIView">
-                                <rect key="frame" x="385" y="448" width="205" height="205"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="odp-aS-pmx" customClass="PatchBView">
+                                <rect key="frame" x="382" y="500" width="260" height="260"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="chJ-eE-fvJ" customClass="PatchMapUIView">
-                                <rect key="frame" x="705" y="448" width="205" height="205"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="chJ-eE-fvJ" customClass="PatchAView">
+                                <rect key="frame" x="760" y="500" width="260" height="260"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="center" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NpP-BK-9tl" customClass="PatchMapUIView">
-                                <rect key="frame" x="705" y="133" width="205" height="205"/>
+                            <view contentMode="center" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NpP-BK-9tl" customClass="PatchFView">
+                                <rect key="frame" x="464" y="72" width="260" height="260"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -390,12 +389,6 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="revealButtonItem" destination="88A-lT-JdK" id="W89-oD-1Yc"/>
-                        <outletCollection property="patchUIViews" destination="gxr-GN-VVz" id="Uoq-9L-cSM"/>
-                        <outletCollection property="patchUIViews" destination="F8H-As-UTc" id="WBP-ea-YVT"/>
-                        <outletCollection property="patchUIViews" destination="JUL-ig-5t4" id="Tlb-Zh-Rds"/>
-                        <outletCollection property="patchUIViews" destination="odp-aS-pmx" id="1Up-7M-bPC"/>
-                        <outletCollection property="patchUIViews" destination="chJ-eE-fvJ" id="dwM-sl-jUF"/>
-                        <outletCollection property="patchUIViews" destination="NpP-BK-9tl" id="2H8-M4-Snd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iyr-XE-cvq" userLabel="First Responder" sceneMemberID="firstResponder"/>

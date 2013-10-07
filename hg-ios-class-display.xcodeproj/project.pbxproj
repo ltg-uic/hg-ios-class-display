@@ -23,6 +23,16 @@
 		7012E55A17EA9A51004433BC /* PatchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7012E55917EA9A51004433BC /* PatchInfo.m */; };
 		7012E56317EAA85D004433BC /* PlayerDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7012E56217EAA85D004433BC /* PlayerDataPoint.m */; };
 		7013B01117E4CF9C00194BA5 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7013B01017E4CF9C00194BA5 /* SWRevealViewController.m */; };
+		7025693418025ADA00D0C39B /* PatchBView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7025693318025ADA00D0C39B /* PatchBView.xib */; };
+		7025693718025AF300D0C39B /* PatchBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025693618025AF300D0C39B /* PatchBView.m */; };
+		7025693A180260BE00D0C39B /* PatchCView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70256939180260BE00D0C39B /* PatchCView.m */; };
+		7025693C180260D200D0C39B /* PatchCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7025693B180260D200D0C39B /* PatchCView.xib */; };
+		7025693E1802653800D0C39B /* PatchDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7025693D1802653800D0C39B /* PatchDView.xib */; };
+		702569411802654C00D0C39B /* PatchDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 702569401802654C00D0C39B /* PatchDView.m */; };
+		7025694518026CC500D0C39B /* PatchEView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025694418026CC500D0C39B /* PatchEView.m */; };
+		7025694718026CF500D0C39B /* PatchEView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7025694618026CF500D0C39B /* PatchEView.xib */; };
+		702569491802713200D0C39B /* PatchFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 702569481802713200D0C39B /* PatchFView.xib */; };
+		7025694C1802721E00D0C39B /* PatchFView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025694B1802721E00D0C39B /* PatchFView.m */; };
 		7025949B17C3FFE7006E596B /* WizardStudentPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025949A17C3FFE7006E596B /* WizardStudentPageViewController.m */; };
 		7025949E17C40065006E596B /* WizardStudentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025949D17C40065006E596B /* WizardStudentCell.m */; };
 		703047E217C9DEB80043FD7B /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B44C1F17B3607A00C47B61 /* libiconv.2.4.0.dylib */; };
@@ -183,6 +193,9 @@
 		70EC27D517E2287200077DF4 /* UIView+NibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EC27D417E2287200077DF4 /* UIView+NibLoading.m */; };
 		70EDB4D017B475960005E144 /* libresolv.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B44C1817B31E8D00C47B61 /* libresolv.9.dylib */; };
 		70F0F56D17CFD47C009B4E66 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F0F56C17CFD47C009B4E66 /* WebViewController.m */; };
+		70F64F661801C72B002E5322 /* MapAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70F64F651801C72B002E5322 /* MapAssets.xcassets */; };
+		70F64F6B1801CA22002E5322 /* PatchAView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70F64F6A1801CA22002E5322 /* PatchAView.xib */; };
+		70F64F6E1801D0D0002E5322 /* PatchAView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F64F6D1801D0D0002E5322 /* PatchAView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -204,7 +217,7 @@
 		700C3A9D16042944005A9E34 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		700C3B2D16042BBD005A9E34 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		700C3B39160430DA005A9E34 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		7012E54B17EA7E20004433BC /* DataPointModelQuality - Predation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DataPointModelQuality - Predation.xcdatamodel"; sourceTree = "<group>"; };
+		7012E54B17EA7E20004433BC /* DataPointModelQuality - Predation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataPointModelQuality - Predation.xcdatamodel"; sourceTree = "<group>"; };
 		7012E54C17EA7F1B004433BC /* ConfigurationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfigurationInfo.h; path = entity/ConfigurationInfo.h; sourceTree = "<group>"; };
 		7012E54D17EA7F1B004433BC /* ConfigurationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigurationInfo.m; path = entity/ConfigurationInfo.m; sourceTree = "<group>"; };
 		7012E55817EA9A51004433BC /* PatchInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatchInfo.h; sourceTree = "<group>"; };
@@ -213,6 +226,21 @@
 		7012E56217EAA85D004433BC /* PlayerDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerDataPoint.m; sourceTree = "<group>"; };
 		7013B00F17E4CF9C00194BA5 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		7013B01017E4CF9C00194BA5 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		7025693318025ADA00D0C39B /* PatchBView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatchBView.xib; sourceTree = "<group>"; };
+		7025693518025AF300D0C39B /* PatchBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatchBView.h; sourceTree = "<group>"; };
+		7025693618025AF300D0C39B /* PatchBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatchBView.m; sourceTree = "<group>"; };
+		70256938180260BE00D0C39B /* PatchCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatchCView.h; sourceTree = "<group>"; };
+		70256939180260BE00D0C39B /* PatchCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatchCView.m; sourceTree = "<group>"; };
+		7025693B180260D200D0C39B /* PatchCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatchCView.xib; sourceTree = "<group>"; };
+		7025693D1802653800D0C39B /* PatchDView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatchDView.xib; sourceTree = "<group>"; };
+		7025693F1802654C00D0C39B /* PatchDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatchDView.h; sourceTree = "<group>"; };
+		702569401802654C00D0C39B /* PatchDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatchDView.m; sourceTree = "<group>"; };
+		7025694318026CC500D0C39B /* PatchEView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatchEView.h; sourceTree = "<group>"; };
+		7025694418026CC500D0C39B /* PatchEView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatchEView.m; sourceTree = "<group>"; };
+		7025694618026CF500D0C39B /* PatchEView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatchEView.xib; sourceTree = "<group>"; };
+		702569481802713200D0C39B /* PatchFView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatchFView.xib; sourceTree = "<group>"; };
+		7025694A1802721E00D0C39B /* PatchFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatchFView.h; sourceTree = "<group>"; };
+		7025694B1802721E00D0C39B /* PatchFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatchFView.m; sourceTree = "<group>"; };
 		7025949917C3FFE7006E596B /* WizardStudentPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardStudentPageViewController.h; sourceTree = "<group>"; };
 		7025949A17C3FFE7006E596B /* WizardStudentPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardStudentPageViewController.m; sourceTree = "<group>"; };
 		7025949C17C40065006E596B /* WizardStudentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardStudentCell.h; sourceTree = "<group>"; };
@@ -612,6 +640,10 @@
 		70EC27D417E2287200077DF4 /* UIView+NibLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NibLoading.m"; sourceTree = "<group>"; };
 		70F0F56B17CFD47C009B4E66 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		70F0F56C17CFD47C009B4E66 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		70F64F651801C72B002E5322 /* MapAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MapAssets.xcassets; sourceTree = "<group>"; };
+		70F64F6A1801CA22002E5322 /* PatchAView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PatchAView.xib; path = ../PatchAView.xib; sourceTree = "<group>"; };
+		70F64F6C1801D0D0002E5322 /* PatchAView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatchAView.h; sourceTree = "<group>"; };
+		70F64F6D1801D0D0002E5322 /* PatchAView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatchAView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -727,6 +759,31 @@
 				700C3A5F160427DA005A9E34 /* hg-ios-class-display-Prefix.pch */,
 			);
 			name = supporting;
+			sourceTree = "<group>";
+		};
+		7025694218026C9B00D0C39B /* Patches */ = {
+			isa = PBXGroup;
+			children = (
+				7025693518025AF300D0C39B /* PatchBView.h */,
+				7025693618025AF300D0C39B /* PatchBView.m */,
+				7025693318025ADA00D0C39B /* PatchBView.xib */,
+				7025693D1802653800D0C39B /* PatchDView.xib */,
+				7025693F1802654C00D0C39B /* PatchDView.h */,
+				702569401802654C00D0C39B /* PatchDView.m */,
+				70256938180260BE00D0C39B /* PatchCView.h */,
+				70256939180260BE00D0C39B /* PatchCView.m */,
+				7025693B180260D200D0C39B /* PatchCView.xib */,
+				70F64F6C1801D0D0002E5322 /* PatchAView.h */,
+				70F64F6D1801D0D0002E5322 /* PatchAView.m */,
+				70F64F6A1801CA22002E5322 /* PatchAView.xib */,
+				7025694318026CC500D0C39B /* PatchEView.h */,
+				7025694618026CF500D0C39B /* PatchEView.xib */,
+				7025694418026CC500D0C39B /* PatchEView.m */,
+				702569481802713200D0C39B /* PatchFView.xib */,
+				7025694A1802721E00D0C39B /* PatchFView.h */,
+				7025694B1802721E00D0C39B /* PatchFView.m */,
+			);
+			name = Patches;
 			sourceTree = "<group>";
 		};
 		703047E017C9DC3E0043FD7B /* tabs */ = {
@@ -1582,6 +1639,8 @@
 				707FE56F17D9412B0036DBAB /* PatchMapUIView.h */,
 				7065422E17E0438900C38099 /* PatchMapUIView.xib */,
 				707FE57017D9412B0036DBAB /* PatchMapUIView.m */,
+				7025694218026C9B00D0C39B /* Patches */,
+				70F64F651801C72B002E5322 /* MapAssets.xcassets */,
 			);
 			name = map;
 			sourceTree = "<group>";
@@ -1728,14 +1787,21 @@
 			files = (
 				700C3A5C160427DA005A9E34 /* InfoPlist.strings in Resources */,
 				705BED3D17EA64140042D313 /* README.txt in Resources */,
+				70F64F661801C72B002E5322 /* MapAssets.xcassets in Resources */,
 				70CD9B3617B49BF2008625BF /* logon_sound.aif in Resources */,
 				7065422F17E0438900C38099 /* PatchMapUIView.xib in Resources */,
 				704AA4C317E3F6E400A7FF9C /* PlayerMapUIView.xib in Resources */,
+				7025693418025ADA00D0C39B /* PatchBView.xib in Resources */,
+				7025693E1802653800D0C39B /* PatchDView.xib in Resources */,
 				705BED4217EA64140042D313 /* build-libidn.sh in Resources */,
 				70CEF76417C8443A00ED0CBE /* Default-568h@2x.png in Resources */,
 				700C3A6E160427DA005A9E34 /* MainStoryboard_iPad.storyboard in Resources */,
+				702569491802713200D0C39B /* PatchFView.xib in Resources */,
 				70AFBDD417C7E9DF00868211 /* sidebar_icons.xcassets in Resources */,
+				7025693C180260D200D0C39B /* PatchCView.xib in Resources */,
 				703D870017D938C900523417 /* awareness.xcassets in Resources */,
+				70F64F6B1801CA22002E5322 /* PatchAView.xib in Resources */,
+				7025694718026CF500D0C39B /* PatchEView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1765,6 +1831,7 @@
 				705BEE5B17EA643A0042D313 /* XMPPCapabilitiesCoreDataStorage.m in Sources */,
 				705BEE3C17EA643A0042D313 /* XMPPRoomMessageMemoryStorageObject.m in Sources */,
 				705BED0D17EA64000042D313 /* XMPPStringPrep.m in Sources */,
+				7025694518026CC500D0C39B /* PatchEView.m in Sources */,
 				705BED0817EA64000042D313 /* DDList.m in Sources */,
 				70F0F56D17CFD47C009B4E66 /* WebViewController.m in Sources */,
 				70AFBDD017C7E4B700868211 /* SidebarViewController.m in Sources */,
@@ -1828,12 +1895,14 @@
 				7025949B17C3FFE7006E596B /* WizardStudentPageViewController.m in Sources */,
 				706857E817C51A2600BF8AAF /* UIImageView+AFNetworking.m in Sources */,
 				705BEE5F17EA643A0042D313 /* XMPPMessageArchiving.xcdatamodeld in Sources */,
+				7025694C1802721E00D0C39B /* PatchFView.m in Sources */,
 				705BEE6717EA643A0042D313 /* XMPPMessage+XEP_0184.m in Sources */,
 				705BEE6117EA643A0042D313 /* XMPPMessageArchiving_Message_CoreDataObject.m in Sources */,
 				705BEE3A17EA643A0042D313 /* XMPPRoomOccupantHybridMemoryStorageObject.m in Sources */,
 				705BEE3B17EA643A0042D313 /* XMPPRoomMemoryStorage.m in Sources */,
 				705BEE3517EA643A0042D313 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
 				705BED0C17EA64000042D313 /* XMPPSRVResolver.m in Sources */,
+				7025693718025AF300D0C39B /* PatchBView.m in Sources */,
 				705AE0D617D595CC005F69B7 /* SBJsonStreamParser.m in Sources */,
 				707FE57117D9412B0036DBAB /* PatchMapUIView.m in Sources */,
 				706857E317C51A2600BF8AAF /* AFJSONRequestOperation.m in Sources */,
@@ -1853,12 +1922,14 @@
 				705BECFD17EA64000042D313 /* NSData+XMPP.m in Sources */,
 				705BED3E17EA64140042D313 /* NSString+DDXML.m in Sources */,
 				7012E54E17EA7F1B004433BC /* ConfigurationInfo.m in Sources */,
+				70F64F6E1801D0D0002E5322 /* PatchAView.m in Sources */,
 				705BEE6617EA643A0042D313 /* XMPPPresence+XEP_0172.m in Sources */,
 				705BED0517EA64000042D313 /* XMPPParser.m in Sources */,
 				7025949E17C40065006E596B /* WizardStudentCell.m in Sources */,
 				705BEE5A17EA643A0042D313 /* XMPPCapabilities.xcdatamodel in Sources */,
 				705BED3B17EA64140042D313 /* ContextFilterLogFormatter.m in Sources */,
 				705BEE6D17EA643A0042D313 /* NSXMLElement+XEP_0203.m in Sources */,
+				7025693A180260BE00D0C39B /* PatchCView.m in Sources */,
 				705BEE6817EA643A0042D313 /* XMPPMessageDeliveryReceipts.m in Sources */,
 				705BEE6C17EA643A0042D313 /* XMPPTime.m in Sources */,
 				705BEE2D17EA643A0042D313 /* XMPPIQ+JabberRPC.m in Sources */,
@@ -1871,6 +1942,7 @@
 				705AE0DD17D595CC005F69B7 /* SBJsonStreamWriterState.m in Sources */,
 				705BED3917EA64140042D313 /* DDLog.m in Sources */,
 				705BED0017EA64000042D313 /* XMPPElement.m in Sources */,
+				702569411802654C00D0C39B /* PatchDView.m in Sources */,
 				705BEE2E17EA643A0042D313 /* XMPPIQ+JabberRPCResonse.m in Sources */,
 				705BEE2917EA643A0042D313 /* XMPPRosterMemoryStorage.m in Sources */,
 				705BECD217EA63EF0042D313 /* XMPPDigestMD5Authentication.m in Sources */,
