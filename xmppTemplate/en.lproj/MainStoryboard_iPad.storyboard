@@ -338,7 +338,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <userGuides>
-                            <userLayoutGuide location="571" affinity="minY"/>
+                            <userLayoutGuide location="542" affinity="minY"/>
                             <userLayoutGuide location="179" affinity="minX"/>
                         </userGuides>
                         <subviews>
@@ -349,32 +349,32 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gxr-GN-VVz" customClass="PatchEView">
-                                <rect key="frame" x="10" y="72" width="260" height="260"/>
+                                <rect key="frame" x="0.0" y="65" width="283" height="242"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F8H-As-UTc" customClass="PatchDView">
-                                <rect key="frame" x="10" y="334" width="294" height="163"/>
+                                <rect key="frame" x="0.0" y="306" width="347" height="194"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JUL-ig-5t4" customClass="PatchCView">
-                                <rect key="frame" x="10" y="500" width="260" height="260"/>
+                                <rect key="frame" x="0.0" y="500" width="283" height="268"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="odp-aS-pmx" customClass="PatchBView">
-                                <rect key="frame" x="382" y="500" width="260" height="260"/>
+                                <rect key="frame" x="364" y="458" width="310" height="310"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="chJ-eE-fvJ" customClass="PatchAView">
-                                <rect key="frame" x="760" y="500" width="260" height="260"/>
+                                <rect key="frame" x="713" y="458" width="310" height="310"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="center" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NpP-BK-9tl" customClass="PatchFView">
-                                <rect key="frame" x="464" y="72" width="260" height="260"/>
+                                <rect key="frame" x="444" y="65" width="310" height="310"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
