@@ -47,7 +47,7 @@
 - (IBAction)doLoginWithStudentName:(id)sender {
     
     
-    NSString *xmppId = [_configurationInfo.run_id stringByAppendingFormat:@"#%@",_choosen_student];
+    NSString *xmppId = [_configurationInfo.run_id stringByAppendingFormat:@"#%@",[_choosen_student lowercaseString]];
     
     [[NSUserDefaults standardUserDefaults] setObject:[xmppId stringByAppendingString:XMPP_TAIL] forKey:kXMPPmyJID];
     

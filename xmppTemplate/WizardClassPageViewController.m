@@ -80,7 +80,7 @@
    ConfigurationInfo *ci = [self.fetchedResultsController objectAtIndexPath:indexPath];//
 //   
 //    // Configure the cell.
-    cell.classNameLabel.text = ci.run_id;
+    cell.classNameLabel.text = [ci.run_id uppercaseString];
     
     return cell;
 }

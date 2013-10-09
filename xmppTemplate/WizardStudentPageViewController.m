@@ -80,7 +80,7 @@
     wz.nameButton.backgroundColor = hexColor;
   
     if( !(pdp == nil || [playerPoints count] == 0) ) {
-        [wz.nameButton setTitle: pdp.player_id forState: UIControlStateNormal];
+        [wz.nameButton setTitle: [pdp.player_id uppercaseString]  forState: UIControlStateNormal];
         [wz.nameButton setTitleColor: [self getTextColor:hexColor]  forState:UIControlStateNormal];
 
     }

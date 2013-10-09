@@ -7,7 +7,9 @@
 //
 
 #import "UIView+NibLoading.h"
-
-@interface PatchFView : NibLoadedView
+#import "PatchMapUIView.h"
+@interface PatchFView : PatchMapUIView {
+    
+}
 
 @end

@@ -181,6 +181,7 @@
 		70AFBDD417C7E9DF00868211 /* sidebar_icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70AFBDD317C7E9DF00868211 /* sidebar_icons.xcassets */; };
 		70B4119017B4600900F61347 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B44C1C17B35B4B00C47B61 /* libxml2.2.dylib */; };
 		70BC894D17CBB35300DC0AD1 /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BC894C17CBB35300DC0AD1 /* UIColor-Expanded.m */; };
+		70C8F07E180369A100C57B03 /* patch_images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70C8F07D180369A100C57B03 /* patch_images.xcassets */; };
 		70CD9B3417B4988E008625BF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CD9B3317B4988E008625BF /* AudioToolbox.framework */; };
 		70CD9B3617B49BF2008625BF /* logon_sound.aif in Resources */ = {isa = PBXBuildFile; fileRef = 70CD9B3517B49BF2008625BF /* logon_sound.aif */; };
 		70CEF76417C8443A00ED0CBE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70CEF76317C8443A00ED0CBE /* Default-568h@2x.png */; };
@@ -621,6 +622,7 @@
 		70B44C1F17B3607A00C47B61 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = usr/lib/libiconv.2.4.0.dylib; sourceTree = SDKROOT; };
 		70BC894B17CBB35300DC0AD1 /* UIColor-Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-Expanded.h"; sourceTree = "<group>"; };
 		70BC894C17CBB35300DC0AD1 /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-Expanded.m"; sourceTree = "<group>"; };
+		70C8F07D180369A100C57B03 /* patch_images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = patch_images.xcassets; sourceTree = "<group>"; };
 		70CD9B3317B4988E008625BF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		70CD9B3517B49BF2008625BF /* logon_sound.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = logon_sound.aif; sourceTree = "<group>"; };
 		70CEF76317C8443A00ED0CBE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -748,6 +750,7 @@
 		700C3A58160427DA005A9E34 /* supporting */ = {
 			isa = PBXGroup;
 			children = (
+				70C8F07D180369A100C57B03 /* patch_images.xcassets */,
 				703D86FF17D938C900523417 /* awareness.xcassets */,
 				70AFBDD317C7E9DF00868211 /* sidebar_icons.xcassets */,
 				70AAC26517C31AE90018A84B /* wizard.xcassets */,
@@ -764,14 +767,14 @@
 		7025694218026C9B00D0C39B /* Patches */ = {
 			isa = PBXGroup;
 			children = (
-				7025693518025AF300D0C39B /* PatchBView.h */,
-				7025693618025AF300D0C39B /* PatchBView.m */,
-				7025693F1802654C00D0C39B /* PatchDView.h */,
-				702569401802654C00D0C39B /* PatchDView.m */,
-				70256938180260BE00D0C39B /* PatchCView.h */,
-				70256939180260BE00D0C39B /* PatchCView.m */,
 				70F64F6C1801D0D0002E5322 /* PatchAView.h */,
 				70F64F6D1801D0D0002E5322 /* PatchAView.m */,
+				7025693518025AF300D0C39B /* PatchBView.h */,
+				7025693618025AF300D0C39B /* PatchBView.m */,
+				70256938180260BE00D0C39B /* PatchCView.h */,
+				70256939180260BE00D0C39B /* PatchCView.m */,
+				7025693F1802654C00D0C39B /* PatchDView.h */,
+				702569401802654C00D0C39B /* PatchDView.m */,
 				7025694318026CC500D0C39B /* PatchEView.h */,
 				7025694418026CC500D0C39B /* PatchEView.m */,
 				7025694A1802721E00D0C39B /* PatchFView.h */,
@@ -1637,8 +1640,8 @@
 				704AA4C217E3F6E400A7FF9C /* PlayerMapUIView.xib */,
 				704AA4C017E3F3E200A7FF9C /* PlayerMapUIView.m */,
 				707FE56F17D9412B0036DBAB /* PatchMapUIView.h */,
-				7065422E17E0438900C38099 /* PatchMapUIView.xib */,
 				707FE57017D9412B0036DBAB /* PatchMapUIView.m */,
+				7065422E17E0438900C38099 /* PatchMapUIView.xib */,
 				7025694218026C9B00D0C39B /* Patches */,
 				70F64F651801C72B002E5322 /* MapAssets.xcassets */,
 			);
@@ -1787,6 +1790,7 @@
 			files = (
 				700C3A5C160427DA005A9E34 /* InfoPlist.strings in Resources */,
 				705BED3D17EA64140042D313 /* README.txt in Resources */,
+				70C8F07E180369A100C57B03 /* patch_images.xcassets in Resources */,
 				70F64F661801C72B002E5322 /* MapAssets.xcassets in Resources */,
 				70CD9B3617B49BF2008625BF /* logon_sound.aif in Resources */,
 				7065422F17E0438900C38099 /* PatchMapUIView.xib in Resources */,

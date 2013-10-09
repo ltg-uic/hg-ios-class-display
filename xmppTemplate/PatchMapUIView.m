@@ -31,9 +31,7 @@
     self = [super initWithCoder:aDecoder];
     [self loadContentsFromNib];
     if( self ) {
-        self.layer.shadowColor = [[UIColor blackColor] CGColor];
-        self.layer.shadowOffset = CGSizeMake(1.0, 1.0);
-        self.layer.shadowOpacity = 0.30;
+        
     }
     return self;
 }
@@ -42,11 +40,15 @@
 - (id) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if( self ) {
-        self.layer.shadowColor = [[UIColor blackColor] CGColor];
-        self.layer.shadowOffset = CGSizeMake(1.0, 1.0);
-        self.layer.shadowOpacity = 0.10;
+        
     }
     return self;
+}
+
+-(void)shadow {
+    self.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.layer.shadowOffset = CGSizeMake(1.0, 1.0);
+    self.layer.shadowOpacity = 0.10;
 }
 
 @end

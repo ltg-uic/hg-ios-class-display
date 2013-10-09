@@ -551,7 +551,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         NSString *event = [jsonObjects objectForKey:@"event"];
         
         if( event != nil) {
-            if( [event isEqualToString:@"game_reset"] ) {
+            if( [event isEqualToString:@"bout_reset"] ) {
                 _isGameRunning = NO;
                 
                 for (PlayerDataPoint *pdp in _playerDataPoints) {
@@ -561,11 +561,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 [self.managedObjectContext save:nil];
                 
                 _hasReset = YES;
-            } else if([event isEqualToString:@"game_start"] ) {
+            } else if([event isEqualToString:@"bout_start"] ) {
                 _isGameRunning = YES;
                 _hasReset = NO;
                 [self startTimer];
-            } else if( [event isEqualToString:@"game_stop"] ) {
+            } else if( [event isEqualToString:@"bout_stop"] ) {
                 _isGameRunning = NO;
                 _hasReset = NO;
                 [self stopTimer];

@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "UIView+NibLoading.h"
-
-@interface PatchEView : NibLoadedView {
+#import "PatchMapUIView.h"
+@interface PatchEView : PatchMapUIView {
     
 }
 

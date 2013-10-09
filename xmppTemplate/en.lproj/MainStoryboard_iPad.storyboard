@@ -389,6 +389,12 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="revealButtonItem" destination="88A-lT-JdK" id="W89-oD-1Yc"/>
+                        <outletCollection property="patchUIViews" destination="NpP-BK-9tl" id="642-6g-ohN"/>
+                        <outletCollection property="patchUIViews" destination="F8H-As-UTc" id="tdN-jK-UHa"/>
+                        <outletCollection property="patchUIViews" destination="gxr-GN-VVz" id="IgN-dJ-zlT"/>
+                        <outletCollection property="patchUIViews" destination="JUL-ig-5t4" id="rBk-6L-rdA"/>
+                        <outletCollection property="patchUIViews" destination="odp-aS-pmx" id="ZB5-aq-QxW"/>
+                        <outletCollection property="patchUIViews" destination="chJ-eE-fvJ" id="GVq-j7-bGO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iyr-XE-cvq" userLabel="First Responder" sceneMemberID="firstResponder"/>
