@@ -27,37 +27,37 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <view hidden="YES" contentMode="scaleToFill" id="AtC-ej-PVW" customClass="PlayerMapUIView">
-                    <rect key="frame" x="131" y="29" width="55" height="55"/>
+                    <rect key="frame" x="131" y="29" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="ueg-1m-H9P" customClass="PlayerMapUIView">
-                    <rect key="frame" x="167" y="137" width="55" height="55"/>
+                    <rect key="frame" x="167" y="137" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="nB4-zT-7bR" customClass="PlayerMapUIView">
-                    <rect key="frame" x="68" y="0.0" width="55" height="55"/>
+                    <rect key="frame" x="68" y="0.0" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="RAY-6c-BzJ" customClass="PlayerMapUIView">
-                    <rect key="frame" x="189" y="75" width="55" height="55"/>
+                    <rect key="frame" x="189" y="75" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="F9a-WC-AVi" customClass="PlayerMapUIView">
-                    <rect key="frame" x="11" y="20" width="55" height="55"/>
+                    <rect key="frame" x="11" y="20" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="yn9-th-UV8" customClass="PlayerMapUIView">
-                    <rect key="frame" x="189" y="12" width="55" height="55"/>
+                    <rect key="frame" x="189" y="12" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="oVm-uu-jwT" customClass="PlayerMapUIView">
-                    <rect key="frame" x="0.0" y="79" width="55" height="55"/>
+                    <rect key="frame" x="0.0" y="79" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>

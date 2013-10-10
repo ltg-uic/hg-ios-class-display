@@ -99,7 +99,7 @@
                     pmp.uiColor = hexColor;
                     pmp.backgroundColor = [UIColor clearColor];
                     pmp.player_id = playerDataPoint.rfid_tag;
-                    pmp.nameLabel.text = playerDataPoint.player_id;
+                    pmp.nameLabel.text = [playerDataPoint.player_id uppercaseString];
                     pmp.nameLabel.textColor = [self getTextColor:hexColor];
                     pmp.hidden = NO;
                     [pmp setNeedsDisplay];

@@ -37,7 +37,8 @@
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
-{    
+{
+    
     //self.backgroundColor = _uiColor;
     CGSize mySize = self.bounds.size;
     CGFloat radius = mySize.width-2;

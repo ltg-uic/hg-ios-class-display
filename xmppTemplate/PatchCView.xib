@@ -24,42 +24,42 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <view hidden="YES" contentMode="scaleToFill" id="W2b-xQ-vmx" customClass="PlayerMapUIView">
-                    <rect key="frame" x="79" y="2" width="55" height="55"/>
+                    <rect key="frame" x="79" y="2" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="tdb-NQ-rUR" customClass="PlayerMapUIView">
-                    <rect key="frame" x="64" y="128" width="55" height="55"/>
+                    <rect key="frame" x="64" y="128" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="Nh2-kh-oKi" customClass="PlayerMapUIView">
-                    <rect key="frame" x="161" y="79" width="55" height="55"/>
+                    <rect key="frame" x="161" y="79" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="uAK-3e-5Ih" customClass="PlayerMapUIView">
-                    <rect key="frame" x="219" y="84" width="55" height="55"/>
+                    <rect key="frame" x="219" y="84" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="Sxt-Ag-Ldl" customClass="PlayerMapUIView">
-                    <rect key="frame" x="195" y="21" width="55" height="55"/>
+                    <rect key="frame" x="195" y="21" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="DG4-qD-FgU" customClass="PlayerMapUIView">
-                    <rect key="frame" x="206" y="142" width="55" height="55"/>
+                    <rect key="frame" x="206" y="142" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="m8D-yu-K5f" customClass="PlayerMapUIView">
-                    <rect key="frame" x="100" y="65" width="55" height="55"/>
+                    <rect key="frame" x="100" y="65" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="N2A-Od-ZZj" customClass="PlayerMapUIView">
-                    <rect key="frame" x="37" y="65" width="55" height="55"/>
+                    <rect key="frame" x="37" y="65" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
