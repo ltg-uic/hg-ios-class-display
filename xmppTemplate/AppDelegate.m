@@ -18,6 +18,7 @@
 #import "AFNetworking.h"
 #import "UIColor-Expanded.h"
 #import "SidebarViewController.h"
+#import "NonPlayerDataPoint.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -32,7 +33,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     NSOperationQueue *operationQueue;
     NSTimer *timer;
     NSMutableDictionary *patchPlayerMap;
-
+    NSMutableArray *killList;
 
 }
 
@@ -126,6 +127,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	
 	self.window.rootViewController = self.viewController;
 	[self.window makeKeyAndVisible];
+    
+    
+    
 }
 
 -(void)checkConnectionWithUser {
@@ -569,6 +573,14 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 _isGameRunning = NO;
                 _hasReset = NO;
                 [self stopTimer];
+            } else if( [event isEqualToString:@"kill_tag"]) {
+                NSDictionary *payload = [jsonObjects objectForKey:@"payload"];
+                NSString *player_id = [payload objectForKey:@"id"];
+                [killList addObject:player_id];
+            } else if( [event isEqualToString:@"resurrect_tag"]) {
+                NSDictionary *payload = [jsonObjects objectForKey:@"payload"];
+                NSString *player_id = [payload objectForKey:@"id"];
+                [killList removeObject:player_id];
             } else if( [event isEqualToString:@"rfid_update"] && (_isGameRunning == YES) ){
                 
             
@@ -818,21 +830,23 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                             
                             PlayerDataPoint *pdp = [thePlayer objectAtIndex:0];
                             
-                            //number of the patches at the patch
-                            int numberOfPlayerAtPatches = players.count;
-                            
-                            //calculate the new score
-                            float playerOldScore = [pdp.score floatValue];
-                            
-                            //calc new richness
-                            float adjustedRichness = (patchInfo.quality_per_minute / numberOfPlayerAtPatches );
-                            
-                            //figure out the adjusted rate for the refreshrate
-                            float adjustedRate = (adjustedRichness / 60 ) * _refreshRate;
-                            
-                            pdp.score = [NSNumber numberWithFloat:(playerOldScore + adjustedRate)];
-                            
-                            NSLog(@"PLAYER %@ NEW score %f",pdp.player_id, [pdp.score floatValue]);
+                            if( ![killList containsObject:pdp.player_id] ) {
+                                //number of the patches at the patch
+                                int numberOfPlayerAtPatches = players.count;
+                                
+                                //calculate the new score
+                                float playerOldScore = [pdp.score floatValue];
+                                
+                                //calc new richness
+                                float adjustedRichness = (patchInfo.quality_per_minute / numberOfPlayerAtPatches );
+                                
+                                //figure out the adjusted rate for the refreshrate
+                                float adjustedRate = (adjustedRichness / 60 ) * _refreshRate;
+                                
+                                pdp.score = [NSNumber numberWithFloat:(playerOldScore + adjustedRate)];
+                                
+                                NSLog(@"PLAYER %@ NEW score %f",pdp.player_id, [pdp.score floatValue]);
+                            }
                         }
                         
                     }
@@ -956,10 +970,22 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                              
                                              for (NSDictionary *someStudent in students) {
                                                  
+                                                 BOOL isStudent = YES;
                                                  
-                                                 PlayerDataPoint *pdp = [self insertPlayerDataPointWithColor:[someStudent objectForKey:@"color"] WithLabel:[someStudent objectForKey:@"label"] WithPatch:nil WithRfid:[someStudent objectForKey:@"rfid_tag"] WithScore:[NSNumber numberWithInt:0] WithId:[someStudent objectForKey:@"_id"]];
+                                                 NSString *rfid = [someStudent objectForKey:@"rfid_tag"];
                                                  
-                                                 [configurationInfo addPlayersObject:pdp];
+                                                 if( rfid == nil ) {
+                                                     isStudent = NO;
+                                                      [self insertNonPlayerDataPointWithColor:[someStudent objectForKey:@"color"] WithLabel:[someStudent objectForKey:@"label"] WithPatch:nil WithRfid:[someStudent objectForKey:@"rfid_tag"] WithScore:[NSNumber numberWithInt:0] WithId:[someStudent objectForKey:@"_id"] asStudent:isStudent WithType:@"teacher"];
+                                                 } else {
+                                                     PlayerDataPoint *pdp = [self insertPlayerDataPointWithColor:[someStudent objectForKey:@"color"] WithLabel:[someStudent objectForKey:@"label"] WithPatch:nil WithRfid:[someStudent objectForKey:@"rfid_tag"] WithScore:[NSNumber numberWithInt:0] WithId:[someStudent objectForKey:@"_id"] asStudent:isStudent];
+                                                     
+                                                     [configurationInfo addPlayersObject:pdp];
+                                                 }
+                                                 
+                                            
+                                                 
+                                                
                                              }
                                              
 
@@ -1039,7 +1065,42 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     return ci;
 }
 
--(PlayerDataPoint *)insertPlayerDataPointWithColor:(NSString *)color WithLabel:(NSString *)label WithPatch:(NSString *)patch WithRfid:(NSString *)rfid_tag WithScore:(NSNumber *)score WithId: (NSString *)player_id {
+
+-(NonPlayerDataPoint *)insertNonPlayerDataPointWithColor:(NSString *)color WithLabel:(NSString *)label WithPatch:(NSString *)patch WithRfid:(NSString *)rfid_tag WithScore:(NSNumber *)score WithId: (NSString *)player_id asStudent:(BOOL) isStudent WithType: (NSString *)type{
+    NonPlayerDataPoint *pdp = [NSEntityDescription insertNewObjectForEntityForName:@"NonPlayerDataPoint"
+                                                         inManagedObjectContext:self.managedObjectContext];
+    pdp.color = color;
+    pdp.currentPatch = patch;
+    pdp.rfid_tag = rfid_tag;
+    pdp.score = [NSNumber numberWithInt:(arc4random() % 1000)];
+    pdp.player_id = player_id;
+    pdp.student = [NSNumber numberWithBool:isStudent];
+    pdp.type = type;
+    
+    if( _colorMap == nil ) {
+        _colorMap = [[NSMutableDictionary alloc] init];
+    }
+    
+    if( color != nil ) {
+        UIColor *hexColor = [UIColor colorWithHexString:[color stringByReplacingOccurrencesOfString:@"#" withString:@""]];
+        [_colorMap setObject:hexColor forKey:color];
+    } else {
+        
+        color = [NSString stringWithFormat:@"black%d",(arc4random() % 10)];
+        pdp.color = color;
+        [_colorMap setObject:[UIColor redColor] forKey:color];
+    }
+    
+    
+    
+    
+    
+    
+    return pdp;
+}
+
+
+-(PlayerDataPoint *)insertPlayerDataPointWithColor:(NSString *)color WithLabel:(NSString *)label WithPatch:(NSString *)patch WithRfid:(NSString *)rfid_tag WithScore:(NSNumber *)score WithId: (NSString *)player_id asStudent:(BOOL) isStudent {
     PlayerDataPoint *pdp = [NSEntityDescription insertNewObjectForEntityForName:@"PlayerDataPoint"
                                                          inManagedObjectContext:self.managedObjectContext];
     pdp.color = color;
@@ -1047,6 +1108,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     pdp.rfid_tag = rfid_tag;
     pdp.score = [NSNumber numberWithInt:(arc4random() % 1000)];
     pdp.player_id = player_id;
+    pdp.student = [NSNumber numberWithBool:isStudent];
     
     if( _colorMap == nil ) {
         _colorMap = [[NSMutableDictionary alloc] init];
@@ -1181,6 +1243,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 -(void)clearUserDefaults {
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kXMPPmyJID];
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kXMPPmyPassword];
+    killList = [[NSMutableArray alloc] init];
+
 }
 
 #pragma mark XMPPRoomStorage PROTOCOL

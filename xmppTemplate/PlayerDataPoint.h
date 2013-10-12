@@ -2,7 +2,7 @@
 //  PlayerDataPoint.h
 //  hg-ios-class-display
 //
-//  Created by Anthony Perritano on 9/18/13.
+//  Created by Anthony Perritano on 10/11/13.
 //  Copyright (c) 2013 Learning Technologies Group. All rights reserved.
 //
 
@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString * player_id;
 @property (nonatomic, retain) NSString * rfid_tag;
 @property (nonatomic, retain) NSNumber * score;
+@property (nonatomic, retain) NSNumber * student;
 @property (nonatomic, retain) ConfigurationInfo *configurationInfo;
 
 @end

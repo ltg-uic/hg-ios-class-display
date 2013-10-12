@@ -26,6 +26,10 @@
                     <rect key="frame" x="120" y="102" width="53" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Acorn_0" id="F9R-mq-vxS">
+                    <rect key="frame" x="23" y="66" width="53" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <view hidden="YES" contentMode="scaleToFill" id="AtC-ej-PVW" customClass="PlayerMapUIView">
                     <rect key="frame" x="131" y="29" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -47,7 +51,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="F9a-WC-AVi" customClass="PlayerMapUIView">
-                    <rect key="frame" x="11" y="20" width="60" height="60"/>
+                    <rect key="frame" x="11" y="7" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
@@ -57,7 +61,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="oVm-uu-jwT" customClass="PlayerMapUIView">
-                    <rect key="frame" x="0.0" y="79" width="60" height="60"/>
+                    <rect key="frame" x="0.0" y="114" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
