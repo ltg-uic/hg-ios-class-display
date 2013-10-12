@@ -66,5 +66,6 @@
 -(void)setupConfigurationAndRosterWithRunId:(NSString *)run_id WithPatchId:(NSString*)current_patchId;
 
 
+-(NSArray *)getAllNonPlayerDataPoints;
 
 @end

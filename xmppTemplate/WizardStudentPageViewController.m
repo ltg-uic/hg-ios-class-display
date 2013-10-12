@@ -14,7 +14,8 @@
 #import "UIColor-Expanded.h"
 
 @interface WizardStudentPageViewController () {
-    NSArray *playerPoints;
+    NSMutableArray *playerPoints;
+    NSArray *sortedPlayerPoints;
 }
 
 @end
@@ -44,11 +45,14 @@
 {
     [super viewDidLoad];
     
-    playerPoints = [[_configurationInfo players] allObjects];
+    playerPoints = [[NSMutableArray alloc] init];
+    
+    [playerPoints addObjectsFromArray:[[_configurationInfo players] allObjects]];
+    [playerPoints addObjectsFromArray:[[_configurationInfo nonPlayers] allObjects]];
     
     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"player_id" ascending:YES selector:@selector(caseInsensitiveCompare:)];
     
-    playerPoints = [playerPoints sortedArrayUsingDescriptors:@[sort]];
+    sortedPlayerPoints = [playerPoints sortedArrayUsingDescriptors:@[sort]];
 	
 }
 
@@ -64,7 +68,7 @@
 }
 
 -(NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return playerPoints.count;
+    return sortedPlayerPoints.count;
     
 }
 
@@ -73,13 +77,13 @@
 -(UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     WizardStudentCell *wz = [collectionView dequeueReusableCellWithReuseIdentifier:@"student_cell" forIndexPath:indexPath];
     
-    PlayerDataPoint *pdp = [playerPoints objectAtIndex:indexPath.row];
+    PlayerDataPoint *pdp = [sortedPlayerPoints objectAtIndex:indexPath.row];
     
     UIColor *hexColor = [UIColor colorWithHexString:[pdp.color stringByReplacingOccurrencesOfString:@"#" withString:@""]];
     
     wz.nameButton.backgroundColor = hexColor;
   
-    if( !(pdp == nil || [playerPoints count] == 0) ) {
+    if( !(pdp == nil || [sortedPlayerPoints count] == 0) ) {
         [wz.nameButton setTitle: [pdp.player_id uppercaseString]  forState: UIControlStateNormal];
         [wz.nameButton setTitleColor: [self getTextColor:hexColor]  forState:UIControlStateNormal];
 
@@ -112,9 +116,6 @@
     }
 }
 
-
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -132,4 +133,9 @@
     _choosen_student = studentButton.titleLabel.text;
     
 }
+
+- (AppDelegate *)appDelegate {
+	return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
+
 @end

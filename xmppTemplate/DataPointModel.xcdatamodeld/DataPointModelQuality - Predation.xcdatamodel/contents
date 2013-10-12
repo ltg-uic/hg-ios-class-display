@@ -7,6 +7,7 @@
         <attribute name="prospering_threshold" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="run_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="starving_threshold" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="nonPlayers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NonPlayerDataPoint" syncable="YES"/>
         <relationship name="patches" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PatchInfo" inverseName="configurationInfo" inverseEntity="PatchInfo" syncable="YES"/>
         <relationship name="players" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PlayerDataPoint" inverseName="configurationInfo" inverseEntity="PlayerDataPoint" syncable="YES"/>
     </entity>
@@ -40,15 +41,16 @@
         <relationship name="configurationInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ConfigurationInfo" inverseName="players" inverseEntity="ConfigurationInfo" syncable="YES"/>
     </entity>
     <fetchRequest name="allConfigurationInfos" entity="ConfigurationInfo"/>
+    <fetchRequest name="allNonPlayerDataPoints" entity="NonPlayerDataPoint"/>
     <fetchRequest name="allPatchInfos" entity="PatchInfo"/>
     <fetchRequest name="allPlayerDataPoints" entity="PlayerDataPoint"/>
     <fetchRequest name="configurationInfoWithRunId" entity="ConfigurationInfo" predicateString="run_id == run_id"/>
     <fetchRequest name="playerDataPointWithRFID" entity="PlayerDataPoint" predicateString="rfid == rfid"/>
     <elements>
-        <element name="ConfigurationInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="EventInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PatchInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PlayerDataPoint" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="NonPlayerDataPoint" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ConfigurationInfo" positionX="-162" positionY="27" width="128" height="178"/>
+        <element name="EventInfo" positionX="-117" positionY="-189" width="128" height="105"/>
+        <element name="PatchInfo" positionX="106" positionY="-198" width="128" height="180"/>
+        <element name="PlayerDataPoint" positionX="259" positionY="-159" width="128" height="150"/>
+        <element name="NonPlayerDataPoint" positionX="160" positionY="192" width="128" height="60"/>
     </elements>
 </model>

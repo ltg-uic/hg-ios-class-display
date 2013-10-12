@@ -2,14 +2,14 @@
 //  ConfigurationInfo.h
 //  hg-ios-class-display
 //
-//  Created by Anthony Perritano on 9/18/13.
+//  Created by Anthony Perritano on 10/11/13.
 //  Copyright (c) 2013 Learning Technologies Group. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class PatchInfo, PlayerDataPoint;
+@class NonPlayerDataPoint, PatchInfo, PlayerDataPoint;
 
 @interface ConfigurationInfo : NSManagedObject
 
@@ -21,6 +21,7 @@
 @property (nonatomic) float starving_threshold;
 @property (nonatomic, retain) NSSet *patches;
 @property (nonatomic, retain) NSSet *players;
+@property (nonatomic, retain) NSSet *nonPlayers;
 @end
 
 @interface ConfigurationInfo (CoreDataGeneratedAccessors)
@@ -34,5 +35,10 @@
 - (void)removePlayersObject:(PlayerDataPoint *)value;
 - (void)addPlayers:(NSSet *)values;
 - (void)removePlayers:(NSSet *)values;
+
+- (void)addNonPlayersObject:(NonPlayerDataPoint *)value;
+- (void)removeNonPlayersObject:(NonPlayerDataPoint *)value;
+- (void)addNonPlayers:(NSSet *)values;
+- (void)removeNonPlayers:(NSSet *)values;
 
 @end

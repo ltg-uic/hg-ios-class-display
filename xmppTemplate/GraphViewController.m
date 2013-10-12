@@ -425,8 +425,7 @@
 }
 
 
-- (AppDelegate *)appDelegate
-{
+- (AppDelegate *)appDelegate {
 	return (AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
 

@@ -2,11 +2,12 @@
 //  ConfigurationInfo.m
 //  hg-ios-class-display
 //
-//  Created by Anthony Perritano on 9/18/13.
+//  Created by Anthony Perritano on 10/11/13.
 //  Copyright (c) 2013 Learning Technologies Group. All rights reserved.
 //
 
 #import "ConfigurationInfo.h"
+#import "NonPlayerDataPoint.h"
 #import "PatchInfo.h"
 #import "PlayerDataPoint.h"
 
@@ -21,5 +22,6 @@
 @dynamic starving_threshold;
 @dynamic patches;
 @dynamic players;
+@dynamic nonPlayers;
 
 @end

@@ -66,6 +66,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     //setup test data
     
     [self deleteAllObjects:@"PlayerDataPoint"];
+    [self deleteAllObjects:@"NonPlayerDataPoint"];
     [self deleteAllObjects:@"PatchInfo"];
     [self deleteAllObjects:@"ConfigurationInfo"];
     
@@ -976,7 +977,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                                  
                                                  if( rfid == nil ) {
                                                      isStudent = NO;
-                                                      [self insertNonPlayerDataPointWithColor:[someStudent objectForKey:@"color"] WithLabel:[someStudent objectForKey:@"label"] WithPatch:nil WithRfid:[someStudent objectForKey:@"rfid_tag"] WithScore:[NSNumber numberWithInt:0] WithId:[someStudent objectForKey:@"_id"] asStudent:isStudent WithType:@"teacher"];
+                                                      NonPlayerDataPoint *npdp = [self insertNonPlayerDataPointWithColor:[someStudent objectForKey:@"color"] WithLabel:[someStudent objectForKey:@"label"] WithPatch:nil WithRfid:[someStudent objectForKey:@"rfid_tag"] WithScore:[NSNumber numberWithInt:0] WithId:[someStudent objectForKey:@"_id"] asStudent:isStudent WithType:@"teacher"];
+                                                     [configurationInfo addNonPlayersObject:npdp];
                                                  } else {
                                                      PlayerDataPoint *pdp = [self insertPlayerDataPointWithColor:[someStudent objectForKey:@"color"] WithLabel:[someStudent objectForKey:@"label"] WithPatch:nil WithRfid:[someStudent objectForKey:@"rfid_tag"] WithScore:[NSNumber numberWithInt:0] WithId:[someStudent objectForKey:@"_id"] asStudent:isStudent];
                                                      
@@ -1172,6 +1174,15 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 -(NSArray *)getAllPlayerDataPoints {
     NSManagedObjectModel* model = [[self.managedObjectContext persistentStoreCoordinator] managedObjectModel];
     NSFetchRequest* request = [model fetchRequestFromTemplateWithName:@"allPlayerDataPoints" substitutionVariables:nil];
+    NSError* error = nil;
+    NSArray* results = [self.managedObjectContext executeFetchRequest:request error:&error];
+    return results;
+    
+}
+
+-(NSArray *)getAllNonPlayerDataPoints {
+    NSManagedObjectModel* model = [[self.managedObjectContext persistentStoreCoordinator] managedObjectModel];
+    NSFetchRequest* request = [model fetchRequestFromTemplateWithName:@"allNonPlayerDataPoints" substitutionVariables:nil];
     NSError* error = nil;
     NSArray* results = [self.managedObjectContext executeFetchRequest:request error:&error];
     return results;

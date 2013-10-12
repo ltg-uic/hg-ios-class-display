@@ -20,7 +20,7 @@
 		700C3B2E16042BBD005A9E34 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3B2D16042BBD005A9E34 /* Security.framework */; };
 		700C3B3A160430DA005A9E34 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3B39160430DA005A9E34 /* SystemConfiguration.framework */; };
 		700D59EC1808E06C00C12207 /* NonPlayerDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 700D59EB1808E06C00C12207 /* NonPlayerDataPoint.m */; };
-		7012E54E17EA7F1B004433BC /* ConfigurationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7012E54D17EA7F1B004433BC /* ConfigurationInfo.m */; };
+		700D59F21808FC9100C12207 /* ConfigurationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 700D59F11808FC9100C12207 /* ConfigurationInfo.m */; };
 		7012E55A17EA9A51004433BC /* PatchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7012E55917EA9A51004433BC /* PatchInfo.m */; };
 		7013B01117E4CF9C00194BA5 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7013B01017E4CF9C00194BA5 /* SWRevealViewController.m */; };
 		7025693418025ADA00D0C39B /* PatchBView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7025693318025ADA00D0C39B /* PatchBView.xib */; };
@@ -222,9 +222,9 @@
 		700D59E91808DF4400C12207 /* DataPointModelQuality - Teacher.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DataPointModelQuality - Teacher.xcdatamodel"; sourceTree = "<group>"; };
 		700D59EA1808E06C00C12207 /* NonPlayerDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonPlayerDataPoint.h; sourceTree = "<group>"; };
 		700D59EB1808E06C00C12207 /* NonPlayerDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonPlayerDataPoint.m; sourceTree = "<group>"; };
+		700D59F01808FC9100C12207 /* ConfigurationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationInfo.h; sourceTree = "<group>"; };
+		700D59F11808FC9100C12207 /* ConfigurationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationInfo.m; sourceTree = "<group>"; };
 		7012E54B17EA7E20004433BC /* DataPointModelQuality - Predation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataPointModelQuality - Predation.xcdatamodel"; sourceTree = "<group>"; };
-		7012E54C17EA7F1B004433BC /* ConfigurationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfigurationInfo.h; path = entity/ConfigurationInfo.h; sourceTree = "<group>"; };
-		7012E54D17EA7F1B004433BC /* ConfigurationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigurationInfo.m; path = entity/ConfigurationInfo.m; sourceTree = "<group>"; };
 		7012E55817EA9A51004433BC /* PatchInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatchInfo.h; sourceTree = "<group>"; };
 		7012E55917EA9A51004433BC /* PatchInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatchInfo.m; sourceTree = "<group>"; };
 		7013B00F17E4CF9C00194BA5 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -683,6 +683,8 @@
 			children = (
 				705AE0BC17D5949A005F69B7 /* EventInfo.h */,
 				705AE0BD17D5949A005F69B7 /* EventInfo.m */,
+				700D59F01808FC9100C12207 /* ConfigurationInfo.h */,
+				700D59F11808FC9100C12207 /* ConfigurationInfo.m */,
 				700450FD17B5C99E000A83F1 /* DataPointModel.xcdatamodeld */,
 				700D59EA1808E06C00C12207 /* NonPlayerDataPoint.h */,
 				700D59EB1808E06C00C12207 /* NonPlayerDataPoint.m */,
@@ -690,8 +692,6 @@
 				7077DB0B1808568A00B46828 /* PlayerDataPoint.m */,
 				7012E55817EA9A51004433BC /* PatchInfo.h */,
 				7012E55917EA9A51004433BC /* PatchInfo.m */,
-				7012E54C17EA7F1B004433BC /* ConfigurationInfo.h */,
-				7012E54D17EA7F1B004433BC /* ConfigurationInfo.m */,
 			);
 			name = entity;
 			sourceTree = "<group>";
@@ -1918,6 +1918,7 @@
 				705AE0D617D595CC005F69B7 /* SBJsonStreamParser.m in Sources */,
 				707FE57117D9412B0036DBAB /* PatchMapUIView.m in Sources */,
 				706857E317C51A2600BF8AAF /* AFJSONRequestOperation.m in Sources */,
+				700D59F21808FC9100C12207 /* ConfigurationInfo.m in Sources */,
 				705BEE6017EA643A0042D313 /* XMPPMessageArchiving_Contact_CoreDataObject.m in Sources */,
 				705BEE6517EA643A0042D313 /* XMPPMessage+XEP_0172.m in Sources */,
 				705BEE3717EA643A0042D313 /* XMPPRoomHybrid.xcdatamodeld in Sources */,
@@ -1933,7 +1934,6 @@
 				705BEE2317EA643A0042D313 /* XMPPGroupCoreDataStorageObject.m in Sources */,
 				705BECFD17EA64000042D313 /* NSData+XMPP.m in Sources */,
 				705BED3E17EA64140042D313 /* NSString+DDXML.m in Sources */,
-				7012E54E17EA7F1B004433BC /* ConfigurationInfo.m in Sources */,
 				70F64F6E1801D0D0002E5322 /* PatchAView.m in Sources */,
 				705BEE6617EA643A0042D313 /* XMPPPresence+XEP_0172.m in Sources */,
 				705BED0517EA64000042D313 /* XMPPParser.m in Sources */,
