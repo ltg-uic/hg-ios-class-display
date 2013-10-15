@@ -34,6 +34,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     NSTimer *timer;
     NSMutableDictionary *patchPlayerMap;
     NSMutableArray *killList;
+    float elapsedTime;
 
 }
 
@@ -776,7 +777,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 #pragma mark - TIMER
 
 - (void)startTimer {
-    
+    elapsedTime = 0;
     if( timer == nil )
         timer = [NSTimer timerWithTimeInterval:_refreshRate
                                         target:self
@@ -788,7 +789,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 }
 
 - (void)stopTimer {
-    
+    elapsedTime = 0;
     if( timer != nil ) {
         [timer invalidate];
     }
@@ -798,10 +799,18 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 -(void) refreshCalorieTotals {
     void (^simpleBlock)(void) = ^{
+        [self updateDataOverlay];
         [self updateData];
-        NSLog(@"This is a block");
     };
     simpleBlock();
+    
+}
+
+-(void)updateDataOverlay {
+    elapsedTime = elapsedTime + _refreshRate;
+    _starvingMaximum = (_configurationInfo.starving_threshold * elapsedTime)/12.0f;
+    
+    NSLog(@"new starving max %f",_starvingMaximum);
 }
 
 
@@ -820,20 +829,20 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                     
                     PatchInfo *patchInfo = [pis objectAtIndex:0];
                     
-                    NSArray *players = [_playerDataPoints filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"currentPatch == %@", patch_id]];
+                    NSArray *playersAtPatch = [_playerDataPoints filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"currentPatch == %@", patch_id]];
                     
-                    if( players != nil  && players.count > 0 ) {
+                    if( playersAtPatch != nil  && playersAtPatch.count > 0 ) {
                         
                         
-                        NSArray *thePlayer = [_playerDataPoints filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"rfid_tag == %@", player_id]];
+                        NSArray *thePlayers = [_playerDataPoints filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"player_id == %@", player_id]];
                         
-                        if( thePlayer != nil && thePlayer.count > 0 ) {
+                        if( thePlayers != nil && thePlayers.count > 0 ) {
                             
-                            PlayerDataPoint *pdp = [thePlayer objectAtIndex:0];
+                            PlayerDataPoint *pdp = [thePlayers objectAtIndex:0];
                             
                             if( ![killList containsObject:pdp.player_id] ) {
                                 //number of the patches at the patch
-                                int numberOfPlayerAtPatches = players.count;
+                                int numberOfPlayerAtPatches = playersAtPatch.count;
                                 
                                 //calculate the new score
                                 float playerOldScore = [pdp.score floatValue];
@@ -1108,7 +1117,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     pdp.color = color;
     pdp.currentPatch = patch;
     pdp.rfid_tag = rfid_tag;
-    pdp.score = [NSNumber numberWithInt:(arc4random() % 1000)];
+    pdp.score =score;
+    //pdp.score = [NSNumber numberWithInt:(arc4random() % 1000)];
     pdp.player_id = player_id;
     pdp.student = [NSNumber numberWithBool:isStudent];
     

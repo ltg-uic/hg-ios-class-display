@@ -35,6 +35,10 @@
     bool isRUNNING;
     bool isGAME_STOPPED;
     bool graphNeedsReload;
+    
+    int numOfPlayers;
+    
+    CPTPlotSpaceAnnotation *starvingAnnotation;
 }
 
 @end
@@ -190,34 +194,71 @@
    
     //graph.plotAreaFrame.plotArea.fill = [CPTFill ]
     
+    double originPlotPoint[2] = {0, 0};
     
-//    CPTColor *areaColor       = [CPTColor colorWithComponentRed:1.0 green:1.0 blue:1.0 alpha:0.6];
-//    CPTGradient *areaGradient = [CPTGradient gradientWithBeginningColor:areaColor endingColor:[CPTColor clearColor]];
-//    areaGradient.angle = -90.0f;
-//    CPTFill *areaGradientFill = [CPTFill fillWithGradient:areaGradient];
-//    
-//    CPTPlotSpaceAnnotation *ann = [[CPTPlotSpaceAnnotation alloc] initWithPlotSpace:graph.defaultPlotSpace  anchorPlotPoint:anchorPoint];
-//    ann.contentLayer = areaGradient;
-//    ann.displacement =  viewPoint;
-//    [graph.plotAreaFrame.plotArea addAnnotation:ann];
+    CGPoint originViewPoint = [plotSpace plotAreaViewPointForDoublePrecisionPlotPoint:originPlotPoint];
     
     
-    // Create a new annotation
-    //    CPTAnnotation *annot = [[CPTAnnotation alloc]init];
-    //    annot.contentLayer = logoLayer;
-    //annot.displacement = CGPointMake(50,50);
     
-    //     [graph.plotAreaFrame.plotArea addAnnotation:annot];
+    double plotPoint[2] = {0, 20};
     
-    //    double plotPoint[2] = {0, 240};
-    //    CGPoint viewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:plotPoint];
+    CGPoint viewPoint = [plotSpace plotAreaViewPointForDoublePrecisionPlotPoint:plotPoint];
+    // convert the viewPoint into coordinates
+  //  CGPoint coords = [graph convertPoint:viewPoint toLayer:self.layer];
     
-    //    CPTLayerAnnotation *instructionsAnnotation = [[CPTLayerAnnotation alloc] initWithAnchorLayer:graph.plotAreaFrame.plotArea];
-    //    instructionsAnnotation.contentLayer       = subLayer;
-    ////    instructionsAnnotation.rectAnchor         = CPTRectAnchorBottom;
-    //   instructionsAnnotation.contentAnchorPoint = viewPoint;
-    ////    instructionsAnnotation.displacement       = CGPointMake(0.0, 10.0);
-    //    [graph.plotAreaFrame.plotArea addAnnotation:instructionsAnnotation];
+    
+    CGFloat width = viewPoint.x-originViewPoint.x;
+    CGFloat height = viewPoint.y-originViewPoint.y;
+    //starvingAnnotation = [[CPTLayerAnnotation alloc]initWithAnchorLayer:graph.plotAreaFrame.plotArea ];
+    CPTBorderedLayer *imageLayer = [[CPTBorderedLayer alloc] initWithFrame:CGRectMake(0, 0, width, height*2)];
+    imageLayer.paddingLeft = 0;
+    imageLayer.paddingRight = 0;
+    imageLayer.paddingBottom = 0;
+    imageLayer.paddingTop = 0;
+    imageLayer.fill = [CPTFill fillWithColor: [CPTColor brownColor]];
+//    annot.contentLayer = imageLayer;
+//    annot.rectAnchor=CPTRectAnchorTopLeft;
+//    annot.displacement = CGPointMake(25,0);
+//    [graph.plotAreaFrame.plotArea  addAnnotation:annot];
+    
+//    CGPoint viewPoint = [graph.plotAreaFrame plotAreaPointOfVisiblePointAtIndex:20];
+    
+    NSArray *anchorPoint = [NSArray arrayWithObjects:@0.0f, @20.0f, nil];
+    starvingAnnotation = [[CPTPlotSpaceAnnotation alloc] initWithPlotSpace:graph.defaultPlotSpace anchorPlotPoint:anchorPoint];
+    
+    starvingAnnotation.contentLayer = imageLayer;
+    //starvingAnnotation.displacement = CGPointMake(width/2, 0);
+    [graph.plotAreaFrame.plotArea addAnnotation:starvingAnnotation];
+    
+}
+
+-(void)updateOverlays {
+    
+    
+    float starvingMaximum = [[self appDelegate] starvingMaximum];
+    
+    double originPlotPoint[2] = {0, 0};
+    
+    CGPoint originViewPoint = [plotSpace plotAreaViewPointForDoublePrecisionPlotPoint:originPlotPoint];
+    
+    
+    
+    double plotPoint[2] = {starvingMaximum, 20};
+    
+    CGPoint viewPoint = [plotSpace plotAreaViewPointForDoublePrecisionPlotPoint:plotPoint];
+    // convert the viewPoint into coordinates
+    //  CGPoint coords = [graph convertPoint:viewPoint toLayer:self.layer];
+    
+    
+    CGFloat width = viewPoint.x-originViewPoint.x;
+    CGFloat height = viewPoint.y-originViewPoint.y;
+    
+    
+    
+    NSArray *anchorPoint = [NSArray arrayWithObjects:@0.0f, @20.0f, nil];
+    starvingAnnotation.anchorPlotPoint = anchorPoint;
+    starvingAnnotation.contentLayer.frame = CGRectMake(0, 0, ceilf(width), ceilf(height)*2);
+    //[graph.plotAreaFrame.plotArea setNeedsDisplay];
 }
 
 -(void)setupAxes {
@@ -350,7 +391,7 @@
 
 -(void)playerDataDidUpdateWithArrival:(NSString *)arrival_patch_id WithDeparture:(NSString *)departure_patch_id WithPlayerDataPoint:(PlayerDataPoint *)playerDataPoint {
     [self startTimer];
-    [graph reloadData];
+
 //    if( arrival_patch_id == nil && departure_patch_id != nil ) {
 //        [patchPlayerMap setObject:[NSNull null] forKey:playerDataPoint.rfid_tag];
 //    } else if( arrival_patch_id != nil ) {
@@ -381,7 +422,10 @@
 
 -(void)updateGraph {
     [graph reloadData];
+    [self updateOverlays];
 }
+
+
 
 - (void)stopTimer {
     
