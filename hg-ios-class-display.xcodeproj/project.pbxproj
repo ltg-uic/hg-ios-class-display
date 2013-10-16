@@ -15,7 +15,6 @@
 		700C3A5E160427DA005A9E34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C3A5D160427DA005A9E34 /* main.m */; };
 		700C3A62160427DA005A9E34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C3A61160427DA005A9E34 /* AppDelegate.m */; };
 		700C3A6E160427DA005A9E34 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 700C3A6C160427DA005A9E34 /* MainStoryboard_iPad.storyboard */; };
-		700C3A71160427DA005A9E34 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C3A70160427DA005A9E34 /* RootViewController.m */; };
 		700C3A9E16042944005A9E34 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3A9D16042944005A9E34 /* CFNetwork.framework */; };
 		700C3B2E16042BBD005A9E34 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3B2D16042BBD005A9E34 /* Security.framework */; };
 		700C3B3A160430DA005A9E34 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3B39160430DA005A9E34 /* SystemConfiguration.framework */; };
@@ -214,12 +213,10 @@
 		700C3A60160427DA005A9E34 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		700C3A61160427DA005A9E34 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		700C3A6D160427DA005A9E34 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		700C3A6F160427DA005A9E34 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		700C3A70160427DA005A9E34 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		700C3A9D16042944005A9E34 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		700C3B2D16042BBD005A9E34 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		700C3B39160430DA005A9E34 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		700D59E91808DF4400C12207 /* DataPointModelQuality - Teacher.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DataPointModelQuality - Teacher.xcdatamodel"; sourceTree = "<group>"; };
+		700D59E91808DF4400C12207 /* DataPointModelQuality - Teacher.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DataPointModelQuality - Teacher.xcdatamodel"; sourceTree = "<group>"; };
 		700D59EA1808E06C00C12207 /* NonPlayerDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonPlayerDataPoint.h; sourceTree = "<group>"; };
 		700D59EB1808E06C00C12207 /* NonPlayerDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonPlayerDataPoint.m; sourceTree = "<group>"; };
 		700D59F01808FC9100C12207 /* ConfigurationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationInfo.h; sourceTree = "<group>"; };
@@ -736,8 +733,6 @@
 		700C3A57160427DA005A9E34 /* Display */ = {
 			isa = PBXGroup;
 			children = (
-				700C3A6F160427DA005A9E34 /* RootViewController.h */,
-				700C3A70160427DA005A9E34 /* RootViewController.m */,
 				700C3A60160427DA005A9E34 /* AppDelegate.h */,
 				700C3A61160427DA005A9E34 /* AppDelegate.m */,
 				700C3A6C160427DA005A9E34 /* MainStoryboard_iPad.storyboard */,
@@ -1893,7 +1888,6 @@
 				704AA4C117E3F3E200A7FF9C /* PlayerMapUIView.m in Sources */,
 				705BED3A17EA64140042D313 /* DDTTYLogger.m in Sources */,
 				705BEE6E17EA643A0042D313 /* XEP_0223.m in Sources */,
-				700C3A71160427DA005A9E34 /* RootViewController.m in Sources */,
 				700450FF17B5C99E000A83F1 /* DataPointModel.xcdatamodeld in Sources */,
 				705BED3817EA64140042D313 /* DDFileLogger.m in Sources */,
 				705BEE4F17EA643A0042D313 /* XMPPResultSet.m in Sources */,

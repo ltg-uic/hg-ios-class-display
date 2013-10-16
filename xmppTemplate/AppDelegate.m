@@ -56,8 +56,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 {
     [self setupInterface];
     [self clearUserDefaults];
-    
-    //[self pullConfigurationData];
+    //[self setupTestUser];
+    //[self setupConfigurationAndRosterWithRunId:@"5ag"];
+    [self pullConfigurationData];
     //Failed to instantiate the default view controller for UIMainStoryboardFile 'MainStoryboard_iPad' - perhaps the designated entry point is not set?[self setupTestUser];
     //[self setupConfigurationAndRosterWithRunId:@"5ag"];
     //[self customizeGlobalAppearance];
@@ -72,7 +73,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [self deleteAllObjects:@"ConfigurationInfo"];
     
     
-    [self pullConfigurationData];
+    //[self pullConfigurationData];
     
     //[self importTestData];
   
@@ -798,19 +799,34 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 }
 
 -(void) refreshCalorieTotals {
-    void (^simpleBlock)(void) = ^{
-        [self updateDataOverlay];
-        [self updateData];
-    };
-    simpleBlock();
-    
+//    void (^simpleBlock)(void) = ^{
+//        
+//        [self updateData];
+//    };
+//    simpleBlock();
+    [self updateData];
+    [self updateDataOverlay];
 }
 
 -(void)updateDataOverlay {
     elapsedTime = elapsedTime + _refreshRate;
-    _starvingMaximum = (_configurationInfo.starving_threshold * elapsedTime)/12.0f;
+
+    if( _prosperousElapsed <= _configurationInfo.maximum_harvest ) {
+    //starving
+
+    _starvingElapsed = (_configurationInfo.starving_threshold/60) * elapsedTime;
+    NSLog(@"STARVING ELAPSED %f",_starvingElapsed);
     
-    NSLog(@"new starving max %f",_starvingMaximum);
+    //surviving
+   
+    _survivingElapsed = ((_configurationInfo.prospering_threshold/60) * elapsedTime);
+    NSLog(@"STARVING ELAPSED %f",_survivingElapsed);
+    
+    //prosperous
+    
+    _prosperousElapsed = ((_configurationInfo.maximum_harvest/60) * elapsedTime);
+    NSLog(@"PROPSPERING ELAPSED %f",_prosperousElapsed);
+    }
 }
 
 
@@ -855,7 +871,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                 
                                 pdp.score = [NSNumber numberWithFloat:(playerOldScore + adjustedRate)];
                                 
-                                NSLog(@"PLAYER %@ NEW score %f",pdp.player_id, [pdp.score floatValue]);
+                               // NSLog(@"PLAYER %@ NEW score %f",pdp.player_id, [pdp.score floatValue]);
                             }
                         }
                         
@@ -923,6 +939,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                                  
                                                  [operationQueue addOperation:[self pullRosterDataWithRunId:ci WithCompletionBlock:nil]];
                                              }
+                                             
+                                             [operationQueue addOperationWithBlock:^{
+                                             
+                                                  [self checkConnectionWithUser];
+                                             
+                                             }];
                                          }
                                          
                                          failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id responseObject)
@@ -946,8 +968,14 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         if ( [self hasActiveOperations: operations] ) {
             //[spinner startAnimating];
         } else {
+            
+            if ([operationQueue operationCount] == 0) {
+                // Do something here when all operations has completed
+                NSLog(@"queue has completed");
+                
+            }
             //[self setupConfigurationAndRosterWithRunId:@"5ag"];
-             [self checkConnectionWithUser];
+            
             //[spinner stopAnimating];
         }
     }

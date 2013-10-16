@@ -12,8 +12,14 @@
 
 int main(int argc, char *argv[])
 {
-    //This is hunger games whole class viz
+   
+    
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+        @try {
+            return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+        } @catch (NSException *e) {
+            NSLog(@"CRASH: %@", e);
+            NSLog(@"Stack Trace: %@", [e callStackSymbols]);
+        }
     }
 }
