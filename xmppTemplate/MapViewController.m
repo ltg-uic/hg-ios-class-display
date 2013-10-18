@@ -47,6 +47,10 @@
 
 #pragma mark - PLAYER DATA DELEGATE
 
+-(void)graphNeedsUpdate {
+    
+}
+
 -(void)playerDataDidUpdate {
     
         [self setupPatches];

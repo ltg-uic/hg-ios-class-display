@@ -14,6 +14,8 @@
 
 -(void)playerDataDidUpdate;
 
+-(void)graphNeedsUpdate;
+
 -(void)playerDataDidUpdateWithArrival:(NSString *)arrival_patch_id WithDeparture:(NSString *)departure_patch_id WithPlayerDataPoint:(PlayerDataPoint *)playerDataPoint;
 
 @end

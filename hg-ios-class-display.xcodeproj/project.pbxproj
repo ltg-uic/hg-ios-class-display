@@ -39,6 +39,7 @@
 		703D870017D938C900523417 /* awareness.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 703D86FF17D938C900523417 /* awareness.xcassets */; };
 		704AA4C117E3F3E200A7FF9C /* PlayerMapUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 704AA4C017E3F3E200A7FF9C /* PlayerMapUIView.m */; };
 		704AA4C317E3F6E400A7FF9C /* PlayerMapUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704AA4C217E3F6E400A7FF9C /* PlayerMapUIView.xib */; };
+		704F83FA180F7D9F0056C6F9 /* graph.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 704F83F9180F7D9F0056C6F9 /* graph.xcassets */; };
 		7056212417C9DBB3007D117B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7056212117C9D9C3007D117B /* QuartzCore.framework */; };
 		705AE0BE17D5949A005F69B7 /* EventInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 705AE0BD17D5949A005F69B7 /* EventInfo.m */; };
 		705AE0D517D595CC005F69B7 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 705AE0C217D595CC005F69B7 /* SBJsonParser.m */; };
@@ -175,6 +176,7 @@
 		7077DB0C1808568A00B46828 /* PlayerDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7077DB0B1808568A00B46828 /* PlayerDataPoint.m */; };
 		707FE57117D9412B0036DBAB /* PatchMapUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707FE57017D9412B0036DBAB /* PatchMapUIView.m */; };
 		70879019160BB0A50099DD5D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70879018160BB0A50099DD5D /* CoreData.framework */; };
+		709E505D1810C99B0061F3F8 /* REFrostedViewController in Resources */ = {isa = PBXBuildFile; fileRef = 709E505C1810C99B0061F3F8 /* REFrostedViewController */; };
 		70AAC26A17C325460018A84B /* WizardClassPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AAC26917C325460018A84B /* WizardClassPageViewController.m */; };
 		70AFBDB917C7B9E900868211 /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AFBDB617C7B9E900868211 /* GraphViewController.m */; };
 		70AFBDD017C7E4B700868211 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AFBDCF17C7E4B700868211 /* SidebarViewController.m */; };
@@ -252,6 +254,7 @@
 		704AA4BF17E3F3E200A7FF9C /* PlayerMapUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerMapUIView.h; sourceTree = "<group>"; };
 		704AA4C017E3F3E200A7FF9C /* PlayerMapUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerMapUIView.m; sourceTree = "<group>"; };
 		704AA4C217E3F6E400A7FF9C /* PlayerMapUIView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerMapUIView.xib; sourceTree = "<group>"; };
+		704F83F9180F7D9F0056C6F9 /* graph.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = graph.xcassets; sourceTree = "<group>"; };
 		70503CF817EA15C5006D02F5 /* DataPointModelQuality.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataPointModelQuality.xcdatamodel; sourceTree = "<group>"; };
 		7056211F17C9D914007D117B /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		7056212117C9D9C3007D117B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -609,6 +612,7 @@
 		707FE56F17D9412B0036DBAB /* PatchMapUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatchMapUIView.h; sourceTree = "<group>"; };
 		707FE57017D9412B0036DBAB /* PatchMapUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatchMapUIView.m; sourceTree = "<group>"; };
 		70879018160BB0A50099DD5D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		709E505C1810C99B0061F3F8 /* REFrostedViewController */ = {isa = PBXFileReference; lastKnownFileType = folder; path = REFrostedViewController; sourceTree = "<group>"; };
 		70A97B6E1618E73900148530 /* XMPPBaseNewMessageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPBaseNewMessageDelegate.h; sourceTree = "<group>"; };
 		70AAC26517C31AE90018A84B /* wizard.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = wizard.xcassets; sourceTree = "<group>"; };
 		70AAC26817C325460018A84B /* WizardClassPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardClassPageViewController.h; sourceTree = "<group>"; };
@@ -761,6 +765,7 @@
 				700C3A5A160427DA005A9E34 /* InfoPlist.strings */,
 				700C3A5D160427DA005A9E34 /* main.m */,
 				700C3A5F160427DA005A9E34 /* hg-ios-class-display-Prefix.pch */,
+				704F83F9180F7D9F0056C6F9 /* graph.xcassets */,
 			);
 			name = supporting;
 			sourceTree = "<group>";
@@ -1595,6 +1600,7 @@
 		705FC2B617CC22DB009D42B6 /* sidebar */ = {
 			isa = PBXGroup;
 			children = (
+				709E505C1810C99B0061F3F8 /* REFrostedViewController */,
 				70AFBDCE17C7E4B700868211 /* SidebarViewController.h */,
 				70AFBDCF17C7E4B700868211 /* SidebarViewController.m */,
 				7013B00F17E4CF9C00194BA5 /* SWRevealViewController.h */,
@@ -1802,8 +1808,10 @@
 				70CEF76417C8443A00ED0CBE /* Default-568h@2x.png in Resources */,
 				700C3A6E160427DA005A9E34 /* MainStoryboard_iPad.storyboard in Resources */,
 				702569491802713200D0C39B /* PatchFView.xib in Resources */,
+				704F83FA180F7D9F0056C6F9 /* graph.xcassets in Resources */,
 				70AFBDD417C7E9DF00868211 /* sidebar_icons.xcassets in Resources */,
 				7025693C180260D200D0C39B /* PatchCView.xib in Resources */,
+				709E505D1810C99B0061F3F8 /* REFrostedViewController in Resources */,
 				703D870017D938C900523417 /* awareness.xcassets in Resources */,
 				70F64F6B1801CA22002E5322 /* PatchAView.xib in Resources */,
 				7025694718026CF500D0C39B /* PatchEView.xib in Resources */,

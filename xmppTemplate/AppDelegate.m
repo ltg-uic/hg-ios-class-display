@@ -48,6 +48,15 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 -(void)customizeGlobalAppearance {
     //[[UINavigationBar appearance] setValue:helveticaNeueMedium forKey:UITextAttributeFont];
     //[[UINavigationBar appearance] setValue:[UIColor blackColor] forKey:NSForegroundColorAttributeName];
+    
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+    shadow.shadowOffset = CGSizeMake(0, 1);
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor blackColor], NSForegroundColorAttributeName,
+                                                           [UIFont fontWithName:@"helveticaNeue" size:21.0], NSFontAttributeName, nil]];
+
+    
 
 }
 
@@ -61,7 +70,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [self pullConfigurationData];
     //Failed to instantiate the default view controller for UIMainStoryboardFile 'MainStoryboard_iPad' - perhaps the designated entry point is not set?[self setupTestUser];
     //[self setupConfigurationAndRosterWithRunId:@"5ag"];
-    //[self customizeGlobalAppearance];
+    [self customizeGlobalAppearance];
     
     
     isMultiUserChat = YES;
@@ -569,6 +578,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 
                 _hasReset = YES;
             } else if([event isEqualToString:@"bout_start"] ) {
+                elapsedTime = 0;
                 _isGameRunning = YES;
                 _hasReset = NO;
                 [self startTimer];
@@ -594,19 +604,25 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 
                  PlayerDataPoint *player = [[_playerDataPoints filteredArrayUsingPredicate: [NSPredicate predicateWithFormat:@"player_id == %@", player_id] ] objectAtIndex:0];
                 
-               
-                if( [arrival_patch_id isEqualToString:@"null"] && [departure_patch_id isEqualToString:@"null"]) {
+                if( [[NSNull null] isEqual: arrival_patch_id ] && [[NSNull null] isEqual: departure_patch_id ] ) {
+                    [patchPlayerMap setObject:[NSNull null] forKey:player.player_id];
+                     player.currentPatch = nil;
+                } else if( [ [NSNull null] isEqual: arrival_patch_id] && ![[NSNull null] isEqual: departure_patch_id ] ) {
                     [patchPlayerMap setObject:[NSNull null] forKey:player.player_id];
                     player.currentPatch = nil;
-                } else if( ![arrival_patch_id isEqualToString:@"null"] ) {
+                } else if( ![[NSNull null] isEqual: arrival_patch_id ] && [[NSNull null] isEqual: departure_patch_id] ) {
                     [patchPlayerMap setObject:arrival_patch_id forKey:player.player_id];
                     player.currentPatch = arrival_patch_id;
                 }
+               
+//                if( [arrival_patch_id isEqualToString:@"null"] && [departure_patch_id isEqualToString:@"null"]) {
+//                    [patchPlayerMap setObject:[NSNull null] forKey:player.player_id];
+//                    player.currentPatch = nil;
+//                } else if( ![arrival_patch_id isEqualToString:@"null"] ) {
+//                    [patchPlayerMap setObject:arrival_patch_id forKey:player.player_id];
+//                    player.currentPatch = arrival_patch_id;
+//                } 
             
-                if( [departure_patch_id isEqual: [NSNull null]  ] ) {
-                    [patchPlayerMap setObject: [NSNull null] forKey:player.player_id];
-                }
-                
                 [_playerDataDelegate playerDataDidUpdateWithArrival:arrival_patch_id WithDeparture:departure_patch_id WithPlayerDataPoint:player];
             }
             
@@ -743,7 +759,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     
     
-    _refreshRate = .2f;
+    _refreshRate = .02f;
     
     [_playerDataDelegate playerDataDidUpdate];
     
@@ -778,7 +794,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 #pragma mark - TIMER
 
 - (void)startTimer {
-    elapsedTime = 0;
+    
     if( timer == nil )
         timer = [NSTimer timerWithTimeInterval:_refreshRate
                                         target:self
@@ -799,19 +815,21 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 }
 
 -(void) refreshCalorieTotals {
-//    void (^simpleBlock)(void) = ^{
-//        
-//        [self updateData];
-//    };
-//    simpleBlock();
-    [self updateData];
+    void (^simpleBlock)(void) = ^{
+        
+        
+    };
+    simpleBlock();
     [self updateDataOverlay];
+    [self updateData];
+    [_playerDataDelegate graphNeedsUpdate];
+    
 }
 
 -(void)updateDataOverlay {
     elapsedTime = elapsedTime + _refreshRate;
 
-    if( _prosperousElapsed <= _configurationInfo.maximum_harvest ) {
+  //  if( _prosperousElapsed <= _configurationInfo.maximum_harvest ) {
     //starving
 
     _starvingElapsed = (_configurationInfo.starving_threshold/60) * elapsedTime;
@@ -826,7 +844,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     _prosperousElapsed = ((_configurationInfo.maximum_harvest/60) * elapsedTime);
     NSLog(@"PROPSPERING ELAPSED %f",_prosperousElapsed);
-    }
+  //  }
 }
 
 
@@ -849,29 +867,41 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                     
                     if( playersAtPatch != nil  && playersAtPatch.count > 0 ) {
                         
+                        NSMutableArray *playersNotKilled = [[NSMutableArray alloc] init];
+                        
+                        for( PlayerDataPoint *p in playersAtPatch ) {
+                            if( [killList containsObject:p.player_id] == NO) {
+                                [playersNotKilled addObject:p];
+                            }
+                        }
                         
                         NSArray *thePlayers = [_playerDataPoints filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"player_id == %@", player_id]];
                         
-                        if( thePlayers != nil && thePlayers.count > 0 ) {
+                        if( (thePlayers != nil && thePlayers.count > 0 ) && playersNotKilled.count > 0 ) {
                             
                             PlayerDataPoint *pdp = [thePlayers objectAtIndex:0];
                             
-                            if( ![killList containsObject:pdp.player_id] ) {
-                                //number of the patches at the patch
-                                int numberOfPlayerAtPatches = playersAtPatch.count;
-                                
-                                //calculate the new score
-                                float playerOldScore = [pdp.score floatValue];
-                                
-                                //calc new richness
-                                float adjustedRichness = (patchInfo.quality_per_minute / numberOfPlayerAtPatches );
-                                
-                                //figure out the adjusted rate for the refreshrate
-                                float adjustedRate = (adjustedRichness / 60 ) * _refreshRate;
-                                
-                                pdp.score = [NSNumber numberWithFloat:(playerOldScore + adjustedRate)];
-                                
-                               // NSLog(@"PLAYER %@ NEW score %f",pdp.player_id, [pdp.score floatValue]);
+                            if( [pdp.score floatValue] <= _configurationInfo.maximum_harvest ) {
+                            
+                                if( ![killList containsObject:pdp.player_id] ) {
+                                    //number of the patches at the patch
+                                    int numberOfPlayerAtPatches = playersNotKilled.count;
+                                    
+                                    //get the old
+                                    float playerOldScore = [pdp.score floatValue];
+                                    
+                                    //calc new richness
+                                    float adjustedRate = ((patchInfo.quality_per_minute * _refreshRate) / numberOfPlayerAtPatches );
+                                    
+                                    NSLog(@"ADJUSTED %@ RATE %f",pdp.player_id, adjustedRate);
+
+                                    //figure out the adjusted rate for the refreshrate
+                                    //float adjustedRate = (adjustedRichness) * _refreshRate;
+                                    
+                                    pdp.score = [NSNumber numberWithFloat:(playerOldScore + adjustedRate)];
+                                    
+                                    NSLog(@"PLAYER %@ NEW score %f",pdp.player_id, [pdp.score floatValue]);
+                                }
                             }
                         }
                         
@@ -955,40 +985,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [operationQueue waitUntilAllOperationsAreFinished];
     [operationQueue setMaxConcurrentOperationCount:1];
     [operationQueue addOperation:operation1];
-
-    [operationQueue addObserver: self forKeyPath: @"operations" options: NSKeyValueObservingOptionNew context: NULL];
-   
-}
-
-- (void) observeValueForKeyPath:(NSString *) keyPath ofObject:(id) object change:(NSDictionary *) change context:(void *) context {
-    if ( object == operationQueue && [@"operations" isEqual: keyPath]
-        ) {
-        NSArray *operations = [change objectForKey:NSKeyValueChangeNewKey];
-        
-        if ( [self hasActiveOperations: operations] ) {
-            //[spinner startAnimating];
-        } else {
-            
-            if ([operationQueue operationCount] == 0) {
-                // Do something here when all operations has completed
-                NSLog(@"queue has completed");
-                
-            }
-            //[self setupConfigurationAndRosterWithRunId:@"5ag"];
-            
-            //[spinner stopAnimating];
-        }
-    }
-}
-
-- (BOOL) hasActiveOperations:(NSArray *) operations {
-    for ( id operation in operations ) {
-        if ( [operation isExecuting] && ! [operation isCancelled] ) {
-            return YES;
-        }
-    }
-    
-    return NO;
 }
 
 -(NSOperation *)pullRosterDataWithRunId:(ConfigurationInfo *)configurationInfo WithCompletionBlock:(void(^)())block  {
