@@ -91,6 +91,7 @@
         ConfigurationInfo *ci = [self.fetchedResultsController objectAtIndexPath:indexPath];
         WizardStudentPageViewController *destViewController = segue.destinationViewController;
         [destViewController setConfigurationInfo:ci];
+        [destViewController prepareData];
     }
 }
 

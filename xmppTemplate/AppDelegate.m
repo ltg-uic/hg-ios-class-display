@@ -580,7 +580,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 
                 _hasReset = YES;
             } else if([event isEqualToString:@"bout_start"] ) {
-                elapsedTime = 0;
                 _isGameRunning = YES;
                 _hasReset = NO;
                 [self startTimer];
@@ -761,7 +760,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     
     
-    _refreshRate = .02f;
+    _refreshRate = .50f;
     
     [_playerDataDelegate playerDataDidUpdate];
     
@@ -799,15 +798,14 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     if( timer == nil ) {
         
+        elapsedTime = 0;
+        
         //start the game timer
         gameTimer = [[GameTimer alloc] init];
         [gameTimer startTimer];
         
-        timer = [NSTimer timerWithTimeInterval:_refreshRate
-                                        target:self
-                                      selector:@selector(refreshCalorieTotals)
-                                      userInfo:nil repeats:YES];
-        [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        timer = [NSTimer scheduledTimerWithTimeInterval:_refreshRate target:self selector:@selector(refreshCalorieTotals) userInfo:nil repeats:YES];
+        
         
      
       
@@ -822,7 +820,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     elapsedTime = 0;
     if( timer != nil ) {
         [timer invalidate];
-        [gameTimer stopTimer];
+        gameTimer = nil;
     }
 }
 
@@ -830,10 +828,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     [gameTimer stopTimer];
      elapsedTime = elapsedTime  + [gameTimer timeElapsedInSeconds];
-    
     [self updateDataOverlay];
-    [self updateData];
     [gameTimer startTimer];
+    [self updatePlayerScores];
+    
+
 }
 
 
@@ -841,7 +840,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
   //  if( _prosperousElapsed <= _configurationInfo.maximum_harvest ) {
     //starving
-
+    NSLog(@" GAME TIME TIME %f", [gameTimer timeElapsedInMinutes]);
     NSLog(@" ELAPSED TIME %f", elapsedTime);
            
     _starvingElapsed = (_configurationInfo.starving_threshold/60) * elapsedTime;
@@ -860,7 +859,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 }
 
 
--(void)updateData {
+-(void)updatePlayerScores {
     if( timer != nil ) {
         
         for(NSString * player_id in patchPlayerMap) {

@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface WizardStudentCell : UICollectionViewCell
-
-@property (weak, nonatomic) IBOutlet UIButton *nameButton;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @end
