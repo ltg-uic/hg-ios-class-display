@@ -161,6 +161,10 @@
     }
 }
 
+- (IBAction)showMenu {
+    [self.frostedViewController presentMenuViewController];
+}
+
 
 - (void)viewDidLoad
 {

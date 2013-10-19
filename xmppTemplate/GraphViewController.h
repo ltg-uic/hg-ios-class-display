@@ -2,6 +2,7 @@
 #import <UIKit/UIKit.h>
 #import "CorePlot-CocoaTouch.h"
 #import "PlayerDataDelegate.h"
+#import "REFrostedViewController.h"
 
 @interface GraphViewController : UIViewController <CPTBarPlotDataSource, CPTBarPlotDelegate, XMPPBaseNewMessageDelegate, PlayerDataDelegate> {
     
@@ -16,5 +17,7 @@
 -(void)initPlot;
 -(void)setupGraph;
 -(void)setupAxes;
+
+- (IBAction)showMenu;
 
 @end

@@ -14,7 +14,6 @@
 		700C3A5C160427DA005A9E34 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 700C3A5A160427DA005A9E34 /* InfoPlist.strings */; };
 		700C3A5E160427DA005A9E34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C3A5D160427DA005A9E34 /* main.m */; };
 		700C3A62160427DA005A9E34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 700C3A61160427DA005A9E34 /* AppDelegate.m */; };
-		700C3A6E160427DA005A9E34 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 700C3A6C160427DA005A9E34 /* MainStoryboard_iPad.storyboard */; };
 		700C3A9E16042944005A9E34 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3A9D16042944005A9E34 /* CFNetwork.framework */; };
 		700C3B2E16042BBD005A9E34 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3B2D16042BBD005A9E34 /* Security.framework */; };
 		700C3B3A160430DA005A9E34 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 700C3B39160430DA005A9E34 /* SystemConfiguration.framework */; };
@@ -176,7 +175,7 @@
 		7077DB0C1808568A00B46828 /* PlayerDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7077DB0B1808568A00B46828 /* PlayerDataPoint.m */; };
 		707FE57117D9412B0036DBAB /* PatchMapUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707FE57017D9412B0036DBAB /* PatchMapUIView.m */; };
 		70879019160BB0A50099DD5D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70879018160BB0A50099DD5D /* CoreData.framework */; };
-		709E505D1810C99B0061F3F8 /* REFrostedViewController in Resources */ = {isa = PBXBuildFile; fileRef = 709E505C1810C99B0061F3F8 /* REFrostedViewController */; };
+		708CD68918118B9F00AEDFF3 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 708CD68818118B9F00AEDFF3 /* MainStoryboard_iPad.storyboard */; };
 		70AAC26A17C325460018A84B /* WizardClassPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AAC26917C325460018A84B /* WizardClassPageViewController.m */; };
 		70AFBDB917C7B9E900868211 /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AFBDB617C7B9E900868211 /* GraphViewController.m */; };
 		70AFBDD017C7E4B700868211 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AFBDCF17C7E4B700868211 /* SidebarViewController.m */; };
@@ -191,6 +190,7 @@
 		70CF3D6D17C55296006F363C /* WizardClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CF3D6C17C55296006F363C /* WizardClassCell.m */; };
 		70CF3D7017C5570D006F363C /* WizardReviewPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CF3D6F17C5570D006F363C /* WizardReviewPageViewController.m */; };
 		70DF2EA117DE8EC300AFC798 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DF2EA017DE8EC300AFC798 /* CoreDataTableViewController.m */; };
+		70E7285E1812C91000A3E44F /* GameTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 70E7285D1812C91000A3E44F /* GameTimer.m */; };
 		70E866F217C66E76003C5BD2 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 70E866F017C66E76003C5BD2 /* fishhook.c */; };
 		70E866F417C66E8F003C5BD2 /* QuietAssertMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = 70E866F317C66E8F003C5BD2 /* QuietAssertMacros.c */; };
 		70EC27D517E2287200077DF4 /* UIView+NibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EC27D417E2287200077DF4 /* UIView+NibLoading.m */; };
@@ -214,7 +214,6 @@
 		700C3A5F160427DA005A9E34 /* hg-ios-class-display-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hg-ios-class-display-Prefix.pch"; sourceTree = "<group>"; };
 		700C3A60160427DA005A9E34 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		700C3A61160427DA005A9E34 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		700C3A6D160427DA005A9E34 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		700C3A9D16042944005A9E34 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		700C3B2D16042BBD005A9E34 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		700C3B39160430DA005A9E34 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -612,7 +611,7 @@
 		707FE56F17D9412B0036DBAB /* PatchMapUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatchMapUIView.h; sourceTree = "<group>"; };
 		707FE57017D9412B0036DBAB /* PatchMapUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatchMapUIView.m; sourceTree = "<group>"; };
 		70879018160BB0A50099DD5D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		709E505C1810C99B0061F3F8 /* REFrostedViewController */ = {isa = PBXFileReference; lastKnownFileType = folder; path = REFrostedViewController; sourceTree = "<group>"; };
+		708CD68818118B9F00AEDFF3 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		70A97B6E1618E73900148530 /* XMPPBaseNewMessageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPBaseNewMessageDelegate.h; sourceTree = "<group>"; };
 		70AAC26517C31AE90018A84B /* wizard.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = wizard.xcassets; sourceTree = "<group>"; };
 		70AAC26817C325460018A84B /* WizardClassPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardClassPageViewController.h; sourceTree = "<group>"; };
@@ -639,6 +638,8 @@
 		70CF3D6F17C5570D006F363C /* WizardReviewPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardReviewPageViewController.m; sourceTree = "<group>"; };
 		70DF2E9F17DE8EC300AFC798 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		70DF2EA017DE8EC300AFC798 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		70E7285C1812C91000A3E44F /* GameTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTimer.h; sourceTree = "<group>"; };
+		70E7285D1812C91000A3E44F /* GameTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTimer.m; sourceTree = "<group>"; };
 		70E866EF17C66279003C5BD2 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../Constants.h; sourceTree = "<group>"; };
 		70E866F017C66E76003C5BD2 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fishhook.c; sourceTree = "<group>"; };
 		70E866F117C66E76003C5BD2 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
@@ -739,7 +740,7 @@
 			children = (
 				700C3A60160427DA005A9E34 /* AppDelegate.h */,
 				700C3A61160427DA005A9E34 /* AppDelegate.m */,
-				700C3A6C160427DA005A9E34 /* MainStoryboard_iPad.storyboard */,
+				708CD68818118B9F00AEDFF3 /* MainStoryboard_iPad.storyboard */,
 				703047E017C9DC3E0043FD7B /* tabs */,
 				70AAC26417C319030018A84B /* wizard */,
 				7004510317B5CA4E000A83F1 /* entity */,
@@ -801,6 +802,8 @@
 				707FE56E17D940CC0036DBAB /* map */,
 				70AFBDB517C7B9E900868211 /* GraphViewController.h */,
 				70AFBDB617C7B9E900868211 /* GraphViewController.m */,
+				70E7285C1812C91000A3E44F /* GameTimer.h */,
+				70E7285D1812C91000A3E44F /* GameTimer.m */,
 				70F0F56B17CFD47C009B4E66 /* WebViewController.h */,
 				70F0F56C17CFD47C009B4E66 /* WebViewController.m */,
 			);
@@ -1600,7 +1603,6 @@
 		705FC2B617CC22DB009D42B6 /* sidebar */ = {
 			isa = PBXGroup;
 			children = (
-				709E505C1810C99B0061F3F8 /* REFrostedViewController */,
 				70AFBDCE17C7E4B700868211 /* SidebarViewController.h */,
 				70AFBDCF17C7E4B700868211 /* SidebarViewController.m */,
 				7013B00F17E4CF9C00194BA5 /* SWRevealViewController.h */,
@@ -1799,6 +1801,7 @@
 				705BED3D17EA64140042D313 /* README.txt in Resources */,
 				70C8F07E180369A100C57B03 /* patch_images.xcassets in Resources */,
 				70F64F661801C72B002E5322 /* MapAssets.xcassets in Resources */,
+				708CD68918118B9F00AEDFF3 /* MainStoryboard_iPad.storyboard in Resources */,
 				70CD9B3617B49BF2008625BF /* logon_sound.aif in Resources */,
 				7065422F17E0438900C38099 /* PatchMapUIView.xib in Resources */,
 				704AA4C317E3F6E400A7FF9C /* PlayerMapUIView.xib in Resources */,
@@ -1806,12 +1809,10 @@
 				7025693E1802653800D0C39B /* PatchDView.xib in Resources */,
 				705BED4217EA64140042D313 /* build-libidn.sh in Resources */,
 				70CEF76417C8443A00ED0CBE /* Default-568h@2x.png in Resources */,
-				700C3A6E160427DA005A9E34 /* MainStoryboard_iPad.storyboard in Resources */,
 				702569491802713200D0C39B /* PatchFView.xib in Resources */,
 				704F83FA180F7D9F0056C6F9 /* graph.xcassets in Resources */,
 				70AFBDD417C7E9DF00868211 /* sidebar_icons.xcassets in Resources */,
 				7025693C180260D200D0C39B /* PatchCView.xib in Resources */,
-				709E505D1810C99B0061F3F8 /* REFrostedViewController in Resources */,
 				703D870017D938C900523417 /* awareness.xcassets in Resources */,
 				70F64F6B1801CA22002E5322 /* PatchAView.xib in Resources */,
 				7025694718026CF500D0C39B /* PatchEView.xib in Resources */,
@@ -1956,6 +1957,7 @@
 				705AE0DD17D595CC005F69B7 /* SBJsonStreamWriterState.m in Sources */,
 				705BED3917EA64140042D313 /* DDLog.m in Sources */,
 				705BED0017EA64000042D313 /* XMPPElement.m in Sources */,
+				70E7285E1812C91000A3E44F /* GameTimer.m in Sources */,
 				702569411802654C00D0C39B /* PatchDView.m in Sources */,
 				705BEE2E17EA643A0042D313 /* XMPPIQ+JabberRPCResonse.m in Sources */,
 				705BEE2917EA643A0042D313 /* XMPPRosterMemoryStorage.m in Sources */,
@@ -1994,14 +1996,6 @@
 				700C3A5B160427DA005A9E34 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		700C3A6C160427DA005A9E34 /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				700C3A6D160427DA005A9E34 /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

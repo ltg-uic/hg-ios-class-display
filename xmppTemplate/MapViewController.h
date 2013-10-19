@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PlayerDataDelegate.h"
 #import "PatchMapUIView.h"
+#import "REFrostedViewController.h"
 
 @interface MapViewController : UIViewController<PlayerDataDelegate> {
 }
@@ -17,5 +18,7 @@
 @property(nonatomic) BOOL hasInitialized;
 
 -(void)checkGameReset;
+
+- (IBAction)showMenu;
 
 @end

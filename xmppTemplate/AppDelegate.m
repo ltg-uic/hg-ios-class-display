@@ -19,6 +19,7 @@
 #import "UIColor-Expanded.h"
 #import "SidebarViewController.h"
 #import "NonPlayerDataPoint.h"
+#import "GameTimer.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -31,6 +32,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
     NSArray *patchInfos;
     NSOperationQueue *operationQueue;
+    GameTimer *gameTimer;
     NSTimer *timer;
     NSMutableDictionary *patchPlayerMap;
     NSMutableArray *killList;
@@ -610,7 +612,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 } else if( [ [NSNull null] isEqual: arrival_patch_id] && ![[NSNull null] isEqual: departure_patch_id ] ) {
                     [patchPlayerMap setObject:[NSNull null] forKey:player.player_id];
                     player.currentPatch = nil;
-                } else if( ![[NSNull null] isEqual: arrival_patch_id ] && [[NSNull null] isEqual: departure_patch_id] ) {
+                } else if( ![[NSNull null] isEqual: arrival_patch_id ]  ) {
                     [patchPlayerMap setObject:arrival_patch_id forKey:player.player_id];
                     player.currentPatch = arrival_patch_id;
                 }
@@ -795,54 +797,64 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)startTimer {
     
-    if( timer == nil )
+    if( timer == nil ) {
+        
+        //start the game timer
+        gameTimer = [[GameTimer alloc] init];
+        [gameTimer startTimer];
+        
         timer = [NSTimer timerWithTimeInterval:_refreshRate
                                         target:self
                                       selector:@selector(refreshCalorieTotals)
                                       userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-    
-    
-}
-
-- (void)stopTimer {
-    elapsedTime = 0;
-    if( timer != nil ) {
-        [timer invalidate];
+        [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        
+     
+      
     }
     
     
 }
 
--(void) refreshCalorieTotals {
-    void (^simpleBlock)(void) = ^{
-        
-        
-    };
-    simpleBlock();
-    [self updateDataOverlay];
-    [self updateData];
-    [_playerDataDelegate graphNeedsUpdate];
-    
+
+
+- (void)stopTimer {
+    elapsedTime = 0;
+    if( timer != nil ) {
+        [timer invalidate];
+        [gameTimer stopTimer];
+    }
 }
 
+-(void) refreshCalorieTotals {
+    
+    [gameTimer stopTimer];
+     elapsedTime = elapsedTime  + [gameTimer timeElapsedInSeconds];
+    
+    [self updateDataOverlay];
+    [self updateData];
+    [gameTimer startTimer];
+}
+
+
 -(void)updateDataOverlay {
-    elapsedTime = elapsedTime + _refreshRate;
 
   //  if( _prosperousElapsed <= _configurationInfo.maximum_harvest ) {
     //starving
 
+    NSLog(@" ELAPSED TIME %f", elapsedTime);
+           
     _starvingElapsed = (_configurationInfo.starving_threshold/60) * elapsedTime;
     NSLog(@"STARVING ELAPSED %f",_starvingElapsed);
     
     //surviving
    
     _survivingElapsed = ((_configurationInfo.prospering_threshold/60) * elapsedTime);
-    NSLog(@"STARVING ELAPSED %f",_survivingElapsed);
+    NSLog(@"SURVIVING ELAPSED %f",_survivingElapsed);
     
     //prosperous
     
-    _prosperousElapsed = ((_configurationInfo.maximum_harvest/60) * elapsedTime);
+    _prosperousElapsed = ((_configurationInfo.maximum_harvest/300) * elapsedTime);
     NSLog(@"PROPSPERING ELAPSED %f",_prosperousElapsed);
   //  }
 }
@@ -891,7 +903,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                     float playerOldScore = [pdp.score floatValue];
                                     
                                     //calc new richness
-                                    float adjustedRate = ((patchInfo.quality_per_minute * _refreshRate) / numberOfPlayerAtPatches );
+                                    float adjustedRate = ((patchInfo.quality_per_second * _refreshRate) / numberOfPlayerAtPatches );
                                     
                                     NSLog(@"ADJUSTED %@ RATE %f",pdp.player_id, adjustedRate);
 
@@ -900,7 +912,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                     
                                     pdp.score = [NSNumber numberWithFloat:(playerOldScore + adjustedRate)];
                                     
-                                    NSLog(@"PLAYER %@ NEW score %f",pdp.player_id, [pdp.score floatValue]);
+                                    //NSLog(@"PLAYER %@ NEW score %f",pdp.player_id, [pdp.score floatValue]);
                                 }
                             }
                         }
@@ -911,6 +923,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 
             }
         }
+        [_playerDataDelegate graphNeedsUpdate];
     }
 
 }

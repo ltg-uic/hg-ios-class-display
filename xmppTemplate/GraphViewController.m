@@ -317,6 +317,8 @@
 //    NSLog(@"NEW WIDTH SURVIVING %f",survivingViewPoint.x);
 //    NSLog(@"NEW WIDTH PROSPERING %f",prosperingViewPoint.x);
     
+    //starvingLayer.frame
+    
     starvingLayer.frame = CGRectMake(0, 0,  starvingViewPoint.x, starvingLayer.frame.size.height);
     survivingLayer.frame = CGRectMake(0, 0,  survivingViewPoint.x, survivingLayer.frame.size.height);
     prosperingLayer.frame = CGRectMake(0, 0,  prosperingViewPoint.x, prosperingLayer.frame.size.height);
@@ -718,5 +720,11 @@ float customRounding(float value) {
 - (AppDelegate *)appDelegate {
 	return (AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
+
+- (IBAction)showMenu
+{
+    [self.frostedViewController presentMenuViewController];
+}
+
 
 @end
