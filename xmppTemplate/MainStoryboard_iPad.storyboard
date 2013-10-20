@@ -344,36 +344,115 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gxr-GN-VVz" customClass="PatchEView">
-                                <rect key="frame" x="0.0" y="65" width="283" height="242"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="patchMapE_02" translatesAutoresizingMaskIntoConstraints="NO" id="RhO-Wu-US0">
+                                <rect key="frame" x="12" y="44" width="260" height="260"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="patchMap_PD" translatesAutoresizingMaskIntoConstraints="NO" id="x5O-Lb-HVj">
+                                <rect key="frame" x="39" y="361" width="93" height="93"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_0" translatesAutoresizingMaskIntoConstraints="NO" id="w1j-vb-U1b">
+                                <rect key="frame" x="109" y="403" width="53" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F8H-As-UTc" customClass="PatchDView">
-                                <rect key="frame" x="0.0" y="306" width="347" height="194"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_0" translatesAutoresizingMaskIntoConstraints="NO" id="yRe-uA-hhZ">
+                                <rect key="frame" x="12" y="367" width="53" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JUL-ig-5t4" customClass="PatchCView">
-                                <rect key="frame" x="0.0" y="500" width="283" height="268"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_1" translatesAutoresizingMaskIntoConstraints="NO" id="rcr-R6-V8O">
+                                <rect key="frame" x="42" y="438" width="57" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="odp-aS-pmx" customClass="PatchBView">
-                                <rect key="frame" x="364" y="458" width="310" height="310"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="patchMap_PE" translatesAutoresizingMaskIntoConstraints="NO" id="01K-5f-xvU">
+                                <rect key="frame" x="50" y="160" width="93" height="93"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="chJ-eE-fvJ" customClass="PatchAView">
-                                <rect key="frame" x="713" y="458" width="310" height="310"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_1" translatesAutoresizingMaskIntoConstraints="NO" id="LVc-wS-KWG">
+                                <rect key="frame" x="157" y="229" width="57" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="center" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NpP-BK-9tl" customClass="PatchFView">
-                                <rect key="frame" x="444" y="65" width="310" height="310"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_2" translatesAutoresizingMaskIntoConstraints="NO" id="F5E-3d-HVT">
+                                <rect key="frame" x="20" y="209" width="53" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_0" translatesAutoresizingMaskIntoConstraints="NO" id="7kt-Pw-5qz">
+                                <rect key="frame" x="93" y="229" width="52" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_0" translatesAutoresizingMaskIntoConstraints="NO" id="AYR-n9-T9N">
+                                <rect key="frame" x="204" y="189" width="54" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="patchMapC_06" translatesAutoresizingMaskIntoConstraints="NO" id="sYi-ZF-QWO">
+                                <rect key="frame" x="12" y="500" width="283" height="268"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="patchMap_PC" translatesAutoresizingMaskIntoConstraints="NO" id="WEd-Il-hhq">
+                                <rect key="frame" x="122" y="621" width="93" height="93"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_2" translatesAutoresizingMaskIntoConstraints="NO" id="JTO-fz-3CX">
+                                <rect key="frame" x="49" y="681" width="52" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_1" translatesAutoresizingMaskIntoConstraints="NO" id="RIE-xX-pyy">
+                                <rect key="frame" x="217" y="701" width="57" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_0" translatesAutoresizingMaskIntoConstraints="NO" id="50n-sM-jO3">
+                                <rect key="frame" x="139" y="701" width="52" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_0" translatesAutoresizingMaskIntoConstraints="NO" id="P4H-y7-PpV">
+                                <rect key="frame" x="524" y="138" width="54" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="patchMap_PF" translatesAutoresizingMaskIntoConstraints="NO" id="hGL-Ah-qzj">
+                                <rect key="frame" x="490" y="169" width="93" height="93"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_0" translatesAutoresizingMaskIntoConstraints="NO" id="kLp-QD-TdN">
+                                <rect key="frame" x="581" y="187" width="54" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_1" translatesAutoresizingMaskIntoConstraints="NO" id="bCZ-Jf-XwH">
+                                <rect key="frame" x="446" y="197" width="57" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_1" translatesAutoresizingMaskIntoConstraints="NO" id="QEu-F8-bfJ">
+                                <rect key="frame" x="494" y="246" width="57" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_0" translatesAutoresizingMaskIntoConstraints="NO" id="29z-YA-ECr">
+                                <rect key="frame" x="506" y="713" width="52" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="patchMap_PB" translatesAutoresizingMaskIntoConstraints="NO" id="OfC-FD-jNw">
+                                <rect key="frame" x="496" y="628" width="93" height="93"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_2" translatesAutoresizingMaskIntoConstraints="NO" id="I7J-In-dtO">
+                                <rect key="frame" x="446" y="673" width="54" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_2" translatesAutoresizingMaskIntoConstraints="NO" id="hJ9-4i-voH">
+                                <rect key="frame" x="960" y="671" width="54" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="patchMapA_08" translatesAutoresizingMaskIntoConstraints="NO" id="FwF-VN-50x">
+                                <rect key="frame" x="764" y="508" width="260" height="260"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_0" translatesAutoresizingMaskIntoConstraints="NO" id="je4-UL-gD2">
+                                <rect key="frame" x="881" y="702" width="52" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="patchMap_PA" translatesAutoresizingMaskIntoConstraints="NO" id="Eei-QT-neO">
+                                <rect key="frame" x="876" y="628" width="93" height="93"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -381,16 +460,11 @@
                     <navigationItem key="navigationItem" title="Harvest Map" id="UeO-4X-gtt">
                         <barButtonItem key="leftBarButtonItem" image="reveal-icon.png" id="88A-lT-JdK"/>
                     </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="revealButtonItem" destination="88A-lT-JdK" id="W89-oD-1Yc"/>
-                        <outletCollection property="patchUIViews" destination="NpP-BK-9tl" id="642-6g-ohN"/>
-                        <outletCollection property="patchUIViews" destination="F8H-As-UTc" id="tdN-jK-UHa"/>
-                        <outletCollection property="patchUIViews" destination="gxr-GN-VVz" id="IgN-dJ-zlT"/>
-                        <outletCollection property="patchUIViews" destination="JUL-ig-5t4" id="rBk-6L-rdA"/>
-                        <outletCollection property="patchUIViews" destination="odp-aS-pmx" id="ZB5-aq-QxW"/>
-                        <outletCollection property="patchUIViews" destination="chJ-eE-fvJ" id="GVq-j7-bGO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iyr-XE-cvq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -497,12 +571,24 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Acorn_0" width="107" height="89"/>
+        <image name="Acorn_1" width="116" height="87"/>
+        <image name="Acorn_2" width="109" height="90"/>
         <image name="icon_harvest_Graph" width="60" height="60"/>
         <image name="icon_map" width="61" height="67"/>
         <image name="legendblue" width="25" height="25"/>
         <image name="legendpink" width="25" height="25"/>
         <image name="legendvomit" width="25" height="25"/>
         <image name="off" width="30" height="30"/>
+        <image name="patchMapA_08" width="520" height="520"/>
+        <image name="patchMapC_06" width="500" height="500"/>
+        <image name="patchMapE_02" width="520" height="520"/>
+        <image name="patchMap_PA" width="187" height="187"/>
+        <image name="patchMap_PB" width="187" height="187"/>
+        <image name="patchMap_PC" width="187" height="187"/>
+        <image name="patchMap_PD" width="187" height="187"/>
+        <image name="patchMap_PE" width="188" height="188"/>
+        <image name="patchMap_PF" width="187" height="187"/>
         <image name="reveal-icon.png" width="22" height="17"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

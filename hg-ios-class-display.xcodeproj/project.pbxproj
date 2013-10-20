@@ -177,6 +177,7 @@
 		70879019160BB0A50099DD5D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70879018160BB0A50099DD5D /* CoreData.framework */; };
 		708CD68918118B9F00AEDFF3 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 708CD68818118B9F00AEDFF3 /* MainStoryboard_iPad.storyboard */; };
 		70AAC26A17C325460018A84B /* WizardClassPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AAC26917C325460018A84B /* WizardClassPageViewController.m */; };
+		70AF73B41813605C0068B726 /* UIView+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AF73B31813605C0068B726 /* UIView+Animation.m */; };
 		70AFBDB917C7B9E900868211 /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AFBDB617C7B9E900868211 /* GraphViewController.m */; };
 		70AFBDD017C7E4B700868211 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AFBDCF17C7E4B700868211 /* SidebarViewController.m */; };
 		70AFBDD417C7E9DF00868211 /* sidebar_icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70AFBDD317C7E9DF00868211 /* sidebar_icons.xcassets */; };
@@ -616,6 +617,8 @@
 		70AAC26517C31AE90018A84B /* wizard.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = wizard.xcassets; sourceTree = "<group>"; };
 		70AAC26817C325460018A84B /* WizardClassPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardClassPageViewController.h; sourceTree = "<group>"; };
 		70AAC26917C325460018A84B /* WizardClassPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardClassPageViewController.m; sourceTree = "<group>"; };
+		70AF73B21813605C0068B726 /* UIView+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animation.h"; sourceTree = "<group>"; };
+		70AF73B31813605C0068B726 /* UIView+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animation.m"; sourceTree = "<group>"; };
 		70AFBDB517C7B9E900868211 /* GraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphViewController.h; sourceTree = "<group>"; };
 		70AFBDB617C7B9E900868211 /* GraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphViewController.m; sourceTree = "<group>"; };
 		70AFBDCE17C7E4B700868211 /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
@@ -762,6 +765,8 @@
 				70AAC26517C31AE90018A84B /* wizard.xcassets */,
 				70CD9B3517B49BF2008625BF /* logon_sound.aif */,
 				70CEF76317C8443A00ED0CBE /* Default-568h@2x.png */,
+				70AF73B21813605C0068B726 /* UIView+Animation.h */,
+				70AF73B31813605C0068B726 /* UIView+Animation.m */,
 				70E7285C1812C91000A3E44F /* GameTimer.h */,
 				70E7285D1812C91000A3E44F /* GameTimer.m */,
 				700C3A59160427DA005A9E34 /* hg-ios-class-display-Info.plist */,
@@ -1961,6 +1966,7 @@
 				702569411802654C00D0C39B /* PatchDView.m in Sources */,
 				705BEE2E17EA643A0042D313 /* XMPPIQ+JabberRPCResonse.m in Sources */,
 				705BEE2917EA643A0042D313 /* XMPPRosterMemoryStorage.m in Sources */,
+				70AF73B41813605C0068B726 /* UIView+Animation.m in Sources */,
 				705BECD217EA63EF0042D313 /* XMPPDigestMD5Authentication.m in Sources */,
 				705BED0717EA64000042D313 /* XMPPStream.m in Sources */,
 				705BEE5217EA643A0042D313 /* TURNSocket.m in Sources */,

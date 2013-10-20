@@ -85,7 +85,6 @@
     wz.nameLabel.backgroundColor = hexColor;
     wz.nameLabel.textColor = [self getTextColor:hexColor];
     wz.nameLabel.text = [pdp.player_id uppercaseString];
-    
    
     return wz;
 }

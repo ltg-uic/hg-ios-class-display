@@ -11,11 +11,13 @@
 #import "PlayerMapUIView.h"
 #import "PatchInfo.h"
 #import "UIColor-Expanded.h"
+#import "UIView+Animation.h"
 #import "SWRevealViewController.h"
 
 @interface MapViewController () {
     NSArray *patchInfos;
-   
+    NSMutableDictionary *playersAndViews;
+    NSDictionary *patchRects;
 }
 
 @end
@@ -27,21 +29,38 @@
     if(self = [super initWithCoder:aDecoder])
     {
         self.appDelegate.playerDataDelegate = self;
+        playersAndViews = [[NSMutableDictionary alloc] init];
+
     }
     return self;
 }
 
 -(void)setupPatches {
     
-     patchInfos = [[[[self appDelegate] configurationInfo ] patches ] allObjects];
+    NSSet *players = [[[self appDelegate] configurationInfo ] players];
     
-    for (int i = 0; i < _patchUIViews.count; i++) {
-        PatchMapUIView *pmap = _patchUIViews[i];
-        PatchInfo *pi = patchInfos[i];
-        pmap.patch_id = pi.patch_id;
-        pmap.title.text = pi.patch_id;
-        pmap.richness.text = [NSString stringWithFormat:@"%.2f", pi.quality_per_minute];
+    int i = 60;
+    for (PlayerDataPoint *pdp in players) {
+        
+        PlayerMapUIView *pmp = [[PlayerMapUIView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+        
+        i = i + 60;
+        UIColor *hexColor = [UIColor colorWithHexString:[pdp.color stringByReplacingOccurrencesOfString:@"#" withString:@""]];
+        pmp.uiColor = hexColor;
+        pmp.backgroundColor = [UIColor clearColor];
+        pmp.player_id = pdp.player_id;
+        pmp.nameLabel.text = [pdp.player_id uppercaseString];
+        pmp.nameLabel.textColor = [self getTextColor:hexColor];
+        pmp.hidden = YES;
+        pmp.tag = pdp.player_id;
+        [playersAndViews setObject:pmp forKey:pdp.player_id];
+        
+     
+        
+        //[self.view addSubview:pmp];
     }
+    
+    patchRects = @{ @"patch-a" : [NSValue valueWithCGRect:CGRectMake(764,508,200,200)], @"patch-b" : [NSValue valueWithCGRect:CGRectMake(391,500,291,208)], @"patch-c" : [NSValue valueWithCGRect:CGRectMake(0,550,283,208)], @"patch-d" : [NSValue valueWithCGRect:CGRectMake(0,340,260,197)], @"patch-e" : [NSValue valueWithCGRect:CGRectMake(0,44,260,260)], @"patch-f" : [NSValue valueWithCGRect:CGRectMake(406,44,260,260)] };
     
 }
 
@@ -60,19 +79,10 @@
 -(void)checkGameReset {
     
     if( self.appDelegate.hasReset == YES ) {
-        for(PatchMapUIView *mapView in _patchUIViews) {
-            for (PlayerMapUIView *pmp in mapView.players) {
-                if( pmp.hidden == NO ) {
-                    pmp.backgroundColor = [UIColor clearColor];
-                    pmp.player_id = nil;
-                    pmp.nameLabel.text = nil;
-                    pmp.hidden = YES;
-                    [pmp setNeedsDisplay];
-                }
-                
-            }
-        }
-        
+        [playersAndViews enumerateKeysAndObjectsUsingBlock: ^(NSString *key, PlayerMapUIView *pmp, BOOL *stop) {
+            pmp.frame = CGRectMake(0,0,60,60);
+            pmp.hidden = NO;
+        }];
     }
 }
 
@@ -84,64 +94,59 @@
     if(_hasInitialized == NO )
         [self setupPatches];
     
-    if( arrival_patch_id != nil ) {
-        PatchMapUIView *arrivalView;
+    //first time arriving in the game
+    if( ![[NSNull null] isEqual: arrival_patch_id ] && [[NSNull null] isEqual: departure_patch_id ] ) {
+    
+        //get the view
+        PlayerMapUIView *pmp = [playersAndViews objectForKey:playerDataPoint.player_id];
         
-        NSArray *patchUIViews = [_patchUIViews filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"patch_id == %@", arrival_patch_id]];
+        CGPoint point = [self placePlayerWithPatchId:arrival_patch_id];
         
-        if( patchUIViews != nil && patchUIViews.count > 0 ) {
-            arrivalView = [patchUIViews objectAtIndex:0];
-        }
+        pmp.frame = CGRectMake(point.x, point.y, pmp.frame.size.width,pmp.frame.size.height);
+        pmp.hidden = NO;
         
-        if( arrivalView != nil ) {
-            
-            for(PlayerMapUIView *pmp in arrivalView.players ) {
-                
-                if( pmp.hidden == YES ) {
-                    
-                    UIColor *hexColor = [UIColor colorWithHexString:[playerDataPoint.color stringByReplacingOccurrencesOfString:@"#" withString:@""]];
-                    pmp.uiColor = hexColor;
-                    pmp.backgroundColor = [UIColor clearColor];
-                    pmp.player_id = playerDataPoint.rfid_tag;
-                    pmp.nameLabel.text = [playerDataPoint.player_id uppercaseString];
-                    pmp.nameLabel.textColor = [self getTextColor:hexColor];
-                    pmp.hidden = NO;
-                    [pmp setNeedsDisplay];
-                    break;
-                }
-            }
-            
-        }
+        //[playersAndViews setObject:pmp forKey:playerDataPoint.player_id];
+        [self.view addSubviewWithFadeAnimation:pmp duration:.8 option:nil];
+
+        
+    } else if( [ [NSNull null] isEqual: arrival_patch_id] && ![[NSNull null] isEqual: departure_patch_id ] ) {
+        //reset
+        
+        //get the view
+        PlayerMapUIView *pmp = [playersAndViews objectForKey:playerDataPoint.player_id];
+        
+        PlayerMapUIView *moveMe = (PlayerMapUIView*)[self.view viewWithTag:pmp.tag];
+
+        [moveMe removeSubviewWithFadeAnimationWithDuration:.8 option:nil];
+        
+    } else if( ![[NSNull null] isEqual: arrival_patch_id ] && ![[NSNull null] isEqual: departure_patch_id ]  ) {
+        //get the view
+        PlayerMapUIView *pmp = [playersAndViews objectForKey:playerDataPoint.player_id];
+        
+        PlayerMapUIView *moveMe = (PlayerMapUIView*)[self.view viewWithTag:pmp.tag];
+        
+        CGPoint point = [self placePlayerWithPatchId:arrival_patch_id];
+
+        
+        [moveMe moveTo:point duration:.4 option:UIViewAnimationOptionCurveEaseInOut];
     }
     
-    if( departure_patch_id != nil ) {
-        
-        NSArray *patchUIViews = [_patchUIViews filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"patch_id == %@", departure_patch_id]];
-        
-        PatchMapUIView *departureView;
-        
-        if( patchUIViews != nil && patchUIViews.count > 0 ) {
-            departureView = [patchUIViews objectAtIndex:0];
-        }
-        
-        if( departureView != nil ) {
-            
-            for(PlayerMapUIView *pmp in departureView.players ) {
-                
-                if( pmp.hidden == NO ) {
-                    
-                    pmp.backgroundColor = [UIColor clearColor];
-                    pmp.player_id = nil;
-                    pmp.nameLabel.text = nil;
-                    pmp.hidden = YES;
-                    [pmp setNeedsDisplay];
-                    break;
-                }
-            }
-            
-        }
-    }
     
+}
+
+
+-(CGPoint)placePlayerWithPatchId:(NSString *)patchId {
+    //get the patch bounds
+    CGRect rect = [[patchRects objectForKey:patchId] CGRectValue];
+    int x = [self randomLocationBetween:ceil(rect.origin.x) and:ceil(rect.origin.x+rect.size.width)];
+    int y = [self randomLocationBetween:ceil(rect.origin.y) and:ceil(rect.origin.y+rect.size.height)];
+    
+    return CGPointMake(x,y);
+}
+
+-(int)randomLocationBetween:(int)lowerBound and:(int)upperBound {
+    int rndValue = lowerBound + arc4random() % (upperBound - lowerBound);
+    return rndValue;
 }
 
 - (UIColor *) getTextColor:(UIColor *)color

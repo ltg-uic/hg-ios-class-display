@@ -23,15 +23,16 @@
 //}
 //
 //
-//- (id) initWithFrame:(CGRect)frame {
-//    self = [super initWithFrame:frame];
-//    if( self ) {
-////        self.layer.shadowColor = [[UIColor blackColor] CGColor];
-////        self.layer.shadowOffset = CGSizeMake(1.0, 1.0);
-////        self.layer.shadowOpacity = 0.10;
-//    }
-//    return self;
-//}
+- (id) initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if( self ) {
+        [self loadContentsFromNib];
+//        self.layer.shadowColor = [[UIColor blackColor] CGColor];
+//        self.layer.shadowOffset = CGSizeMake(1.0, 1.0);
+//        self.layer.shadowOpacity = 0.10;
+    }
+    return self;
+}
 
 
 // Only override drawRect: if you perform custom drawing.
