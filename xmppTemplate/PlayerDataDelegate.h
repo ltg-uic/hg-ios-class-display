@@ -16,6 +16,9 @@
 
 -(void)graphNeedsUpdate;
 
+-(void)graphNeedsUpdateWithProspering:(double)prosperingElapsed;
+
 -(void)playerDataDidUpdateWithArrival:(NSString *)arrival_patch_id WithDeparture:(NSString *)departure_patch_id WithPlayerDataPoint:(PlayerDataPoint *)playerDataPoint;
 
+-(void)overlayNeedsUpdateWith:(double)starvingElapsed With:(double)survivingElapsed With:(double)starvingElapsed;
 @end

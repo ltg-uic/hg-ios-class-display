@@ -23,10 +23,12 @@
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+    static const int ddLogLevel = LOG_LEVEL_OFF;
 #else
-static const int ddLogLevel = LOG_LEVEL_INFO;
+    static const int ddLogLevel = LOG_LEVEL_OFF;
 #endif
+
+
 
 @interface AppDelegate()<SWRevealViewControllerDelegate>{
 
@@ -36,7 +38,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     NSTimer *timer;
     NSMutableDictionary *patchPlayerMap;
     NSMutableArray *killList;
-    float elapsedTime;
+    double elapsedTime;
+    double startTime;
+    double previousElapsedTime;
+    CADisplayLink *displayLink;
 
 }
 
@@ -98,7 +103,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     // Configure logging framework
 	
-	[DDLog addLogger:[DDTTYLogger sharedInstance]];
+	//[DDLog addLogger:[DDTTYLogger sharedInstance]];
     
     // Setup the XMPP stream
     
@@ -176,7 +181,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
    
-	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
     
 #if TARGET_IPHONE_SIMULATOR
 	DDLogError(@"The iPhone simulator does not process background network traffic. "
@@ -187,7 +192,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	{
 		[application setKeepAliveTimeout:600 handler:^{
 			
-			DDLogVerbose(@"KeepAliveHandler");
+			//DDLogVerbose(@"KeepAliveHandler");
 			
 			// Do other keep alive stuff here.
 		}];
@@ -358,7 +363,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 		                                          otherButtonTitles:nil];
 		[alertView show];
         
-		DDLogError(@"ERROR CONNECTING\n: %@", error);
+		//DDLogError(@"ERROR CONNECTING\n: %@", error);
         
 		return NO;
 	}
@@ -376,12 +381,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)xmppStream:(XMPPStream *)sender socketDidConnect:(GCDAsyncSocket *)socket
 {
-	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 
 - (void)xmppStream:(XMPPStream *)sender willSecureWithSettings:(NSMutableDictionary *)settings
 {
-	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
 	
 	if (allowSelfSignedCertificates)
 	{
@@ -433,12 +438,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)xmppStreamDidSecure:(XMPPStream *)sender
 {
-	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 
 - (void)xmppStreamDidConnect:(XMPPStream *)sender
 {
-	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
 	
 	isXmppConnected = YES;
 	
@@ -472,7 +477,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender
 {
-	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
     
     if( isMultiUserChat ) {
         NSString *myJID = [[NSUserDefaults standardUserDefaults] stringForKey:kXMPPmyJID];
@@ -490,7 +495,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 {
     
     
-	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
     
     NSString *myJID = [[NSUserDefaults standardUserDefaults] stringForKey:kXMPPmyJID];
 
@@ -505,14 +510,14 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq
 {
-	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
 	
 	return NO;
 }
 
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
 {
-	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
     
     
 
@@ -631,7 +636,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         }
     }
     
-    NSLog(@"message %@", msg);
+   // NSLog(@"message %@", msg);
 
 
 }
@@ -639,7 +644,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 
 - (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence {
-	DDLogVerbose(@"%@: %@ - %@", THIS_FILE, THIS_METHOD, [presence fromStr]);
+	//DDLogVerbose(@"%@: %@ - %@", THIS_FILE, THIS_METHOD, [presence fromStr]);
     
     NSString *presenceType = [presence type]; // online/offline
 	NSString *myUsername = [[sender myJID] user];
@@ -650,14 +655,14 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 		if ([presenceType isEqualToString:@"available"]) {
             
             NSString *t = [NSString stringWithFormat:@"%@@%@", presenceFromUser, @"jerry.local"];
-            DDLogVerbose(@"%@",t);
+            //DDLogVerbose(@"%@",t);
 			
             [_xmppBaseOnlineDelegate isAvailable:YES];
 			
 		} else if ([presenceType isEqualToString:@"unavailable"]) {
 			
             NSString *t = [NSString stringWithFormat:@"%@@%@", presenceFromUser, @"jerry.local"];
-            DDLogVerbose(@"%@",t);
+            //DDLogVerbose(@"%@",t);
             
             [_xmppBaseOnlineDelegate isAvailable:NO];
 			
@@ -670,16 +675,16 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)xmppStream:(XMPPStream *)sender didReceiveError:(id)error
 {
-	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 
 - (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error
 {
-	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
 	
 	if (!isXmppConnected)
 	{
-		DDLogError(@"Unable to connect to server. Check _xmppStream.hostName");
+		//DDLogError(@"Unable to connect to server. Check _xmppStream.hostName");
 	}
 }
 
@@ -692,7 +697,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)xmppRoomDidJoin:(XMPPRoom *)sender
 {
-	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
 	
 	[_xmppRoom fetchConfigurationForm];
 	[_xmppRoom fetchBanList];
@@ -703,27 +708,27 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)xmppRoom:(XMPPRoom *)sender didFetchConfigurationForm:(NSXMLElement *)configForm
 {
     [_xmppBaseOnlineDelegate isAvailable:YES];
-	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 
 - (void)xmppRoom:(XMPPRoom *)sender didFetchBanList:(NSArray *)items
 {
-	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 
 - (void)xmppRoom:(XMPPRoom *)sender didNotFetchBanList:(XMPPIQ *)iqError
 {
-	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 
 - (void)xmppRoom:(XMPPRoom *)sender didFetchMembersList:(NSArray *)items
 {
-	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 
 - (void)xmppRoom:(XMPPRoom *)sender didNotFetchMembersList:(XMPPIQ *)iqError
 {
-	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 
 - (void)xmppRoom:(XMPPRoom *)sender didFetchModeratorsList:(NSArray *)items
@@ -742,7 +747,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 }
 
 - (void)xmppRoom:(XMPPRoom *)sender didChangeOccupants:(NSDictionary *)occupants {
-    DDLogVerbose(@"xmpp room did receiveMessage");
+   // DDLogVerbose(@"xmpp room did receiveMessage");
     //this is not correct should tell when leaves room
     [_xmppBaseOnlineDelegate isAvailable:NO];
 }
@@ -796,21 +801,18 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)startTimer {
     
-    if( timer == nil ) {
-        
-        elapsedTime = 0;
-        
-        //start the game timer
-        gameTimer = [[GameTimer alloc] init];
-        [gameTimer startTimer];
-        
-        timer = [NSTimer scheduledTimerWithTimeInterval:_refreshRate target:self selector:@selector(refreshCalorieTotals) userInfo:nil repeats:YES];
-        
-        
-     
-      
-    }
+    elapsedTime = 0;
     
+    //start the game timer
+    gameTimer = [[GameTimer alloc] init];
+    [gameTimer startTimer];
+    
+    displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(refreshCalorieTotals)];
+ 
+  
+
+	[displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+   // [self refreshCalorieTotals];
     
 }
 
@@ -818,49 +820,77 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)stopTimer {
     elapsedTime = 0;
-    if( timer != nil ) {
-        [timer invalidate];
+   
         gameTimer = nil;
-    }
+    
 }
+BOOL hasStartTimer = NO;
+    double frameTimestamp = 0;
 
 -(void) refreshCalorieTotals {
     
-    [gameTimer stopTimer];
-     elapsedTime = elapsedTime  + [gameTimer timeElapsedInSeconds];
-    [self updateDataOverlay];
-    [gameTimer startTimer];
-    [self updatePlayerScores];
+    if( hasStartTimer == NO ) {
+        startTime = [displayLink timestamp];
+        hasStartTimer = YES;
+    }
     
+    double currentTime = [displayLink timestamp];
+    elapsedTime =  currentTime - startTime;
+	double renderTime = currentTime - frameTimestamp;
+	frameTimestamp = currentTime;
+    [self updateDataOverlay];
+    [self updatePlayerScores:renderTime];
+   // NSLog(@"FRAME RATE  %f",1/renderTime);
 
+   // NSLog(@"ELAPSED TIME %f",elapsedTime);
 }
+//-(void) refreshCalorieTotals {
+//    
+//    double previousElapsedTime = 0;
+//    double dt = 0;
+//    double frame_rate = 0;
+////    while (_isGameRunning) {
+//    
+//        previousElapsedTime = elapsedTime;
+//        elapsedTime = [gameTimer timeElapsedInMilliseconds];
+//        [self updateDataOverlay];
+//        [self updatePlayerScores];
+//        dt = elapsedTime - previousElapsedTime;
+//        NSLog(@"ELAPSED TIME %f",elapsedTime);
+//        frame_rate = 1/dt;
+//        NSLog(@"DT RATE %f",dt);
+//        NSLog(@"FRAME RATE %f",frame_rate);
+////    }
+//    
+//
+//}
 
 
 -(void)updateDataOverlay {
 
   //  if( _prosperousElapsed <= _configurationInfo.maximum_harvest ) {
     //starving
-    NSLog(@" GAME TIME TIME %f", [gameTimer timeElapsedInMinutes]);
-    NSLog(@" ELAPSED TIME %f", elapsedTime);
            
     _starvingElapsed = (_configurationInfo.starving_threshold/60) * elapsedTime;
-    NSLog(@"STARVING ELAPSED %f",_starvingElapsed);
+   // NSLog(@"STARVING ELAPSED %f",_starvingElapsed);
     
     //surviving
    
     _survivingElapsed = ((_configurationInfo.prospering_threshold/60) * elapsedTime);
-    NSLog(@"SURVIVING ELAPSED %f",_survivingElapsed);
+   // NSLog(@"SURVIVING ELAPSED %f",_survivingElapsed);
     
     //prosperous
     
     _prosperousElapsed = ((_configurationInfo.maximum_harvest/300) * elapsedTime);
-    NSLog(@"PROPSPERING ELAPSED %f",_prosperousElapsed);
-  //  }
+    //NSLog(@"PROPSPERING ELAPSED %f",_prosperousElapsed);
+    
+        NSLog(@"PROSPERING E APPD %f", _prosperousElapsed);
+   // [_playerDataDelegate overlayNeedsUpdateWith:_starvingElapsed With:_survivingElapsed With:_prosperousElapsed];
 }
 
 
--(void)updatePlayerScores {
-    if( timer != nil ) {
+-(void)updatePlayerScores:(double)renderTime {
+ 
         
         for(NSString * player_id in patchPlayerMap) {
            
@@ -902,9 +932,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                     float playerOldScore = [pdp.score floatValue];
                                     
                                     //calc new richness
-                                    float adjustedRate = ((patchInfo.quality_per_second * _refreshRate) / numberOfPlayerAtPatches );
+                                    float adjustedRate = ((patchInfo.quality_per_second * renderTime) / numberOfPlayerAtPatches );
                                     
-                                    NSLog(@"ADJUSTED %@ RATE %f",pdp.player_id, adjustedRate);
+                                    //NSLog(@"ADJUSTED %@ RATE %f",pdp.player_id, adjustedRate);
 
                                     //figure out the adjusted rate for the refreshrate
                                     //float adjustedRate = (adjustedRichness) * _refreshRate;
@@ -919,12 +949,13 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                     }
                     
                 }
-                
+              
             }
+            
         }
-        [_playerDataDelegate graphNeedsUpdate];
-    }
+        
 
+    [_playerDataDelegate graphNeedsUpdateWithProspering:_prosperousElapsed];
 }
 
 
@@ -940,8 +971,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                          JSONRequestOperationWithRequest:request
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, id responseObject)
                                          {
-                                             NSLog(@"JSON RESULT %@", responseObject);
-                                             // NSArray *configurations = [responseObject objectForKey:@"data"];
+                                             //NSLog(@"JSON RESULT %@", responseObject);
+                                             
                                              
                                              for(NSDictionary *someConfig in responseObject) {
                                                  
@@ -1008,7 +1039,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                          JSONRequestOperationWithRequest:request
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, id responseObject)
                                          {
-                                             NSLog(@"JSON RESULT %@", responseObject);
+                                             //NSLog(@"JSON RESULT %@", responseObject);
                                              
                                              
                                              NSDictionary *data = [responseObject objectForKey:@"data"];

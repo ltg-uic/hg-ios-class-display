@@ -13,30 +13,17 @@
 - (id) init {
     self = [super init];
     if (self != nil) {
-        start = nil;
-        end = nil;
+        start = 0;
     }
     return self;
 }
 
 - (void) startTimer {
-    start = [NSDate date];
-}
-
-- (void) stopTimer {
-    end = [NSDate date];
-}
-
-- (double) timeElapsedInSeconds {
-    return [end timeIntervalSinceDate:start];
+    start =  CACurrentMediaTime();
 }
 
 - (double) timeElapsedInMilliseconds {
-    return [self timeElapsedInSeconds] * 1000.0f;
-}
-
-- (double) timeElapsedInMinutes {
-    return [self timeElapsedInSeconds] / 60.0f;
+    return CACurrentMediaTime() - start;
 }
 
 @end

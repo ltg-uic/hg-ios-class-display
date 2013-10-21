@@ -60,7 +60,7 @@
         //[self.view addSubview:pmp];
     }
     
-    patchRects = @{ @"patch-a" : [NSValue valueWithCGRect:CGRectMake(764,508,200,200)], @"patch-b" : [NSValue valueWithCGRect:CGRectMake(391,500,291,208)], @"patch-c" : [NSValue valueWithCGRect:CGRectMake(0,550,283,208)], @"patch-d" : [NSValue valueWithCGRect:CGRectMake(0,340,260,197)], @"patch-e" : [NSValue valueWithCGRect:CGRectMake(0,44,260,260)], @"patch-f" : [NSValue valueWithCGRect:CGRectMake(406,44,260,260)] };
+    patchRects = @{ @"patch-a" : [NSValue valueWithCGRect:CGRectMake(764,508,200,175)], @"patch-b" : [NSValue valueWithCGRect:CGRectMake(391,500,291,176)], @"patch-c" : [NSValue valueWithCGRect:CGRectMake(0,550,283,176)], @"patch-d" : [NSValue valueWithCGRect:CGRectMake(0,340,260,197)], @"patch-e" : [NSValue valueWithCGRect:CGRectMake(0,44,260,260)], @"patch-f" : [NSValue valueWithCGRect:CGRectMake(406,44,260,260)] };
     
 }
 
@@ -154,14 +154,14 @@
     const CGFloat *componentColors = CGColorGetComponents(color.CGColor);
     
     CGFloat colorBrightness = ((componentColors[0] * 299) + (componentColors[1] * 587) + (componentColors[2] * 114)) / 1000;
-    if (colorBrightness < 0.5)
+    if (colorBrightness < 0.3)
     {
-        NSLog(@"my color is dark");
+        //NSLog(@"my color is dark");
         return [UIColor whiteColor];
     }
     else
     {
-        NSLog(@"my color is light");
+        //NSLog(@"my color is light");
         return [UIColor blackColor];
     }
 }

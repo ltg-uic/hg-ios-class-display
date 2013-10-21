@@ -43,13 +43,13 @@
     float elapsedTime;
     float refreshRate;
     
-    float starvingElapsed;
+    float starving;
     float starvingTreshold;
     
-    float survivingElapsed;
+    float surviving;
     float survivingTreshold;
     
-    float prosperingElapsed;
+    float prospering;
     float prosperingTreshold;
     
     bool isRUNNING;
@@ -110,13 +110,13 @@
 #pragma mark - VIEWS
 
 -(void)viewDidAppear:(BOOL)animated {
-    [self initPlot];
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+   
     self.title = graphViewTitle;
     
     // Change button color
@@ -130,17 +130,17 @@
 
     refreshRate = [[self appDelegate] refreshRate];
     
-    starvingElapsed = [[self appDelegate] starvingElapsed];
+    starving = [[self appDelegate] starvingElapsed];
     starvingTreshold = [[[self appDelegate] configurationInfo]starving_threshold];
     
-    survivingElapsed = [[self appDelegate] survivingElapsed];
+    surviving = [[self appDelegate] survivingElapsed];
     survivingTreshold = [[[self appDelegate] configurationInfo] prospering_threshold];
     
     starvingColor = [CPTColor colorWithComponentRed:239.0f/255.0f green:207.0f/255.0f blue:207.0f/255.0f alpha:1.0];
     survivingColor = [CPTColor colorWithComponentRed:215.0f/255.0f green:230.0f/255.0f blue:179.0f/255.0f alpha:1.0];
     prosperingColor = [CPTColor colorWithComponentRed:191.0f/255.0f green:228.0f/255.0f blue:255.0f/255.0f alpha:1.0];
 
-
+    [self initPlot];
 }
 
 
@@ -214,9 +214,9 @@
 }
 
 -(void)setupAnnotations {
-    starvingElapsed = [[self appDelegate] starvingElapsed];
-    survivingElapsed = [[self appDelegate] survivingElapsed];
-    prosperingElapsed = [[self appDelegate] prosperousElapsed];
+//    starving = [[self appDelegate] starvingElapsed];
+//    surviving = [[self appDelegate] survivingElapsed];
+//    prospering = [[self appDelegate] prosperousElapsed];
     
     double originPlotPoint[2] = {0, 0};
     
@@ -240,29 +240,36 @@
     CGPoint prosperingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:prosperingPlotPoint];
     
 
+    CPTLayer *pl = [[CPTLayer alloc] initWithFrame:CGRectMake(0, 0,  endPoint.x, endPoint.y)];
+    pl.paddingLeft = 0;
+    pl.paddingRight = 0;
+    pl.paddingBottom = 0;
+    pl.paddingTop = 0;
+    pl.backgroundColor = [[CPTColor whiteColor] cgColor];
+    
     prosperingLayer = [CALayer layer];
     prosperingLayer.backgroundColor = prosperingColor.cgColor;
     prosperingLayer.frame = CGRectMake(0, 0,  prosperingViewPoint.x, endPoint.y);
     [baseLayer addSublayer:prosperingLayer];
     
-    double survivingPlotPoint[2] = {ceil(survivingElapsed), ceil(maxNumPlayers)};
-    CGPoint survivingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:survivingPlotPoint];
-    
-    
-    survivingLayer = [CALayer layer];
-    survivingLayer.backgroundColor = survivingColor.cgColor;
-    survivingLayer.frame = CGRectMake(0, 0,  survivingViewPoint.x, endPoint.y);
-    [baseLayer addSublayer:survivingLayer];
-    
-    double starvingPlotPoint[2] = {ceil(starvingElapsed), ceil(maxNumPlayers)};
-    
-    CGPoint starvingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:starvingPlotPoint];
-    
-    
-    starvingLayer = [CALayer layer];
-    starvingLayer.backgroundColor = starvingColor.cgColor;
-    starvingLayer.frame = CGRectMake(0, 0,  starvingViewPoint.x, endPoint.y);
-    [baseLayer addSublayer:starvingLayer];
+//    double survivingPlotPoint[2] = {ceil(surviving), ceil(maxNumPlayers)};
+//    CGPoint survivingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:survivingPlotPoint];
+//    
+//    
+//    survivingLayer = [CALayer layer];
+//    survivingLayer.backgroundColor = survivingColor.cgColor;
+//    survivingLayer.frame = CGRectMake(0, 0,  survivingViewPoint.x, endPoint.y);
+//    [baseLayer addSublayer:survivingLayer];
+//    
+//    double starvingPlotPoint[2] = {ceil(starving), ceil(maxNumPlayers)};
+//    
+//    CGPoint starvingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:starvingPlotPoint];
+//    
+//    
+//    starvingLayer = [CALayer layer];
+//    starvingLayer.backgroundColor = starvingColor.cgColor;
+//    starvingLayer.frame = CGRectMake(0, 0,  starvingViewPoint.x, endPoint.y);
+//    [baseLayer addSublayer:starvingLayer];
     
 
     CPTPlotSpaceAnnotation *prosperingAnnotation = [[CPTPlotSpaceAnnotation alloc] initWithPlotSpace:graph.defaultPlotSpace anchorPlotPoint:@[[NSNumber numberWithFloat:0.0f], [NSNumber numberWithFloat:ceil(maxNumPlayers)]]];
@@ -276,26 +283,56 @@
     
 }
 
--(void)updateGraphLayers {
+-(void)graphNeedsUpdateWithProspering:(double)prosperingElapsed {
     
-    starvingElapsed = [[self appDelegate] starvingElapsed];
-    survivingElapsed = [[self appDelegate] survivingElapsed];
-    prosperingElapsed = [[self appDelegate] prosperousElapsed];
+    NSLog(@"PROSPERING E GRAPH %f", prosperingElapsed);
+    
+    
+    CPTPlotSpaceAnnotation *annot = [graph.plotAreaFrame.plotArea.annotations objectAtIndex:0];
+    CPTLayer *baseLayer = annot.contentLayer;
+    NSArray *sublayers = [baseLayer sublayers];
+    
+    CALayer *pLayer = sublayers[0];
+    
+    
     
     double prosperingPlotPoint[2] = {prosperingElapsed, ceil(maxNumPlayers)};
     CGPoint prosperingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:prosperingPlotPoint];
     
-    double survivingPlotPoint[2] = {survivingElapsed, ceil(maxNumPlayers)};
-    CGPoint survivingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:survivingPlotPoint];
+    pLayer.frame  = CGRectMake(0, 0,  prosperingViewPoint.x, pLayer.frame.size.height);
     
-    double starvingPlotPoint[2] = {starvingElapsed, ceil(maxNumPlayers)};
+    [baseLayer insertSublayer:pLayer atIndex:0];
+    annot.contentLayer = baseLayer;
     
-    CGPoint starvingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:starvingPlotPoint];
+    
+    
+    [graph reloadData];
+    
+    
+    CPTPlotSpaceAnnotation *annot2 = [graph.plotAreaFrame.plotArea.annotations objectAtIndex:0];
 
-    starvingLayer.frame = CGRectMake(0, 0,  starvingViewPoint.x, starvingLayer.frame.size.height);
-    survivingLayer.frame = CGRectMake(0, 0,  survivingViewPoint.x, survivingLayer.frame.size.height);
-    prosperingLayer.frame = CGRectMake(0, 0,  prosperingViewPoint.x, prosperingLayer.frame.size.height);
 }
+
+//-(void)updateGraphLayers {
+//    
+//    starvingElapsed = [[self appDelegate] starvingElapsed];
+//    survivingElapsed = [[self appDelegate] survivingElapsed];
+//    prosperingElapsed = [[self appDelegate] prosperousElapsed];
+//    
+//    double prosperingPlotPoint[2] = {prosperingElapsed, ceil(maxNumPlayers)};
+//    CGPoint prosperingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:prosperingPlotPoint];
+//    
+//    double survivingPlotPoint[2] = {survivingElapsed, ceil(maxNumPlayers)};
+//    CGPoint survivingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:survivingPlotPoint];
+//    
+//    double starvingPlotPoint[2] = {starvingElapsed, ceil(maxNumPlayers)};
+//    
+//    CGPoint starvingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:starvingPlotPoint];
+//
+//    starvingLayer.frame = CGRectMake(0, 0,  starvingViewPoint.x, starvingLayer.frame.size.height);
+//    survivingLayer.frame = CGRectMake(0, 0,  survivingViewPoint.x, survivingLayer.frame.size.height);
+//    prosperingLayer.frame = CGRectMake(0, 0,  prosperingViewPoint.x, prosperingLayer.frame.size.height);
+//}
 
 
 
@@ -402,10 +439,6 @@
 
 #pragma mark - Annotation methods
 
--(void)hideAnnotation {
-//none at this time
-}
-
 -(CPTFill *)barFillForBarPlot:(CPTBarPlot *)barPlot
                   recordIndex:(NSUInteger)index {
     
@@ -433,7 +466,7 @@
 -(void)gameReset {}
 
 -(void)playerDataDidUpdateWithArrival:(NSString *)arrival_patch_id WithDeparture:(NSString *)departure_patch_id WithPlayerDataPoint:(PlayerDataPoint *)playerDataPoint {
-    //[self startTimer];
+    
 }
 
 
@@ -441,9 +474,33 @@
 
 -(void)updateGraph {
 
-    [graph reloadData];
-    [self updateGraphLayers];
+   // [graph reloadData];
     
+}
+
+
+
+-(void)overlayNeedsUpdateWith:(double)starvingElapsed With:(double)survivingElapsed With:(double)prosperingElapsed {
+//    starving = [[self appDelegate] starvingElapsed];
+//    surviving = [[self appDelegate] survivingElapsed];
+//    prospering = [[self appDelegate] prosperousElapsed];
+    
+//    double prosperingPlotPoint[2] = {prosperingElapsed, ceil(maxNumPlayers)};
+//    CGPoint prosperingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:prosperingPlotPoint];
+//    
+//    double survivingPlotPoint[2] = {survivingElapsed, ceil(maxNumPlayers)};
+//    CGPoint survivingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:survivingPlotPoint];
+//    
+//    double starvingPlotPoint[2] = {starvingElapsed, ceil(maxNumPlayers)};
+//    
+//    CGPoint starvingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:starvingPlotPoint];
+//    
+//    
+//    NSLog(@"PROSPERING X %f",prosperingViewPoint.x);
+//    
+//    starvingLayer.frame = CGRectMake(0, 0,  starvingViewPoint.x, starvingLayer.frame.size.height);
+//    survivingLayer.frame = CGRectMake(0, 0,  survivingViewPoint.x, survivingLayer.frame.size.height);
+//    prosperingLayer.frame = CGRectMake(0, 0,  prosperingViewPoint.x, prosperingLayer.frame.size.height);
 }
 
 

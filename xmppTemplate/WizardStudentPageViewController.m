@@ -96,12 +96,12 @@
     CGFloat colorBrightness = ((componentColors[0] * 299) + (componentColors[1] * 587) + (componentColors[2] * 114)) / 1000;
     if (colorBrightness < 0.5)
     {
-        NSLog(@"my color is dark");
+       // NSLog(@"my color is dark");
         return [UIColor whiteColor];
     }
     else
     {
-        NSLog(@"my color is light");
+        //NSLog(@"my color is light");
         return [UIColor blackColor];
     }
 }

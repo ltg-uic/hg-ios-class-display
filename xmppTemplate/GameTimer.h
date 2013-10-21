@@ -7,14 +7,13 @@
 //
 
 @interface GameTimer : NSObject {
-    NSDate *start;
-    NSDate *end;
+    double start;
 }
 
 - (void) startTimer;
-- (void) stopTimer;
-- (double) timeElapsedInSeconds;
+
+
 - (double) timeElapsedInMilliseconds;
-- (double) timeElapsedInMinutes;
+
 
 @end
