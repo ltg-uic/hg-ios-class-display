@@ -36,7 +36,6 @@
     NSOperationQueue *operationQueue;
     GameTimer *gameTimer;
     NSTimer *timer;
-    NSMutableDictionary *patchPlayerMap;
     NSMutableArray *killList;
     double elapsedTime;
     double startTime;
@@ -612,13 +611,13 @@
                  PlayerDataPoint *player = [[_playerDataPoints filteredArrayUsingPredicate: [NSPredicate predicateWithFormat:@"player_id == %@", player_id] ] objectAtIndex:0];
                 
                 if( [[NSNull null] isEqual: arrival_patch_id ] && [[NSNull null] isEqual: departure_patch_id ] ) {
-                    [patchPlayerMap setObject:[NSNull null] forKey:player.player_id];
+                    [_patchPlayerMap setObject:[NSNull null] forKey:player.player_id];
                      player.currentPatch = nil;
                 } else if( [ [NSNull null] isEqual: arrival_patch_id] && ![[NSNull null] isEqual: departure_patch_id ] ) {
-                    [patchPlayerMap setObject:[NSNull null] forKey:player.player_id];
+                    [_patchPlayerMap setObject:[NSNull null] forKey:player.player_id];
                     player.currentPatch = nil;
                 } else if( ![[NSNull null] isEqual: arrival_patch_id ]  ) {
-                    [patchPlayerMap setObject:arrival_patch_id forKey:player.player_id];
+                    [_patchPlayerMap setObject:arrival_patch_id forKey:player.player_id];
                     player.currentPatch = arrival_patch_id;
                 }
                
@@ -784,15 +783,15 @@
 }
 
 -(void)setupPlayerMap {
-    if ( patchPlayerMap == nil ) {
+    if ( _patchPlayerMap == nil ) {
         
-        patchPlayerMap = [[NSMutableDictionary alloc] init];
+        _patchPlayerMap = [[NSMutableDictionary alloc] init];
         
         for( PlayerDataPoint *pdp in _playerDataPoints ) {
             if( pdp.currentPatch == nil ) {
-                [patchPlayerMap setObject:[NSNull null] forKey:pdp.player_id];
+                [_patchPlayerMap setObject:[NSNull null] forKey:pdp.player_id];
             } else {
-                [patchPlayerMap setObject:pdp.currentPatch forKey:pdp.player_id];
+                [_patchPlayerMap setObject:pdp.currentPatch forKey:pdp.player_id];
             }
         }
     }
@@ -894,12 +893,12 @@
 -(void)updatePlayerScores:(double)renderTime {
  
         
-        for(NSString * player_id in patchPlayerMap) {
+        for(NSString * player_id in _patchPlayerMap) {
            
             
             
-            if( [patchPlayerMap objectForKey:player_id] != [NSNull null] ) {
-                 NSString *patch_id = [patchPlayerMap objectForKey:player_id];
+            if( [_patchPlayerMap objectForKey:player_id] != [NSNull null] ) {
+                NSString *patch_id = [_patchPlayerMap objectForKey:player_id];
                 NSArray *pis = [_patcheInfos filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"patch_id == %@", patch_id]];
                 
                 if( pis != nil && pis.count > 0) {

@@ -18,6 +18,7 @@
     NSArray *patchInfos;
     NSMutableDictionary *playersAndViews;
     NSDictionary *patchRects;
+    NSMutableDictionary *playersAtPatch;
 }
 
 @end
@@ -35,9 +36,25 @@
     return self;
 }
 
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
+       
+        
+    }
+    return self;
+}
+
+
 -(void)setupPatches {
     
     NSSet *players = [[[self appDelegate] configurationInfo ] players];
+    playersAtPatch = [[self appDelegate] patchPlayerMap];
+    
+    patchRects = @{ @"patch-a" : [NSValue valueWithCGRect:CGRectMake(764,508,200,175)], @"patch-b" : [NSValue valueWithCGRect:CGRectMake(391,500,291,176)], @"patch-c" : [NSValue valueWithCGRect:CGRectMake(0,550,283,176)], @"patch-d" : [NSValue valueWithCGRect:CGRectMake(0,340,260,197)], @"patch-e" : [NSValue valueWithCGRect:CGRectMake(0,44,260,260)], @"patch-f" : [NSValue valueWithCGRect:CGRectMake(406,44,260,260)] };
+    
     
     int i = 60;
     for (PlayerDataPoint *pdp in players) {
@@ -56,12 +73,29 @@
         [playersAndViews setObject:pmp forKey:pdp.player_id];
         
      
-        _hasInitialized = YES;
+    
         //[self.view addSubview:pmp];
     }
-    
-    patchRects = @{ @"patch-a" : [NSValue valueWithCGRect:CGRectMake(764,508,200,175)], @"patch-b" : [NSValue valueWithCGRect:CGRectMake(391,500,291,176)], @"patch-c" : [NSValue valueWithCGRect:CGRectMake(0,550,283,176)], @"patch-d" : [NSValue valueWithCGRect:CGRectMake(0,340,260,197)], @"patch-e" : [NSValue valueWithCGRect:CGRectMake(0,44,260,260)], @"patch-f" : [NSValue valueWithCGRect:CGRectMake(406,44,260,260)] };
-    
+}
+
+-(void)updateMapFromCache {
+    [playersAtPatch enumerateKeysAndObjectsUsingBlock: ^(NSString *player_id, NSString *patch_id, BOOL *stop) {
+        
+        PlayerMapUIView *moveMe = (PlayerMapUIView*)[self.view viewWithTag:player_id];
+        if( moveMe == nil ) {
+            PlayerMapUIView *pmp = [playersAndViews objectForKey:player_id];
+            [self addPlayerToMapWith:pmp WithPatch:patch_id];
+        } else {
+            PlayerMapUIView *moveMe = (PlayerMapUIView*)[self.view viewWithTag:player_id];
+            
+            CGPoint point = [self placePlayerWithPatchId:patch_id];
+            
+            
+            [moveMe moveTo:point duration:.4 option:UIViewAnimationOptionCurveEaseInOut];
+        }
+        
+     
+    }];
 }
 
 #pragma mark - PLAYER DATA DELEGATE
@@ -95,22 +129,22 @@
 -(void)playerDataDidUpdateWithArrival:(NSString *)arrival_patch_id WithDeparture:(NSString *)departure_patch_id WithPlayerDataPoint:(PlayerDataPoint *)playerDataPoint {
     
     
-    if(_hasInitialized == NO )
+    if(_hasInitialized == NO ) {
         [self setupPatches];
+    } else {
+       _hasInitialized = YES;
+    }
+    
+    
+    //[self updateMapFromCache];
     
     //first time arriving in the game
     if( ![[NSNull null] isEqual: arrival_patch_id ] && [[NSNull null] isEqual: departure_patch_id ] ) {
     
         //get the view
         PlayerMapUIView *pmp = [playersAndViews objectForKey:playerDataPoint.player_id];
-        
-        CGPoint point = [self placePlayerWithPatchId:arrival_patch_id];
-        
-        pmp.frame = CGRectMake(point.x, point.y, pmp.frame.size.width,pmp.frame.size.height);
-        pmp.hidden = NO;
-        
-        //[playersAndViews setObject:pmp forKey:playerDataPoint.player_id];
-        [self.view addSubviewWithFadeAnimation:pmp duration:.8 option:nil];
+        [self addPlayerToMapWith:pmp WithPatch:arrival_patch_id];
+      
 
         
     } else if( [ [NSNull null] isEqual: arrival_patch_id] && ![[NSNull null] isEqual: departure_patch_id ] ) {
@@ -136,6 +170,16 @@
     }
     
     
+}
+
+-(void)addPlayerToMapWith:(PlayerMapUIView *)pmp WithPatch:(NSString *)arrival_patch_id {
+    CGPoint point = [self placePlayerWithPatchId:arrival_patch_id];
+    
+    pmp.frame = CGRectMake(point.x, point.y, pmp.frame.size.width,pmp.frame.size.height);
+    pmp.hidden = NO;
+    
+    //[playersAndViews setObject:pmp forKey:playerDataPoint.player_id];
+    [self.view addSubviewWithFadeAnimation:pmp duration:.8 option:nil];
 }
 
 
@@ -194,12 +238,14 @@
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
    
+    //check player map
 }
 
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.appDelegate.playerDataDelegate = self;
+    [self updateMapFromCache];
 }
 
 -(PatchMapUIView *)createPatchViewsWithPatchInfo:(PatchInfo *)patchInfo AtX:(int)x AtY:(int)y  {

@@ -51,6 +51,8 @@
 @property (nonatomic) float survivingElapsed;
 @property (nonatomic) float prosperousElapsed;
 @property (nonatomic) float survivingMaximum;
+@property (strong, nonatomic) NSMutableDictionary *patchPlayerMap;
+
 
 
 
