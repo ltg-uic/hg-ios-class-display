@@ -56,7 +56,7 @@
         [playersAndViews setObject:pmp forKey:pdp.player_id];
         
      
-        
+        _hasInitialized = YES;
         //[self.view addSubview:pmp];
     }
     
@@ -66,9 +66,7 @@
 
 #pragma mark - PLAYER DATA DELEGATE
 
--(void)graphNeedsUpdate {
-    
-}
+
 
 -(void)playerDataDidUpdate {
     
@@ -86,7 +84,13 @@
     }
 }
 
+-(void)graphNeedsUpdateWithProspering:(double)prosperingElapsed WithSurviving:(double)survivingElapsed WithStarving:(double)starvingElapsed {
+    //used by the graph
+}
 
+-(void)graphNeedsUpdate {
+  //used by the graph
+}
 
 -(void)playerDataDidUpdateWithArrival:(NSString *)arrival_patch_id WithDeparture:(NSString *)departure_patch_id WithPlayerDataPoint:(PlayerDataPoint *)playerDataPoint {
     

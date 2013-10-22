@@ -42,7 +42,8 @@
     double startTime;
     double previousElapsedTime;
     CADisplayLink *displayLink;
-
+    BOOL hasStartTimer;
+    double frameTimestamp;
 }
 
 @end
@@ -574,7 +575,7 @@
         NSString *event = [jsonObjects objectForKey:@"event"];
         
         if( event != nil) {
-            if( [event isEqualToString:@"bout_reset"] ) {
+            if( [event isEqualToString:@"reset_bout"] ) {
                 _isGameRunning = NO;
                 
                 for (PlayerDataPoint *pdp in _playerDataPoints) {
@@ -584,11 +585,11 @@
                 [self.managedObjectContext save:nil];
                 
                 _hasReset = YES;
-            } else if([event isEqualToString:@"bout_start"] ) {
+            } else if([event isEqualToString:@"start_bout"] ) {
                 _isGameRunning = YES;
                 _hasReset = NO;
                 [self startTimer];
-            } else if( [event isEqualToString:@"bout_stop"] ) {
+            } else if( [event isEqualToString:@"stop_bout"] ) {
                 _isGameRunning = NO;
                 _hasReset = NO;
                 [self stopTimer];
@@ -801,8 +802,9 @@
 
 - (void)startTimer {
     
+    frameTimestamp = 0;
     elapsedTime = 0;
-    
+    hasStartTimer = NO;
     //start the game timer
     gameTimer = [[GameTimer alloc] init];
     [gameTimer startTimer];
@@ -812,7 +814,6 @@
   
 
 	[displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-   // [self refreshCalorieTotals];
     
 }
 
@@ -820,12 +821,13 @@
 
 - (void)stopTimer {
     elapsedTime = 0;
-   
-        gameTimer = nil;
+    frameTimestamp = 0;
+    elapsedTime = 0;
+    hasStartTimer = NO;
+    [displayLink invalidate];
     
 }
-BOOL hasStartTimer = NO;
-    double frameTimestamp = 0;
+
 
 -(void) refreshCalorieTotals {
     
@@ -955,7 +957,7 @@ BOOL hasStartTimer = NO;
         }
         
 
-    [_playerDataDelegate graphNeedsUpdateWithProspering:_prosperousElapsed];
+    [_playerDataDelegate graphNeedsUpdateWithProspering:_prosperousElapsed WithSurviving:_survivingElapsed WithStarving:_starvingElapsed];
 }
 
 
