@@ -167,18 +167,15 @@
             
             
             
-			UINavigationController *navigationController = (UINavigationController*)[_controllerMap objectForKey:@"mapViewController"];
+            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad"
+                                                                     bundle: nil];
+            MapViewController *mapViewController = (MapViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"mapViewController"];
             
-            UIViewController *rootViewController = navigationController.viewControllers[0];
+            //[_controllerMap setObject:graphViewController forKey:@"graphViewController"];
             
-            if( rootViewController != nil ) {
-                MapViewController *mapc = (MapViewController *)rootViewController;
-                [mapc checkGameReset];
-            }
-
+            // }
             
-            
-//			UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:frontViewController];
+			UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mapViewController];
 			[revealController setFrontViewController:navigationController animated:YES];
         }
 		// Seems the user attempts to 'switch' to exactly the same controller he came from!

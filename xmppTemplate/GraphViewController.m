@@ -191,9 +191,6 @@
 
 -(void)setupAnnotations {
     
-    double originPlotPoint[2] = {0, 0};
-    
-    CGPoint originViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:originPlotPoint];
     
     double endPlotPoint[2] = {ceil(maxYield), ceil(maxNumPlayers)};
     

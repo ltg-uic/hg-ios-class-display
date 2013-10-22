@@ -74,25 +74,34 @@
         
      
     
-        //[self.view addSubview:pmp];
+        [self updateMapFromCache];
     }
 }
 
 -(void)updateMapFromCache {
     [playersAtPatch enumerateKeysAndObjectsUsingBlock: ^(NSString *player_id, NSString *patch_id, BOOL *stop) {
         
-        PlayerMapUIView *moveMe = (PlayerMapUIView*)[self.view viewWithTag:player_id];
-        if( moveMe == nil ) {
-            PlayerMapUIView *pmp = [playersAndViews objectForKey:player_id];
-            [self addPlayerToMapWith:pmp WithPatch:patch_id];
-        } else {
+        if( ![[NSNull null] isEqual:patch_id]) {
             PlayerMapUIView *moveMe = (PlayerMapUIView*)[self.view viewWithTag:player_id];
-            
-            CGPoint point = [self placePlayerWithPatchId:patch_id];
-            
-            
-            [moveMe moveTo:point duration:.4 option:UIViewAnimationOptionCurveEaseInOut];
+            if( moveMe == nil ) {
+                PlayerMapUIView *pmp = [playersAndViews objectForKey:player_id];
+                
+                if( patch_id )
+                    
+                    [self addPlayerToMapWith:pmp WithPatch:patch_id];
+            } else {
+                PlayerMapUIView *moveMe = (PlayerMapUIView*)[self.view viewWithTag:player_id];
+                
+                CGPoint point = [self placePlayerWithPatchId:patch_id];
+                
+                
+                [moveMe moveTo:point duration:.4 option:UIViewAnimationOptionCurveEaseInOut];
+            }
+
         }
+        
+        
+        
         
      
     }];
@@ -101,25 +110,21 @@
 #pragma mark - PLAYER DATA DELEGATE
 
 
-
--(void)playerDataDidUpdate {
+-(void)resetMap {
     
-        [self setupPatches];
- 
-}
-
--(void)checkGameReset {
-    
-    if( self.appDelegate.hasReset == YES ) {
         [playersAndViews enumerateKeysAndObjectsUsingBlock: ^(NSString *key, PlayerMapUIView *pmp, BOOL *stop) {
             pmp.frame = CGRectMake(0,0,60,60);
             pmp.hidden = NO;
         }];
-    }
 }
 
 -(void)graphNeedsUpdateWithProspering:(double)prosperingElapsed WithSurviving:(double)survivingElapsed WithStarving:(double)starvingElapsed {
     //used by the graph
+    
+    if( prosperingElapsed == 0 && survivingElapsed == 0 & starvingElapsed == 0) {
+        [self resetMap];
+    }
+    
 }
 
 -(void)graphNeedsUpdate {
@@ -127,13 +132,6 @@
 }
 
 -(void)playerDataDidUpdateWithArrival:(NSString *)arrival_patch_id WithDeparture:(NSString *)departure_patch_id WithPlayerDataPoint:(PlayerDataPoint *)playerDataPoint {
-    
-    
-    if(_hasInitialized == NO ) {
-        [self setupPatches];
-    } else {
-       _hasInitialized = YES;
-    }
     
     
     //[self updateMapFromCache];
@@ -193,7 +191,7 @@
 }
 
 -(int)randomLocationBetween:(int)lowerBound and:(int)upperBound {
-    int rndValue = lowerBound + arc4random() % (upperBound - lowerBound);
+    int rndValue = lowerBound + arc4random() % (abs(upperBound - lowerBound));
     return rndValue;
 }
 
@@ -239,13 +237,13 @@
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
    
     //check player map
+    [self setupPatches];
 }
 
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.appDelegate.playerDataDelegate = self;
-    [self updateMapFromCache];
 }
 
 -(PatchMapUIView *)createPatchViewsWithPatchInfo:(PatchInfo *)patchInfo AtX:(int)x AtY:(int)y  {
