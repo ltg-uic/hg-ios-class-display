@@ -11,14 +11,8 @@
 @protocol PlayerDataDelegate
 
 
-
--(void)playerDataDidUpdate;
-
--(void)graphNeedsUpdate;
-
 -(void)graphNeedsUpdateWithProspering:(double)prosperingElapsed WithSurviving:(double)survivingElapsed WithStarving:(double)starvingElapsed;
 
 -(void)playerDataDidUpdateWithArrival:(NSString *)arrival_patch_id WithDeparture:(NSString *)departure_patch_id WithPlayerDataPoint:(PlayerDataPoint *)playerDataPoint;
 
--(void)overlayNeedsUpdateWith:(double)starvingElapsed With:(double)survivingElapsed With:(double)starvingElapsed;
 @end

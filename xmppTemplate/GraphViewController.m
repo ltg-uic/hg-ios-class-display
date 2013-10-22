@@ -15,9 +15,6 @@
 @interface GraphViewController() {
     
     NSMutableDictionary *localColorMap;
-    NSArray *localPatches;
-    NSArray *sorted;
-    NSTimer *timer;
 
     //corePlot
     CPTColor *blueColor;
@@ -40,21 +37,14 @@
     
     float leftPadding;
     
-    float elapsedTime;
-    float refreshRate;
-    
-    float starving;
+    float starvingElapsed;
     float starvingTreshold;
     
-    float surviving;
+    float survivingElapsed;
     float survivingTreshold;
     
-    float prospering;
+    float prosperingElapsed;
     float prosperingTreshold;
-    
-    bool isRUNNING;
-    bool isGAME_STOPPED;
-    bool graphNeedsReload;
     
     int numOfPlayers;
     
@@ -99,19 +89,13 @@
 
 -(void)setupLocalData {
     localColorMap = [[self appDelegate] colorMap];
-    localPatches = [[[[self appDelegate] configurationInfo ] patches ] allObjects];
 }
 
 -(void)setupDelegates {
-    self.appDelegate.xmppBaseNewMessageDelegate = self;
     self.appDelegate.playerDataDelegate = self;
 }
 
 #pragma mark - VIEWS
-
--(void)viewDidAppear:(BOOL)animated {
-    
-}
 
 - (void)viewDidLoad
 {
@@ -119,27 +103,15 @@
    
     self.title = graphViewTitle;
     
-    // Change button color
-    //_sidebarButton.tintColor = [UIColor colorWithWhite:0.96f alpha:0.2f];
-    
-    // Set the side bar button action. When it's tapped, it'll show up the sidebar.
-    
     [self.revealButtonItem setTarget: self.revealViewController];
     [self.revealButtonItem setAction: @selector( revealToggle: )];
     [self.navigationController.navigationBar addGestureRecognizer: self.revealViewController.panGestureRecognizer];
 
-    refreshRate = [[self appDelegate] refreshRate];
+    starvingElapsed = [[self appDelegate] starvingElapsed];
+    survivingElapsed = [[self appDelegate] survivingElapsed];
+    prosperingElapsed = [[self appDelegate] prosperousElapsed];
     
-    starving = [[self appDelegate] starvingElapsed];
-    starvingTreshold = [[[self appDelegate] configurationInfo]starving_threshold];
     
-    surviving = [[self appDelegate] survivingElapsed];
-    survivingTreshold = [[[self appDelegate] configurationInfo] prospering_threshold];
-    
-    starvingColor = [CPTColor colorWithComponentRed:239.0f/255.0f green:207.0f/255.0f blue:207.0f/255.0f alpha:1.0];
-    survivingColor = [CPTColor colorWithComponentRed:215.0f/255.0f green:230.0f/255.0f blue:179.0f/255.0f alpha:1.0];
-    prosperingColor = [CPTColor colorWithComponentRed:191.0f/255.0f green:228.0f/255.0f blue:255.0f/255.0f alpha:1.0];
-
     [self initPlot];
 }
 
@@ -147,6 +119,10 @@
 #pragma mark - Chart behavior
 
 -(void)initPlot {
+    
+    starvingColor = [CPTColor colorWithComponentRed:239.0f/255.0f green:207.0f/255.0f blue:207.0f/255.0f alpha:1.0];
+    survivingColor = [CPTColor colorWithComponentRed:215.0f/255.0f green:230.0f/255.0f blue:179.0f/255.0f alpha:1.0];
+    prosperingColor = [CPTColor colorWithComponentRed:191.0f/255.0f green:228.0f/255.0f blue:255.0f/255.0f alpha:1.0];
     
     //setup colors
     minNumPlayers = -0.5f;
@@ -214,7 +190,7 @@
 }
 
 -(void)setupAnnotations {
-
+    
     double originPlotPoint[2] = {0, 0};
     
     CGPoint originViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:originPlotPoint];
@@ -232,13 +208,13 @@
     baseLayer.backgroundColor = [[CPTColor whiteColor] cgColor];
     
     
-    double prosperingPlotPoint[2] = {ceil(0), ceil(maxNumPlayers)};
+    double prosperingPlotPoint[2] = {ceil(prosperingElapsed), ceil(maxNumPlayers)};
     
     CGPoint prosperingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:prosperingPlotPoint];
     
 
     prosperingLayer = [[CPTLayer alloc] initWithLayer:baseLayer];
-    prosperingLayer.frame = CGRectMake(0, 0,  0, prosperingViewPoint.y);
+    prosperingLayer.frame = CGRectMake(0, 0,  prosperingViewPoint.x, prosperingViewPoint.y);
     prosperingLayer.paddingLeft = 0;
     prosperingLayer.paddingRight = 0;
     prosperingLayer.paddingBottom = 0;
@@ -247,53 +223,41 @@
 
     [baseLayer addSublayer:prosperingLayer];
     
-     double survivingPlotPoint[2] = {ceil(surviving), ceil(maxNumPlayers)};
+     double survivingPlotPoint[2] = {ceil(survivingElapsed), ceil(maxNumPlayers)};
      CGPoint survivingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:survivingPlotPoint];
 
-     survivingLayer = [CALayer layer];
+     survivingLayer = [[CPTLayer alloc] initWithLayer:baseLayer];
      survivingLayer.backgroundColor = survivingColor.cgColor;
-     survivingLayer.frame = CGRectMake(0, 0,  0, endPoint.y);
+     survivingLayer.frame = CGRectMake(0, 0,  survivingViewPoint.x, endPoint.y);
     [baseLayer addSublayer:survivingLayer];
   
-    double starvingPlotPoint[2] = {ceil(starving), ceil(maxNumPlayers)};
+    double starvingPlotPoint[2] = {ceil(starvingElapsed), ceil(maxNumPlayers)};
     
     CGPoint starvingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:starvingPlotPoint];
   
-    starvingLayer = [CALayer layer];
+    starvingLayer =  [[CPTLayer alloc] initWithLayer:baseLayer];
     starvingLayer.backgroundColor = starvingColor.cgColor;
-    starvingLayer.frame = CGRectMake(0, 0,  0, endPoint.y);
+    starvingLayer.frame = CGRectMake(0, 0,  starvingViewPoint.x, endPoint.y);
     [baseLayer addSublayer:starvingLayer];
     
     [graph.plotAreaFrame.plotArea insertSublayer:baseLayer atIndex:0];
     [baseLayer logLayers];
 }
 
--(void)graphNeedsUpdateWithProspering:(double)prosperingElapsed WithSurviving:(double)survivingElapsed WithStarving:(double)starvingElapsed {
+-(void)graphNeedsUpdateWithProspering:(double)ep WithSurviving:(double)se WithStarving:(double)ste {
     [graph reloadData];
     
-    
-    NSLog(@"PROSPERING E GRAPH %f", prosperingElapsed);
-    
-    
-//    CPTPlotSpaceAnnotation *annot = [graph.plotAreaFrame.plotArea.annotations objectAtIndex:0];
-//    CPTLayer *baseLayer = annot.contentLayer;
-//    NSArray *sublayers = [baseLayer sublayers];
-//    
-//    CPTLayer *pLayer = sublayers[0];
-//    
-//    
-    
-    double prosperingPlotPoint[2] = {ceil(prosperingElapsed), ceil(maxNumPlayers)};
+    double prosperingPlotPoint[2] = {ceil(ep), ceil(maxNumPlayers)};
     CGPoint prosperingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:prosperingPlotPoint];
     
     prosperingLayer.frame  = CGRectMake(0, 0,  prosperingViewPoint.x, prosperingLayer.frame.size.height);
     
-    double survivingPlotPoint[2] = {ceil(survivingElapsed), ceil(maxNumPlayers)};
+    double survivingPlotPoint[2] = {ceil(se), ceil(maxNumPlayers)};
     CGPoint survivingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:survivingPlotPoint];
     
     survivingLayer.frame = CGRectMake(0, 0,  survivingViewPoint.x, survivingLayer.frame.size.height);
     
-    double starvingPlotPoint[2] = {ceil(starvingElapsed), ceil(maxNumPlayers)};
+    double starvingPlotPoint[2] = {ceil(ste), ceil(maxNumPlayers)};
     
     CGPoint starvingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:starvingPlotPoint];
     starvingLayer.frame = CGRectMake(0, 0,  starvingViewPoint.x, starvingLayer.frame.size.height);
@@ -333,17 +297,6 @@
     for ( NSUInteger i = 0; i < [[[self appDelegate] playerDataPoints] count]; i++ ) {
         
         PlayerDataPoint *pdp = [[[self appDelegate] playerDataPoints] objectAtIndex:i];
-        
-        
-        
-//        NSString *hexColor = [pdp color];
-//        UIColor *rgbColor = [localColorMap objectForKey:hexColor];
-//        labelTitleTextStyleBlack = [CPTMutableTextStyle textStyle];
-//        labelTitleTextStyleBlack.fontName = helveticaNeueRegular;
-//        labelTitleTextStyleBlack.fontSize = 20.0;
-//
-//        labelTitleTextStyleBlack.color = [CPTColor colorWithCGColor:rgbColor.CGColor];
-        
         
         CPTAxisLabel *newLabel = [[CPTAxisLabel alloc] initWithText:[pdp.player_id uppercaseString]
                                                           textStyle:labelTitleTextStyleBlack];
@@ -420,16 +373,6 @@
 
 #pragma mark - PLAYER DATA DELEGATE
 
--(void)graphNeedsUpdate {
-    [self updateGraph];
-}
-
-
--(void)playerDataDidUpdate {
-    
-}
-
--(void)gameReset {}
 
 -(void)playerDataDidUpdateWithArrival:(NSString *)arrival_patch_id WithDeparture:(NSString *)departure_patch_id WithPlayerDataPoint:(PlayerDataPoint *)playerDataPoint {
     
@@ -437,54 +380,6 @@
 
 
 #pragma mark - UPDATE
-
--(void)updateGraph {
-
-   // [graph reloadData];
-    
-}
-
-
-
--(void)overlayNeedsUpdateWith:(double)starvingElapsed With:(double)survivingElapsed With:(double)prosperingElapsed {
-//    starving = [[self appDelegate] starvingElapsed];
-//    surviving = [[self appDelegate] survivingElapsed];
-//    prospering = [[self appDelegate] prosperousElapsed];
-    
-//    double prosperingPlotPoint[2] = {prosperingElapsed, ceil(maxNumPlayers)};
-//    CGPoint prosperingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:prosperingPlotPoint];
-//    
-//    double survivingPlotPoint[2] = {survivingElapsed, ceil(maxNumPlayers)};
-//    CGPoint survivingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:survivingPlotPoint];
-//    
-//    double starvingPlotPoint[2] = {starvingElapsed, ceil(maxNumPlayers)};
-//    
-//    CGPoint starvingViewPoint = [graph.defaultPlotSpace plotAreaViewPointForDoublePrecisionPlotPoint:starvingPlotPoint];
-//    
-//    
-//    NSLog(@"PROSPERING X %f",prosperingViewPoint.x);
-//    
-//    starvingLayer.frame = CGRectMake(0, 0,  starvingViewPoint.x, starvingLayer.frame.size.height);
-//    survivingLayer.frame = CGRectMake(0, 0,  survivingViewPoint.x, survivingLayer.frame.size.height);
-//    prosperingLayer.frame = CGRectMake(0, 0,  prosperingViewPoint.x, prosperingLayer.frame.size.height);
-}
-
-
-#pragma mark - XMPP New Message Delegate
-
-- (void)newMessageReceived:(NSDictionary *)messageContent {
-    NSLog(@"NEW MESSAGE RECIEVED");
-}
-
-- (void)replyMessageTo:(NSString *)from {
-    
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
 
 -(NSArray *)getPatches {
     return [[[[self appDelegate] configurationInfo ] patches ] allObjects];

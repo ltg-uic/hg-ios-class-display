@@ -4,7 +4,7 @@
 #import "PlayerDataDelegate.h"
 #import "REFrostedViewController.h"
 
-@interface GraphViewController : UIViewController <CPTBarPlotDataSource, CPTBarPlotDelegate, XMPPBaseNewMessageDelegate, PlayerDataDelegate> {
+@interface GraphViewController : UIViewController <CPTBarPlotDataSource, CPTBarPlotDelegate, PlayerDataDelegate> {
     
 }
 

@@ -22,6 +22,8 @@
 		7012E55A17EA9A51004433BC /* PatchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7012E55917EA9A51004433BC /* PatchInfo.m */; };
 		7013B01117E4CF9C00194BA5 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7013B01017E4CF9C00194BA5 /* SWRevealViewController.m */; };
 		702196B518161EF6003CEABB /* GraphUnderLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 702196B418161EF6003CEABB /* GraphUnderLayer.m */; };
+		702196B81816DFEE003CEABB /* HG_iCon.png in Resources */ = {isa = PBXBuildFile; fileRef = 702196B61816DFEE003CEABB /* HG_iCon.png */; };
+		702196B91816DFEE003CEABB /* HG_iCon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 702196B71816DFEE003CEABB /* HG_iCon@2x.png */; };
 		7025693418025ADA00D0C39B /* PatchBView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7025693318025ADA00D0C39B /* PatchBView.xib */; };
 		7025693718025AF300D0C39B /* PatchBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025693618025AF300D0C39B /* PatchBView.m */; };
 		7025693A180260BE00D0C39B /* PatchCView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70256939180260BE00D0C39B /* PatchCView.m */; };
@@ -231,6 +233,8 @@
 		7013B01017E4CF9C00194BA5 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		702196B318161EF6003CEABB /* GraphUnderLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphUnderLayer.h; sourceTree = "<group>"; };
 		702196B418161EF6003CEABB /* GraphUnderLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphUnderLayer.m; sourceTree = "<group>"; };
+		702196B61816DFEE003CEABB /* HG_iCon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HG_iCon.png; sourceTree = "<group>"; };
+		702196B71816DFEE003CEABB /* HG_iCon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HG_iCon@2x.png"; sourceTree = "<group>"; };
 		7025693318025ADA00D0C39B /* PatchBView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatchBView.xib; sourceTree = "<group>"; };
 		7025693518025AF300D0C39B /* PatchBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatchBView.h; sourceTree = "<group>"; };
 		7025693618025AF300D0C39B /* PatchBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatchBView.m; sourceTree = "<group>"; };
@@ -766,6 +770,8 @@
 				703D86FF17D938C900523417 /* awareness.xcassets */,
 				70AFBDD317C7E9DF00868211 /* sidebar_icons.xcassets */,
 				70AAC26517C31AE90018A84B /* wizard.xcassets */,
+				702196B61816DFEE003CEABB /* HG_iCon.png */,
+				702196B71816DFEE003CEABB /* HG_iCon@2x.png */,
 				70CD9B3517B49BF2008625BF /* logon_sound.aif */,
 				70CEF76317C8443A00ED0CBE /* Default-568h@2x.png */,
 				70AF73B21813605C0068B726 /* UIView+Animation.h */,
@@ -1817,6 +1823,7 @@
 			files = (
 				700C3A5C160427DA005A9E34 /* InfoPlist.strings in Resources */,
 				705BED3D17EA64140042D313 /* README.txt in Resources */,
+				702196B91816DFEE003CEABB /* HG_iCon@2x.png in Resources */,
 				70C8F07E180369A100C57B03 /* patch_images.xcassets in Resources */,
 				70F64F661801C72B002E5322 /* MapAssets.xcassets in Resources */,
 				708CD68918118B9F00AEDFF3 /* MainStoryboard_iPad.storyboard in Resources */,
@@ -1832,6 +1839,7 @@
 				70AFBDD417C7E9DF00868211 /* sidebar_icons.xcassets in Resources */,
 				7025693C180260D200D0C39B /* PatchCView.xib in Resources */,
 				703D870017D938C900523417 /* awareness.xcassets in Resources */,
+				702196B81816DFEE003CEABB /* HG_iCon.png in Resources */,
 				70F64F6B1801CA22002E5322 /* PatchAView.xib in Resources */,
 				7025694718026CF500D0C39B /* PatchEView.xib in Resources */,
 			);
@@ -2106,6 +2114,7 @@
 				);
 				PRODUCT_NAME = "hg-ios-class-display";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2135,6 +2144,7 @@
 				);
 				PRODUCT_NAME = "hg-ios-class-display";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};

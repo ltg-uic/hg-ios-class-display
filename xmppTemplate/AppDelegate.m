@@ -38,6 +38,7 @@
     NSTimer *timer;
     NSMutableArray *killList;
     double elapsedTime;
+    double renderTime;
     double startTime;
     double previousElapsedTime;
     CADisplayLink *displayLink;
@@ -576,14 +577,10 @@
         if( event != nil) {
             if( [event isEqualToString:@"reset_bout"] ) {
                 _isGameRunning = NO;
-                
-                for (PlayerDataPoint *pdp in _playerDataPoints) {
-                    pdp.score = [NSNumber numberWithInt:0];
-                }
-                
-                [self.managedObjectContext save:nil];
-                
                 _hasReset = YES;
+                
+                [self resetGame];
+                
             } else if([event isEqualToString:@"start_bout"] ) {
                 _isGameRunning = YES;
                 _hasReset = NO;
@@ -620,15 +617,7 @@
                     [_patchPlayerMap setObject:arrival_patch_id forKey:player.player_id];
                     player.currentPatch = arrival_patch_id;
                 }
-               
-//                if( [arrival_patch_id isEqualToString:@"null"] && [departure_patch_id isEqualToString:@"null"]) {
-//                    [patchPlayerMap setObject:[NSNull null] forKey:player.player_id];
-//                    player.currentPatch = nil;
-//                } else if( ![arrival_patch_id isEqualToString:@"null"] ) {
-//                    [patchPlayerMap setObject:arrival_patch_id forKey:player.player_id];
-//                    player.currentPatch = arrival_patch_id;
-//                } 
-            
+                
                 [_playerDataDelegate playerDataDidUpdateWithArrival:arrival_patch_id WithDeparture:departure_patch_id WithPlayerDataPoint:player];
             }
             
@@ -762,12 +751,7 @@
     
     _playerDataPoints  = [[[_configurationInfo players] allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     _patcheInfos = [[_configurationInfo patches] allObjects];
-    
-    
-    
-    _refreshRate = .50f;
-    
-    [_playerDataDelegate playerDataDidUpdate];
+
     
     [self setupPlayerMap];
     
@@ -781,6 +765,7 @@
     }
     
 }
+
 
 -(void)setupPlayerMap {
     if ( _patchPlayerMap == nil ) {
@@ -796,6 +781,14 @@
         }
     }
 }
+
+-(void)resetPlayerMap {
+    [_patchPlayerMap enumerateKeysAndObjectsUsingBlock:^(NSString *player_id, id patch_id, BOOL *stop){
+        patch_id = [NSNull null];
+    }];
+}
+
+
 
 #pragma mark - TIMER
 
@@ -819,11 +812,43 @@
 
 
 - (void)stopTimer {
+    //elapsedTime = 0;
+    //frameTimestamp = 0;
+    //elapsedTime = 0;
+    hasStartTimer = NO;
+    displayLink.paused = YES;
+    
+    
+}
+
+-(void) resetGame {
+    _starvingElapsed = 0;
+    _prosperousElapsed = 0;
+    _survivingElapsed = 0;
     elapsedTime = 0;
     frameTimestamp = 0;
-    elapsedTime = 0;
-    hasStartTimer = NO;
+    startTime = 0;
+    hasStartTimer = NO ;
     [displayLink invalidate];
+    
+    NSArray *players = [[_configurationInfo players] allObjects];
+    
+    for(PlayerDataPoint *pdp in players) {
+        pdp.score = [NSNumber numberWithFloat:0];
+        pdp.currentPatch = nil;
+    }
+    
+    [self.managedObjectContext save:nil];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"player_id" ascending:NO selector:@selector(caseInsensitiveCompare:)];
+    
+    _playerDataPoints  = [[[_configurationInfo players] allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+    [self resetPlayerMap];
+    
+    [self setupPlayerMap];
+    
+    [_playerDataDelegate graphNeedsUpdateWithProspering:_prosperousElapsed WithSurviving:_survivingElapsed WithStarving:_starvingElapsed];
     
 }
 
@@ -837,35 +862,14 @@
     
     double currentTime = [displayLink timestamp];
     elapsedTime =  currentTime - startTime;
-	double renderTime = currentTime - frameTimestamp;
+	renderTime = currentTime - frameTimestamp;
 	frameTimestamp = currentTime;
     [self updateDataOverlay];
-    [self updatePlayerScores:renderTime];
-   // NSLog(@"FRAME RATE  %f",1/renderTime);
+    [self updatePlayerScores];
+    NSLog(@"FRAME RATE  %f",1/renderTime);
 
    // NSLog(@"ELAPSED TIME %f",elapsedTime);
 }
-//-(void) refreshCalorieTotals {
-//    
-//    double previousElapsedTime = 0;
-//    double dt = 0;
-//    double frame_rate = 0;
-////    while (_isGameRunning) {
-//    
-//        previousElapsedTime = elapsedTime;
-//        elapsedTime = [gameTimer timeElapsedInMilliseconds];
-//        [self updateDataOverlay];
-//        [self updatePlayerScores];
-//        dt = elapsedTime - previousElapsedTime;
-//        NSLog(@"ELAPSED TIME %f",elapsedTime);
-//        frame_rate = 1/dt;
-//        NSLog(@"DT RATE %f",dt);
-//        NSLog(@"FRAME RATE %f",frame_rate);
-////    }
-//    
-//
-//}
-
 
 -(void)updateDataOverlay {
 
@@ -885,12 +889,12 @@
     _prosperousElapsed = ((_configurationInfo.maximum_harvest/300) * elapsedTime);
     //NSLog(@"PROPSPERING ELAPSED %f",_prosperousElapsed);
     
-        NSLog(@"PROSPERING E APPD %f", _prosperousElapsed);
+        //NSLog(@"PROSPERING E APPD %f", _prosperousElapsed);
    // [_playerDataDelegate overlayNeedsUpdateWith:_starvingElapsed With:_survivingElapsed With:_prosperousElapsed];
 }
 
 
--(void)updatePlayerScores:(double)renderTime {
+-(void)updatePlayerScores {
  
         
         for(NSString * player_id in _patchPlayerMap) {
@@ -942,7 +946,7 @@
                                     
                                     pdp.score = [NSNumber numberWithFloat:(playerOldScore + adjustedRate)];
                                     
-                                    //NSLog(@"PLAYER %@ NEW score %f",pdp.player_id, [pdp.score floatValue]);
+                                    NSLog(@"PLAYER %@ NEW score %f",pdp.player_id, [pdp.score floatValue]);
                                 }
                             }
                         }
