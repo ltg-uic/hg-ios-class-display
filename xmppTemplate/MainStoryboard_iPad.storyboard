@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
         <!--Wizard Class Page View Controller - Class Chooser-->
@@ -227,12 +227,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_map" translatesAutoresizingMaskIntoConstraints="NO" id="x6J-nI-ia7">
-                                            <rect key="frame" x="25" y="15" width="30" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Marauders Map" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2sC-oI-u1X">
-                                            <rect key="frame" x="65" y="15" width="200" height="30"/>
+                                            <rect key="frame" x="20" y="15" width="200" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                             <nil key="highlightedColor"/>
@@ -247,12 +243,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_harvest_Graph" translatesAutoresizingMaskIntoConstraints="NO" id="mbz-Py-g23">
-                                            <rect key="frame" x="26" y="15" width="29" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Harvest Graph" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qw-FU-kIk">
-                                            <rect key="frame" x="65" y="17" width="200" height="25"/>
+                                            <rect key="frame" x="20" y="17" width="200" height="25"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                             <nil key="highlightedColor"/>
@@ -349,19 +341,19 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="patchMap_PD" translatesAutoresizingMaskIntoConstraints="NO" id="x5O-Lb-HVj">
-                                <rect key="frame" x="39" y="361" width="93" height="93"/>
+                                <rect key="frame" x="47" y="361" width="93" height="93"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_0" translatesAutoresizingMaskIntoConstraints="NO" id="w1j-vb-U1b">
-                                <rect key="frame" x="109" y="403" width="53" height="44"/>
+                                <rect key="frame" x="117" y="403" width="53" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_0" translatesAutoresizingMaskIntoConstraints="NO" id="yRe-uA-hhZ">
-                                <rect key="frame" x="12" y="367" width="53" height="44"/>
+                                <rect key="frame" x="20" y="367" width="53" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_1" translatesAutoresizingMaskIntoConstraints="NO" id="rcr-R6-V8O">
-                                <rect key="frame" x="42" y="438" width="57" height="44"/>
+                                <rect key="frame" x="50" y="438" width="57" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="patchMap_PE" translatesAutoresizingMaskIntoConstraints="NO" id="01K-5f-xvU">
@@ -405,12 +397,12 @@
                                 <rect key="frame" x="139" y="701" width="52" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_0" translatesAutoresizingMaskIntoConstraints="NO" id="P4H-y7-PpV">
-                                <rect key="frame" x="524" y="138" width="54" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="patchMap_PF" translatesAutoresizingMaskIntoConstraints="NO" id="hGL-Ah-qzj">
                                 <rect key="frame" x="490" y="169" width="93" height="93"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_0" translatesAutoresizingMaskIntoConstraints="NO" id="P4H-y7-PpV">
+                                <rect key="frame" x="524" y="138" width="54" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_0" translatesAutoresizingMaskIntoConstraints="NO" id="kLp-QD-TdN">
@@ -425,13 +417,13 @@
                                 <rect key="frame" x="494" y="246" width="57" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_0" translatesAutoresizingMaskIntoConstraints="NO" id="29z-YA-ECr">
-                                <rect key="frame" x="506" y="713" width="52" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="patchMap_PB" translatesAutoresizingMaskIntoConstraints="NO" id="OfC-FD-jNw">
                                 <rect key="frame" x="496" y="628" width="93" height="93"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_0" translatesAutoresizingMaskIntoConstraints="NO" id="29z-YA-ECr">
+                                <rect key="frame" x="506" y="713" width="52" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_2" translatesAutoresizingMaskIntoConstraints="NO" id="I7J-In-dtO">
                                 <rect key="frame" x="446" y="673" width="54" height="44"/>
@@ -445,16 +437,16 @@
                                 <rect key="frame" x="764" y="508" width="260" height="260"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_0" translatesAutoresizingMaskIntoConstraints="NO" id="je4-UL-gD2">
-                                <rect key="frame" x="881" y="702" width="52" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="patchMap_PA" translatesAutoresizingMaskIntoConstraints="NO" id="Eei-QT-neO">
                                 <rect key="frame" x="876" y="628" width="93" height="93"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Acorn_0" translatesAutoresizingMaskIntoConstraints="NO" id="je4-UL-gD2">
+                                <rect key="frame" x="881" y="702" width="52" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Harvest Map" id="UeO-4X-gtt">
@@ -558,7 +550,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="d1i-uX-UH7">
-                        <rect key="frame" x="0.0" y="980" width="768" height="44"/>
+                        <rect key="frame" x="0.0" y="1068" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -574,8 +566,6 @@
         <image name="Acorn_0" width="107" height="89"/>
         <image name="Acorn_1" width="116" height="87"/>
         <image name="Acorn_2" width="109" height="90"/>
-        <image name="icon_harvest_Graph" width="60" height="60"/>
-        <image name="icon_map" width="61" height="67"/>
         <image name="legendblue" width="25" height="25"/>
         <image name="legendpink" width="25" height="25"/>
         <image name="legendvomit" width="25" height="25"/>

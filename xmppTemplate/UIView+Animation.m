@@ -66,6 +66,16 @@
 }
 
 
+// add with a fade-in effect
+- (void) showViewWithFadeAnimation:(UIView*)view duration:(float)secs option:(UIViewAnimationOptions)option
+{
+	view.alpha = 0.0;	// make the view transparent
+    
+	[UIView animateWithDuration:secs delay:0.0 options:option
+                     animations:^{view.alpha = 1.0;}
+                     completion:nil];	// animate the return to visible
+}
+
 
 // add with a fade-in effect
 - (void) addSubviewWithFadeAnimation:(UIView*)view duration:(float)secs option:(UIViewAnimationOptions)option

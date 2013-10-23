@@ -19,6 +19,7 @@
     NSMutableDictionary *playersAndViews;
     NSDictionary *patchRects;
     NSMutableDictionary *playersAtPatch;
+    BOOL hasSetup;
 }
 
 @end
@@ -59,7 +60,7 @@
     int i = 60;
     for (PlayerDataPoint *pdp in players) {
         
-        PlayerMapUIView *pmp = [[PlayerMapUIView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+        PlayerMapUIView *pmp = [[PlayerMapUIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
         
         i = i + 60;
         UIColor *hexColor = [UIColor colorWithHexString:[pdp.color stringByReplacingOccurrencesOfString:@"#" withString:@""]];
@@ -70,11 +71,12 @@
         pmp.nameLabel.textColor = [self getTextColor:hexColor];
         pmp.hidden = YES;
         pmp.tag = pdp.player_id;
-        [playersAndViews setObject:pmp forKey:pdp.player_id];
+        //[playersAndViews setObject:pmp forKey:pdp.player_id];
         
-     
-    
+        [self.view addSubview:pmp];
+        
         [self updateMapFromCache];
+        
     }
 }
 
@@ -84,16 +86,17 @@
         if( ![[NSNull null] isEqual:patch_id]) {
             PlayerMapUIView *moveMe = (PlayerMapUIView*)[self.view viewWithTag:player_id];
             if( moveMe == nil ) {
-                PlayerMapUIView *pmp = [playersAndViews objectForKey:player_id];
                 
-                if( patch_id )
+            
+                [self addPlayerToMapWith:moveMe WithPatch:patch_id];
                     
-                    [self addPlayerToMapWith:pmp WithPatch:patch_id];
+                
             } else {
                 PlayerMapUIView *moveMe = (PlayerMapUIView*)[self.view viewWithTag:player_id];
                 
                 CGPoint point = [self placePlayerWithPatchId:patch_id];
                 
+               
                 
                 [moveMe moveTo:point duration:.4 option:UIViewAnimationOptionCurveEaseInOut];
             }
@@ -111,19 +114,18 @@
 
 
 -(void)resetMap {
+    NSSet *players = [[[self appDelegate] configurationInfo ] players];
+
+     for (PlayerDataPoint *pdp in players) {
+         PlayerMapUIView *pmp = (PlayerMapUIView*)[self.view viewWithTag:pdp.player_id];
+         [pmp removeFromSuperview];
+     }
     
-        [playersAndViews enumerateKeysAndObjectsUsingBlock: ^(NSString *key, PlayerMapUIView *pmp, BOOL *stop) {
-            pmp.frame = CGRectMake(0,0,60,60);
-            pmp.hidden = NO;
-        }];
+    [self setupPatches];
 }
 
 -(void)graphNeedsUpdateWithProspering:(double)prosperingElapsed WithSurviving:(double)survivingElapsed WithStarving:(double)starvingElapsed {
     //used by the graph
-    
-    if( prosperingElapsed == 0 && survivingElapsed == 0 & starvingElapsed == 0) {
-        [self resetMap];
-    }
     
 }
 
@@ -133,38 +135,47 @@
 
 -(void)playerDataDidUpdateWithArrival:(NSString *)arrival_patch_id WithDeparture:(NSString *)departure_patch_id WithPlayerDataPoint:(PlayerDataPoint *)playerDataPoint {
     
-    
+    if( hasSetup == NO ) {
+        [self setupPatches];
+        hasSetup = YES;
+    }
     //[self updateMapFromCache];
     
     //first time arriving in the game
     if( ![[NSNull null] isEqual: arrival_patch_id ] && [[NSNull null] isEqual: departure_patch_id ] ) {
     
         //get the view
-        PlayerMapUIView *pmp = [playersAndViews objectForKey:playerDataPoint.player_id];
-        [self addPlayerToMapWith:pmp WithPatch:arrival_patch_id];
+        PlayerMapUIView *addMe = (PlayerMapUIView*)[self.view viewWithTag:playerDataPoint.player_id];
+        [self addPlayerToMapWith:addMe WithPatch:arrival_patch_id];
       
 
         
     } else if( [ [NSNull null] isEqual: arrival_patch_id] && ![[NSNull null] isEqual: departure_patch_id ] ) {
-        //reset
-        
         //get the view
-        PlayerMapUIView *pmp = [playersAndViews objectForKey:playerDataPoint.player_id];
         
-        PlayerMapUIView *moveMe = (PlayerMapUIView*)[self.view viewWithTag:pmp.tag];
+        PlayerMapUIView *moveMe = (PlayerMapUIView*)[self.view viewWithTag:playerDataPoint.player_id];
 
         [moveMe removeSubviewWithFadeAnimationWithDuration:.8 option:nil];
         
     } else if( ![[NSNull null] isEqual: arrival_patch_id ] && ![[NSNull null] isEqual: departure_patch_id ]  ) {
         //get the view
-        PlayerMapUIView *pmp = [playersAndViews objectForKey:playerDataPoint.player_id];
+       
+        PlayerMapUIView *moveMe = (PlayerMapUIView*)[self.view viewWithTag:playerDataPoint.player_id];
         
-        PlayerMapUIView *moveMe = (PlayerMapUIView*)[self.view viewWithTag:pmp.tag];
-        
+       
+       
         CGPoint point = [self placePlayerWithPatchId:arrival_patch_id];
 
+        if( moveMe.hidden == YES ) {
+            moveMe.frame = CGRectMake(point.x,point.y, moveMe.frame.size.width, moveMe.frame.size.height);
+            moveMe.alpha = 0.0;
+            moveMe.hidden = NO;
+             [self.view showViewWithFadeAnimation:moveMe duration:.8 option:nil];
+        } else {
+            [moveMe moveTo:point duration:.4 option:UIViewAnimationOptionCurveEaseInOut];
+        }
         
-        [moveMe moveTo:point duration:.4 option:UIViewAnimationOptionCurveEaseInOut];
+        
     }
     
     
@@ -177,7 +188,8 @@
     pmp.hidden = NO;
     
     //[playersAndViews setObject:pmp forKey:playerDataPoint.player_id];
-    [self.view addSubviewWithFadeAnimation:pmp duration:.8 option:nil];
+    [self.view showViewWithFadeAnimation:pmp duration:.8 option:nil];
+    //[self.view addSubviewWithFadeAnimation:pmp duration:.8 option:nil];
 }
 
 
@@ -212,29 +224,17 @@
     }
 }
 
-- (IBAction)showMenu {
-    [self.frostedViewController presentMenuViewController];
-}
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    //self.title = @"News";
-
-    // Change button color
-    //_sidebarButton.tintColor = [UIColor colorWithWhite:0.96f alpha:0.2f];
-
     // Set the side bar button action. When it's tapped, it'll show up the sidebar.
     
     [self.revealButtonItem setTarget: self.revealViewController];
     [self.revealButtonItem setAction: @selector( revealToggle: )];
-    [self.navigationController.navigationBar addGestureRecognizer: self.revealViewController.panGestureRecognizer];
-
-
-    // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+
    
     //check player map
     [self setupPatches];

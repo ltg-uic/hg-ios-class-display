@@ -19,4 +19,5 @@
 - (void) removeWithSinkAnimation:(int)steps;
 - (void) removeWithSinkAnimationRotateTimer:(NSTimer*) timer;
 
+- (void) showViewWithFadeAnimation:(UIView*)view duration:(float)secs option:(UIViewAnimationOptions)option;
 @end

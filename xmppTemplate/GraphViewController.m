@@ -105,7 +105,7 @@
     
     [self.revealButtonItem setTarget: self.revealViewController];
     [self.revealButtonItem setAction: @selector( revealToggle: )];
-    [self.navigationController.navigationBar addGestureRecognizer: self.revealViewController.panGestureRecognizer];
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 
     starvingElapsed = [[self appDelegate] starvingElapsed];
     survivingElapsed = [[self appDelegate] survivingElapsed];
@@ -373,6 +373,10 @@
 
 -(void)playerDataDidUpdateWithArrival:(NSString *)arrival_patch_id WithDeparture:(NSString *)departure_patch_id WithPlayerDataPoint:(PlayerDataPoint *)playerDataPoint {
     
+}
+
+-(void)resetMap {
+    //used by map
 }
 
 

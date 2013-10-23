@@ -850,6 +850,8 @@
     
     [_playerDataDelegate graphNeedsUpdateWithProspering:_prosperousElapsed WithSurviving:_survivingElapsed WithStarving:_starvingElapsed];
     
+    [_playerDataDelegate resetMap];
+    
 }
 
 
@@ -866,9 +868,9 @@
 	frameTimestamp = currentTime;
     [self updateDataOverlay];
     [self updatePlayerScores];
-    NSLog(@"FRAME RATE  %f",1/renderTime);
+    //NSLog(@"FRAME RATE  %f",1/renderTime);
 
-   // NSLog(@"ELAPSED TIME %f",elapsedTime);
+    NSLog(@"ELAPSED TIME %f",elapsedTime);
 }
 
 -(void)updateDataOverlay {
@@ -946,7 +948,7 @@
                                     
                                     pdp.score = [NSNumber numberWithFloat:(playerOldScore + adjustedRate)];
                                     
-                                    NSLog(@"PLAYER %@ NEW score %f",pdp.player_id, [pdp.score floatValue]);
+                                   // NSLog(@"PLAYER %@ NEW score %f",pdp.player_id, [pdp.score floatValue]);
                                 }
                             }
                         }
