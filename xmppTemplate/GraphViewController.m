@@ -379,6 +379,10 @@
     //used by map
 }
 
+-(void)timeMapUpdateWithPatch:(NSString *)patch_id WithTime:(double)time {
+    //used by map
+}
+
 
 #pragma mark - UPDATE
 

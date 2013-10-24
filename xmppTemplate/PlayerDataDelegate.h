@@ -17,4 +17,6 @@
 
 -(void)resetMap;
 
+-(void)timeMapUpdateWithPatch:(NSString *)patch_id WithTime:(double)time;
+
 @end

@@ -3,6 +3,7 @@
 #import "SWRevealViewController.h"
 #import "GraphViewController.h"
 #import "MapViewController.h"
+#import "PopularViewController.h"
 #import "SideBarCell.h"
 
 @interface SidebarViewController () {
@@ -44,7 +45,7 @@
 {
     [super viewDidLoad];
     
-    _menuItems = @[@"viz_item", @"map_item", @"graph_item",  @"settings_title_item", @"login_item", @"blank_item"];
+    _menuItems = @[@"viz_item", @"map_item", @"graph_item",  @"popular_item",  @"settings_title_item", @"login_item", @"blank_item"];
     self.clearsSelectionOnViewWillAppear = NO;
 }
 
@@ -128,23 +129,23 @@
         cellIdentifier = @"blank_item";
     }
     
-    int loginIndex = [_menuItems indexOfObject:@"login_item"];
-    if( loginIndex == indexPath.row ) {
-        SideBarCell *loginCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-        if( isOnline ) {            
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    if( [cell isKindOfClass:[SideBarCell class]]) {
+        SideBarCell *loginCell = (SideBarCell *)cell;
+        if( isOnline ) {
             loginCell.label.text = xmppUsername;
             [loginCell.leftImageView setImage:onlineImage];
             
         } else {
             loginCell.label.text = xmppUsername;
             [loginCell.leftImageView setImage:offlineImage];
-
+            
         }
-        return loginCell;
-    } else {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-        return cell;
+        [loginCell setNeedsDisplay];
     }
+    
+    return cell;
     
 }
 
@@ -213,7 +214,28 @@
 			[revealController revealToggle:self];
 		}
 	}
-    
+    else if (row == 3)
+	{
+		// Now let's see if we're not attempting to swap the current frontViewController for a new instance of ITSELF, which'd be highly redundant.
+        if ( ![frontNavigationController.topViewController isKindOfClass:[PopularViewController class]] )
+        {
+            
+            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad"
+                                                                     bundle: nil];
+            PopularViewController *popularViewController = (PopularViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"popularViewController"];
+            
+            
+			UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:popularViewController];
+			[revealController setFrontViewController:navigationController animated:YES];
+		}
+        
+		// Seems the user attempts to 'switch' to exactly the same controller he came from!
+		else
+		{
+			[revealController revealToggle:self];
+		}
+	}
+
     
 }
 

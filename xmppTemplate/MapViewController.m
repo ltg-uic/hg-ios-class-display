@@ -124,6 +124,10 @@
     [self setupPatches];
 }
 
+-(void)timeMapUpdateWithPatch:(NSString *)patch_id WithTime:(double)time {
+    //used by map
+}
+
 -(void)graphNeedsUpdateWithProspering:(double)prosperingElapsed WithSurviving:(double)survivingElapsed WithStarving:(double)starvingElapsed {
     //used by the graph
     
@@ -233,7 +237,7 @@
     
     [self.revealButtonItem setTarget: self.revealViewController];
     [self.revealButtonItem setAction: @selector( revealToggle: )];
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+  //  [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 
    
     //check player map

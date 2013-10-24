@@ -21,6 +21,7 @@
 		700D59F21808FC9100C12207 /* ConfigurationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 700D59F11808FC9100C12207 /* ConfigurationInfo.m */; };
 		7012E55A17EA9A51004433BC /* PatchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7012E55917EA9A51004433BC /* PatchInfo.m */; };
 		7013B01117E4CF9C00194BA5 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7013B01017E4CF9C00194BA5 /* SWRevealViewController.m */; };
+		701EDBF518198DCE003183E1 /* PopularViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 701EDBF418198DCE003183E1 /* PopularViewController.m */; };
 		702196B518161EF6003CEABB /* GraphUnderLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 702196B418161EF6003CEABB /* GraphUnderLayer.m */; };
 		702196B81816DFEE003CEABB /* HG_iCon.png in Resources */ = {isa = PBXBuildFile; fileRef = 702196B61816DFEE003CEABB /* HG_iCon.png */; };
 		702196B91816DFEE003CEABB /* HG_iCon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 702196B71816DFEE003CEABB /* HG_iCon@2x.png */; };
@@ -231,6 +232,8 @@
 		7012E55917EA9A51004433BC /* PatchInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatchInfo.m; sourceTree = "<group>"; };
 		7013B00F17E4CF9C00194BA5 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		7013B01017E4CF9C00194BA5 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		701EDBF318198DCE003183E1 /* PopularViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopularViewController.h; sourceTree = "<group>"; };
+		701EDBF418198DCE003183E1 /* PopularViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopularViewController.m; sourceTree = "<group>"; };
 		702196B318161EF6003CEABB /* GraphUnderLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphUnderLayer.h; sourceTree = "<group>"; };
 		702196B418161EF6003CEABB /* GraphUnderLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphUnderLayer.m; sourceTree = "<group>"; };
 		702196B61816DFEE003CEABB /* HG_iCon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HG_iCon.png; sourceTree = "<group>"; };
@@ -770,6 +773,7 @@
 				703D86FF17D938C900523417 /* awareness.xcassets */,
 				70AFBDD317C7E9DF00868211 /* sidebar_icons.xcassets */,
 				70AAC26517C31AE90018A84B /* wizard.xcassets */,
+				70F64F651801C72B002E5322 /* MapAssets.xcassets */,
 				702196B61816DFEE003CEABB /* HG_iCon.png */,
 				702196B71816DFEE003CEABB /* HG_iCon@2x.png */,
 				70CD9B3517B49BF2008625BF /* logon_sound.aif */,
@@ -1667,6 +1671,8 @@
 		707FE56E17D940CC0036DBAB /* map */ = {
 			isa = PBXGroup;
 			children = (
+				701EDBF318198DCE003183E1 /* PopularViewController.h */,
+				701EDBF418198DCE003183E1 /* PopularViewController.m */,
 				703D86FA17D91E0500523417 /* MapViewController.h */,
 				703D86FB17D91E0500523417 /* MapViewController.m */,
 				704AA4BF17E3F3E200A7FF9C /* PlayerMapUIView.h */,
@@ -1676,7 +1682,6 @@
 				707FE57017D9412B0036DBAB /* PatchMapUIView.m */,
 				7065422E17E0438900C38099 /* PatchMapUIView.xib */,
 				7025694218026C9B00D0C39B /* Patches */,
-				70F64F651801C72B002E5322 /* MapAssets.xcassets */,
 			);
 			name = map;
 			sourceTree = "<group>";
@@ -1926,6 +1931,7 @@
 				705BEE6E17EA643A0042D313 /* XEP_0223.m in Sources */,
 				700450FF17B5C99E000A83F1 /* DataPointModel.xcdatamodeld in Sources */,
 				705BED3817EA64140042D313 /* DDFileLogger.m in Sources */,
+				701EDBF518198DCE003183E1 /* PopularViewController.m in Sources */,
 				705BEE4F17EA643A0042D313 /* XMPPResultSet.m in Sources */,
 				7012E55A17EA9A51004433BC /* PatchInfo.m in Sources */,
 				705BEE3E17EA643A0042D313 /* XMPPMessage+XEP0045.m in Sources */,

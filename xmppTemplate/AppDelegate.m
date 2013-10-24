@@ -829,6 +829,11 @@
     frameTimestamp = 0;
     startTime = 0;
     hasStartTimer = NO ;
+    patch_a = 0;
+    patch_b = 0;
+    patch_c = 0;
+    patch_d = 0;
+    
     [displayLink invalidate];
     
     NSArray *players = [[_configurationInfo players] allObjects];
@@ -868,9 +873,10 @@
 	frameTimestamp = currentTime;
     [self updateDataOverlay];
     [self updatePlayerScores];
+    [self calcPatchTimes];
     //NSLog(@"FRAME RATE  %f",1/renderTime);
 
-    NSLog(@"ELAPSED TIME %f",elapsedTime);
+   // NSLog(@"ELAPSED TIME %f",elapsedTime);
 }
 
 -(void)updateDataOverlay {
@@ -895,7 +901,12 @@
    // [_playerDataDelegate overlayNeedsUpdateWith:_starvingElapsed With:_survivingElapsed With:_prosperousElapsed];
 }
 
-
+double patch_a = 0;
+double patch_b = 0;
+double patch_c = 0;
+double patch_d = 0;
+double patch_e = 0;
+double patch_f = 0;
 -(void)updatePlayerScores {
  
         
@@ -941,6 +952,8 @@
                                     //calc new richness
                                     float adjustedRate = ((patchInfo.quality_per_second * renderTime) / numberOfPlayerAtPatches );
                                     
+                                   
+                                    
                                     //NSLog(@"ADJUSTED %@ RATE %f",pdp.player_id, adjustedRate);
 
                                     //figure out the adjusted rate for the refreshrate
@@ -965,6 +978,50 @@
     [_playerDataDelegate graphNeedsUpdateWithProspering:_prosperousElapsed WithSurviving:_survivingElapsed WithStarving:_starvingElapsed];
 }
 
+-(void)calcPatchTimes {
+    
+    for(PatchInfo *patch in _patcheInfos) {
+        
+        NSArray *playersAtPatch = [_playerDataPoints filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"currentPatch == %@", patch.patch_id]];
+        NSMutableArray *playersNotKilled = [[NSMutableArray alloc] init];
+        
+        for( PlayerDataPoint *p in playersAtPatch ) {
+            if( [killList containsObject:p.player_id] == NO) {
+                [playersNotKilled addObject:p];
+            }
+        }
+        
+        if( [patch.patch_id isEqual:@"patch-a"] ) {
+            patch_a += renderTime * playersNotKilled.count;
+            [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:patch_a];
+            NSLog(@"PATCH A TIME %f",patch_a);
+        } else if( [patch.patch_id isEqual:@"patch-b"] ) {
+            patch_b += renderTime * playersNotKilled.count;
+            [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:patch_b];
+            NSLog(@"PATCH B TIME %f",patch_b);
+        } else if( [patch.patch_id isEqual:@"patch-c"] ) {
+            patch_c += renderTime * playersNotKilled.count;
+            [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:patch_c];
+            NSLog(@"PATCH C TIME %f",patch_c);
+        } else if( [patch.patch_id isEqual:@"patch-d"] ) {
+            patch_d += renderTime * playersNotKilled.count;
+            [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:patch_d];
+            NSLog(@"PATCH D TIME %f",patch_d);
+        } else if( [patch.patch_id isEqual:@"patch-e"] ) {
+            patch_e += renderTime * playersNotKilled.count;
+            [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:patch_e];
+            NSLog(@"PATCH E TIME %f",patch_e);
+        }else if( [patch.patch_id isEqual:@"patch-f"] ) {
+            patch_f += renderTime * playersNotKilled.count;
+            [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:patch_f];
+            NSLog(@"PATCH F TIME %f",patch_f);
+        }
+        
+        
+    }
+    
+    
+}
 
 #pragma NETWORK OPERATIONS
 
