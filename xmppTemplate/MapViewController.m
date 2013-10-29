@@ -216,7 +216,7 @@
     const CGFloat *componentColors = CGColorGetComponents(color.CGColor);
     
     CGFloat colorBrightness = ((componentColors[0] * 299) + (componentColors[1] * 587) + (componentColors[2] * 114)) / 1000;
-    if (colorBrightness < 0.3)
+    if (colorBrightness < 0.1)
     {
         //NSLog(@"my color is dark");
         return [UIColor whiteColor];
