@@ -1795,7 +1795,7 @@
 				ORGANIZATIONNAME = "Learning Technologies Group";
 				TargetAttributes = {
 					700C3A4C160427DA005A9E34 = {
-						DevelopmentTeam = YD334HZ49B;
+						DevelopmentTeam = F554V774C5;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;

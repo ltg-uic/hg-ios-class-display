@@ -849,6 +849,7 @@
     
     _playerDataPoints  = [[[_configurationInfo players] allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     
+    [killList removeAllObjects];
     [self resetPlayerMap];
     
     [self setupPlayerMap];

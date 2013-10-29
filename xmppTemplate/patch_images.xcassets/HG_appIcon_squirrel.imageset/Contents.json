@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "HG_iCon.png"
+      "filename" : "HG_appIcon_squirrel.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "HG_iCon@2x.png"
+      "filename" : "HG_appIcon_squirrel@2x.png"
     }
   ],
   "info" : {

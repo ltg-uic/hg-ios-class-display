@@ -159,7 +159,7 @@
         
         PlayerMapUIView *moveMe = (PlayerMapUIView*)[self.view viewWithTag:playerDataPoint.player_id];
 
-        [moveMe removeSubviewWithFadeAnimationWithDuration:.8 option:nil];
+        [moveMe removeSubviewWithFadeAnimationWithDuration:.4 option:nil];
         
     } else if( ![[NSNull null] isEqual: arrival_patch_id ] && ![[NSNull null] isEqual: departure_patch_id ]  ) {
         //get the view
@@ -174,7 +174,7 @@
             moveMe.frame = CGRectMake(point.x,point.y, moveMe.frame.size.width, moveMe.frame.size.height);
             moveMe.alpha = 0.0;
             moveMe.hidden = NO;
-             [self.view showViewWithFadeAnimation:moveMe duration:.8 option:nil];
+             [self.view showViewWithFadeAnimation:moveMe duration:.4 option:nil];
         } else {
             [moveMe moveTo:point duration:.4 option:UIViewAnimationOptionCurveEaseInOut];
         }
@@ -192,7 +192,7 @@
     pmp.hidden = NO;
     
     //[playersAndViews setObject:pmp forKey:playerDataPoint.player_id];
-    [self.view showViewWithFadeAnimation:pmp duration:.8 option:nil];
+    [self.view showViewWithFadeAnimation:pmp duration:.4 option:nil];
     //[self.view addSubviewWithFadeAnimation:pmp duration:.8 option:nil];
 }
 
