@@ -39,12 +39,12 @@
 
 
 -(void)resetMap {
-    patch_a_label.text = @"";
-    patch_b_label.text = @"";
-    patch_c_label.text = @"";
-    patch_d_label.text = @"";
-    patch_e_label.text = @"";
-    patch_f_label.text = @"";
+    patch_a_label.text = @"0";
+    patch_b_label.text = @"0";
+    patch_c_label.text = @"0";
+    patch_d_label.text = @"0";
+    patch_e_label.text = @"0";
+    patch_f_label.text = @"0";
 }
 
 -(void)graphNeedsUpdateWithProspering:(double)prosperingElapsed WithSurviving:(double)survivingElapsed WithStarving:(double)starvingElapsed {

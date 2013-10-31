@@ -143,6 +143,10 @@
         [self setupPatches];
         hasSetup = YES;
     }
+    
+//    if( [[[self appDelegate] killList ] containsObject:playerDataPoint.player_id]) {
+//        return;
+//    }
     //[self updateMapFromCache];
     
     //first time arriving in the game

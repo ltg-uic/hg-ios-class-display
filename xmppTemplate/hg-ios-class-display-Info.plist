@@ -16,6 +16,7 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
+				<string>HG_appIcon_squirrel</string>
 				<string>HG_iCon</string>
 			</array>
 		</dict>
@@ -40,6 +41,19 @@
 	<array>
 		<string>audio</string>
 		<string>voip</string>
+	</array>
+	<key>UILaunchImages~ipad</key>
+	<array>
+		<dict>
+			<key>UILaunchImageMinimumOSVersion</key>
+			<string>7.0</string>
+			<key>UILaunchImageName</key>
+			<string>LaunchScreen</string>
+			<key>UILaunchImageOrientation</key>
+			<string>Landscape</string>
+			<key>UILaunchImageSize</key>
+			<string>{768, 1024}</string>
+		</dict>
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard_iPad</string>

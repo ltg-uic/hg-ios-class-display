@@ -36,7 +36,7 @@
     NSOperationQueue *operationQueue;
     GameTimer *gameTimer;
     NSTimer *timer;
-    NSMutableArray *killList;
+  
     double elapsedTime;
     double renderTime;
     double startTime;
@@ -592,11 +592,11 @@
             } else if( [event isEqualToString:@"kill_tag"]) {
                 NSDictionary *payload = [jsonObjects objectForKey:@"payload"];
                 NSString *player_id = [payload objectForKey:@"id"];
-                [killList addObject:player_id];
+                [_killList addObject:player_id];
             } else if( [event isEqualToString:@"resurrect_tag"]) {
                 NSDictionary *payload = [jsonObjects objectForKey:@"payload"];
                 NSString *player_id = [payload objectForKey:@"id"];
-                [killList removeObject:player_id];
+                [_killList removeObject:player_id];
             } else if( [event isEqualToString:@"rfid_update"] && (_isGameRunning == YES) ){
                 
             
@@ -849,7 +849,7 @@
     
     _playerDataPoints  = [[[_configurationInfo players] allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     
-    [killList removeAllObjects];
+    [_killList removeAllObjects];
     [self resetPlayerMap];
     
     [self setupPlayerMap];
@@ -930,7 +930,7 @@ double patch_f = 0;
                         NSMutableArray *playersNotKilled = [[NSMutableArray alloc] init];
                         
                         for( PlayerDataPoint *p in playersAtPatch ) {
-                            if( [killList containsObject:p.player_id] == NO) {
+                            if( [_killList containsObject:p.player_id] == NO) {
                                 [playersNotKilled addObject:p];
                             }
                         }
@@ -943,7 +943,7 @@ double patch_f = 0;
                             
                             if( [pdp.score floatValue] <= _configurationInfo.maximum_harvest ) {
                             
-                                if( ![killList containsObject:pdp.player_id] ) {
+                                if( ![_killList containsObject:pdp.player_id] ) {
                                     //number of the patches at the patch
                                     int numberOfPlayerAtPatches = playersNotKilled.count;
                                     
@@ -987,7 +987,7 @@ double patch_f = 0;
         NSMutableArray *playersNotKilled = [[NSMutableArray alloc] init];
         
         for( PlayerDataPoint *p in playersAtPatch ) {
-            if( [killList containsObject:p.player_id] == NO) {
+            if( [_killList containsObject:p.player_id] == NO) {
                 [playersNotKilled addObject:p];
             }
         }
@@ -995,27 +995,27 @@ double patch_f = 0;
         if( [patch.patch_id isEqual:@"patch-a"] ) {
             patch_a += renderTime * playersNotKilled.count;
             [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:patch_a];
-            NSLog(@"PATCH A TIME %f",patch_a);
+           // NSLog(@"PATCH A TIME %f",patch_a);
         } else if( [patch.patch_id isEqual:@"patch-b"] ) {
             patch_b += renderTime * playersNotKilled.count;
             [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:patch_b];
-            NSLog(@"PATCH B TIME %f",patch_b);
+            //NSLog(@"PATCH B TIME %f",patch_b);
         } else if( [patch.patch_id isEqual:@"patch-c"] ) {
             patch_c += renderTime * playersNotKilled.count;
             [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:patch_c];
-            NSLog(@"PATCH C TIME %f",patch_c);
+            //NSLog(@"PATCH C TIME %f",patch_c);
         } else if( [patch.patch_id isEqual:@"patch-d"] ) {
             patch_d += renderTime * playersNotKilled.count;
             [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:patch_d];
-            NSLog(@"PATCH D TIME %f",patch_d);
+            //NSLog(@"PATCH D TIME %f",patch_d);
         } else if( [patch.patch_id isEqual:@"patch-e"] ) {
             patch_e += renderTime * playersNotKilled.count;
             [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:patch_e];
-            NSLog(@"PATCH E TIME %f",patch_e);
+            //NSLog(@"PATCH E TIME %f",patch_e);
         }else if( [patch.patch_id isEqual:@"patch-f"] ) {
             patch_f += renderTime * playersNotKilled.count;
             [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:patch_f];
-            NSLog(@"PATCH F TIME %f",patch_f);
+            //NSLog(@"PATCH F TIME %f",patch_f);
         }
         
         
@@ -1396,7 +1396,7 @@ double patch_f = 0;
 -(void)clearUserDefaults {
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kXMPPmyJID];
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kXMPPmyPassword];
-    killList = [[NSMutableArray alloc] init];
+    _killList = [[NSMutableArray alloc] init];
 
 }
 
