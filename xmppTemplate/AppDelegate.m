@@ -25,7 +25,7 @@
 // Log levels: off, error, warn, info, verbose
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
-static const int xmppLogLevel = XMPP_LOG_LEVEL_OFF;
+static const int xmppLogLevel = XMPP_LOG_LEVEL_INFO;
 
 
 @interface AppDelegate()<SWRevealViewControllerDelegate>{
@@ -783,7 +783,7 @@ double patch_f = 0;
     [_xmppBaseOnlineDelegate isAvailable:NO];
 }
 
-#pragma CONFIGURATION SETUP
+#pragma mark - CONFIGURATION SETUP
 
 -(void)setupConfigurationAndRosterWithRunId:(NSString *)run_id WithPatchId: (NSString*)currentPatchId {
     
@@ -800,7 +800,9 @@ double patch_f = 0;
     if( _xmppStream == nil ) {
         [self setupStream];
     } else {
+        [_xmppRoom leaveRoom];
         [_xmppRoom deactivate];
+        [_xmppRoom removeDelegate:self];
         _xmppRoom = [[XMPPRoom alloc] initWithRoomStorage:self jid:[self getRoomJID]];
         [_xmppRoom  activate:_xmppStream];
 

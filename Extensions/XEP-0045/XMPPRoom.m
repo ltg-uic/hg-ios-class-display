@@ -248,6 +248,14 @@ enum XMPPRoomState
 	{
 		XMPPLogWarn(@"%@[%@] - Cannot create/join room when already creating/joining/joined", THIS_FILE, roomJID);
 		
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Joing Room"
+		                                                    message:[nickname stringByAppendingString:@" is already in a room, error connecting"]
+		                                                   delegate:nil
+		                                          cancelButtonTitle:@"Ok"
+		                                          otherButtonTitles:nil];
+		[alertView show];
+        
 		return NO;
 	}
 	
