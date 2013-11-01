@@ -9,6 +9,7 @@
 #import "ConfigurationInfo.h"
 #import "PlayerDataDelegate.h"
 #import "XMPPFramework.h"
+#import "DDFileLogger.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, XMPPRoomStorage> {
     NSString *password;
@@ -52,6 +53,8 @@
 @property (nonatomic) float survivingMaximum;
 @property (strong, nonatomic) NSMutableDictionary *patchPlayerMap;
 @property (strong, nonatomic) NSMutableArray *killList;
+@property (nonatomic) DDFileLogger *fileLogger;
+
 
 
 

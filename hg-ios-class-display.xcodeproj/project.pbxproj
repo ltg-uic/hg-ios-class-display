@@ -197,7 +197,6 @@
 		70CF3D6D17C55296006F363C /* WizardClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CF3D6C17C55296006F363C /* WizardClassCell.m */; };
 		70CF3D7017C5570D006F363C /* WizardReviewPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CF3D6F17C5570D006F363C /* WizardReviewPageViewController.m */; };
 		70DF2EA117DE8EC300AFC798 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DF2EA017DE8EC300AFC798 /* CoreDataTableViewController.m */; };
-		70E7285E1812C91000A3E44F /* GameTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 70E7285D1812C91000A3E44F /* GameTimer.m */; };
 		70E866F217C66E76003C5BD2 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 70E866F017C66E76003C5BD2 /* fishhook.c */; };
 		70E866F417C66E8F003C5BD2 /* QuietAssertMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = 70E866F317C66E8F003C5BD2 /* QuietAssertMacros.c */; };
 		70EC27D517E2287200077DF4 /* UIView+NibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EC27D417E2287200077DF4 /* UIView+NibLoading.m */; };
@@ -655,8 +654,6 @@
 		70CF3D6F17C5570D006F363C /* WizardReviewPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardReviewPageViewController.m; sourceTree = "<group>"; };
 		70DF2E9F17DE8EC300AFC798 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		70DF2EA017DE8EC300AFC798 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
-		70E7285C1812C91000A3E44F /* GameTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTimer.h; sourceTree = "<group>"; };
-		70E7285D1812C91000A3E44F /* GameTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTimer.m; sourceTree = "<group>"; };
 		70E866EF17C66279003C5BD2 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../Constants.h; sourceTree = "<group>"; };
 		70E866F017C66E76003C5BD2 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fishhook.c; sourceTree = "<group>"; };
 		70E866F117C66E76003C5BD2 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
@@ -786,8 +783,6 @@
 				70CEF76317C8443A00ED0CBE /* Default-568h@2x.png */,
 				70AF73B21813605C0068B726 /* UIView+Animation.h */,
 				70AF73B31813605C0068B726 /* UIView+Animation.m */,
-				70E7285C1812C91000A3E44F /* GameTimer.h */,
-				70E7285D1812C91000A3E44F /* GameTimer.m */,
 				700C3A59160427DA005A9E34 /* hg-ios-class-display-Info.plist */,
 				700C3A5A160427DA005A9E34 /* InfoPlist.strings */,
 				700C3A5D160427DA005A9E34 /* main.m */,
@@ -1998,7 +1993,6 @@
 				705AE0DD17D595CC005F69B7 /* SBJsonStreamWriterState.m in Sources */,
 				705BED3917EA64140042D313 /* DDLog.m in Sources */,
 				705BED0017EA64000042D313 /* XMPPElement.m in Sources */,
-				70E7285E1812C91000A3E44F /* GameTimer.m in Sources */,
 				702569411802654C00D0C39B /* PatchDView.m in Sources */,
 				705BEE2E17EA643A0042D313 /* XMPPIQ+JabberRPCResonse.m in Sources */,
 				705BEE2917EA643A0042D313 /* XMPPRosterMemoryStorage.m in Sources */,
@@ -2110,7 +2104,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "/Users/aperritano/dev/hunger\\ games/hg-ios-class-display";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "xmppTemplate/hg-ios-class-display-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
@@ -2140,7 +2134,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "/Users/aperritano/dev/hunger\\ games/hg-ios-class-display";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "xmppTemplate/hg-ios-class-display-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;

@@ -19,6 +19,8 @@
 
 @implementation SidebarViewController
 
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -104,7 +106,7 @@
 
 - (void)newMessageReceived:(NSDictionary *)messageContent {
     
-    NSLog(@"NEW MESSAGE RECIEVED");
+   // NSLog(@"NEW MESSAGE RECIEVED");
 }
 
 #pragma mark - Table view data source
@@ -184,6 +186,10 @@
 		{
 			[revealController revealToggle:self];
 		}
+        
+        DDLogVerbose(@"HARVEST: USER %@ DID SELECT map",xmppUsername );
+
+        
 	}
     
 	// ... and the second row (=1) corresponds to the "MapViewController".
@@ -213,6 +219,9 @@
 		{
 			[revealController revealToggle:self];
 		}
+        
+        DDLogVerbose(@"HARVEST: USER %@ DID SELECT graph",xmppUsername );
+
 	}
     else if (row == 3)
 	{
@@ -234,6 +243,8 @@
 		{
 			[revealController revealToggle:self];
 		}
+        DDLogVerbose(@"HARVEST: USER %@ DID SELECT popular",xmppUsername );
+
 	}
 
     

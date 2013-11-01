@@ -11,6 +11,7 @@
 #import "WizardClassCell.h"
 #import "AFNetworking.h"
 
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @interface WizardClassPageViewController ()
 
@@ -43,6 +44,8 @@
 {
     [super viewDidLoad];
     
+    DDLogVerbose(@"HARVEST: USER DID START CLASS AND ROSTER WIZARD");
+
     
 
 }

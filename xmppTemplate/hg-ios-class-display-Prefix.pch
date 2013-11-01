@@ -19,5 +19,8 @@
     #import "XMPPBaseNewMessageDelegate.h"
     #import "XMPPBaseOnlineDelegate.h"
     #import "AppDelegate.h"
+    #import "DDLog.h"
 #endif
+
+
 

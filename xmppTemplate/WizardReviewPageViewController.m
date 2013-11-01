@@ -8,6 +8,8 @@
 
 #import "WizardReviewPageViewController.h"
 #import "AppDelegate.h"
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+
 
 @interface WizardReviewPageViewController ()
 
@@ -54,6 +56,8 @@
     [[NSUserDefaults standardUserDefaults] setObject:xmppId forKey:kXMPPmyPassword];
     
     [[NSUserDefaults standardUserDefaults] setObject:_configurationInfo.run_id forKey:kXMPProomJID];
+
+    DDLogVerbose(@"HARVEST: USER LOGGED IN %@ with RUNID %@",xmppId, _configurationInfo.run_id );
 
     
     [self dismissViewControllerAnimated:YES completion:^(void){

@@ -16,8 +16,4 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *revealButtonItem;
 @property(retain) IBOutletCollection(PatchMapUIView) NSArray *patchUIViews;
 
--(void)checkGameReset;
-
-- (IBAction)showMenu;
-
 @end

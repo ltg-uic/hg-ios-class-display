@@ -8,6 +8,7 @@
 
 #import "DDLog.h"
 #import "DDTTYLogger.h"
+#import "DDASLLogger.h"
 #import "PlayerDataPoint.h"
 #import "PatchInfo.h"
 #import "ConfigurationInfo.h"
@@ -19,22 +20,18 @@
 #import "UIColor-Expanded.h"
 #import "SidebarViewController.h"
 #import "NonPlayerDataPoint.h"
-#import "GameTimer.h"
+#import "XMPPLogging.h"
 
 // Log levels: off, error, warn, info, verbose
-#if DEBUG
-    static const int ddLogLevel = LOG_LEVEL_OFF;
-#else
-    static const int ddLogLevel = LOG_LEVEL_OFF;
-#endif
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
+static const int xmppLogLevel = XMPP_LOG_LEVEL_OFF;
 
 
 @interface AppDelegate()<SWRevealViewControllerDelegate>{
 
     NSArray *patchInfos;
     NSOperationQueue *operationQueue;
-    GameTimer *gameTimer;
     NSTimer *timer;
   
     double elapsedTime;
@@ -44,12 +41,19 @@
     CADisplayLink *displayLink;
     BOOL hasStartTimer;
     double frameTimestamp;
+    CGFloat backgroundedToLockScreen;
 }
 
 @end
 
 @implementation AppDelegate
 
+double patch_a = 0;
+double patch_b = 0;
+double patch_c = 0;
+double patch_d = 0;
+double patch_e = 0;
+double patch_f = 0;
 
 #pragma mark APPDELEGATE METHODS
 
@@ -99,15 +103,30 @@
     //[self setupTestUser];
     
    
+    NSString * applicationDocumentsDirectory = [[[[NSFileManager defaultManager]
+                                                  URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject] path];
+    DDLogFileManagerDefault *documentsFileManager = [[DDLogFileManagerDefault alloc]
+                                                     initWithLogsDirectory:applicationDocumentsDirectory];
+    _fileLogger = [[DDFileLogger alloc]
+                                initWithLogFileManager:documentsFileManager];
     
-    //
-    
-    // Configure logging framework
-	
-	//[DDLog addLogger:[DDTTYLogger sharedInstance]];
+    // Configure CocoaLumberjack
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    [DDLog addLogger:[DDASLLogger sharedInstance]];
+    // Initialize File Logger
+   // _fileLogger = [[DDFileLogger alloc] init];
+    // Configure File Logger
+    _fileLogger.logFileManager.maximumNumberOfLogFiles = 30;
+//    [_fileLogger setRollingFrequency:(3600.0 * 24.0)];
+    [_fileLogger setMaximumFileSize:0];
+    [self.fileLogger setLogFormatter:[[DDLogFileFormatterDefault alloc]init]];
+
+    [DDLog addLogger:_fileLogger];
     
     // Setup the XMPP stream
     
+	DDLogVerbose(@"HARVEST: STARTED");
+
 	
     
 
@@ -182,7 +201,15 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
    
+    CGFloat screenBrightness = [[UIScreen mainScreen] brightness];
+    DDLogInfo(@"Screen brightness: %f", screenBrightness);
+    backgroundedToLockScreen = screenBrightness <= 0.0;
+
+    
 	//DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+    
+    DDLogInfo(@"HARVEST: ENTERED BACKGROUND STARTED");
+
     
 #if TARGET_IPHONE_SIMULATOR
 	DDLogError(@"The iPhone simulator does not process background network traffic. "
@@ -205,16 +232,31 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+    
+    UIApplicationState state = [[UIApplication sharedApplication] applicationState];
+    if (UIApplicationStateInactive == state ||  // detect if coming from locked screen (iOS 6)
+        backgroundedToLockScreen)          // detect if backgrounded to the Lockscreen (iOS 7)
+    {
+        DDLogInfo(@"HARVEST:  CAMEBACK FROM FOREGROUND LOCKED SCREEN OR TIMEOUT");
+    } else {
+        DDLogInfo(@"HARVEST: ENTERED FOREGROUND HOMEBUTTON VIA APP SWITCH");
+    }
+    backgroundedToLockScreen = NO;
+    
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    DDLogVerbose(@"HARVEST: DID BECOME ACTIVE AGAIN");
+
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    DDLogVerbose(@"HARVEST: DID FUCKING TERMINATE");
+
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
@@ -643,14 +685,14 @@
 		
 		if ([presenceType isEqualToString:@"available"]) {
             
-            NSString *t = [NSString stringWithFormat:@"%@@%@", presenceFromUser, @"jerry.local"];
+           // NSString *t = [NSString stringWithFormat:@"%@@%@", presenceFromUser, @"jerry.local"];
             //DDLogVerbose(@"%@",t);
 			
             [_xmppBaseOnlineDelegate isAvailable:YES];
 			
 		} else if ([presenceType isEqualToString:@"unavailable"]) {
 			
-            NSString *t = [NSString stringWithFormat:@"%@@%@", presenceFromUser, @"jerry.local"];
+            //NSString *t = [NSString stringWithFormat:@"%@@%@", presenceFromUser, @"jerry.local"];
             //DDLogVerbose(@"%@",t);
             
             [_xmppBaseOnlineDelegate isAvailable:NO];
@@ -681,7 +723,7 @@
 
 - (void)xmppRoomDidCreate:(XMPPRoom *)sender
 {
-	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 
 - (void)xmppRoomDidJoin:(XMPPRoom *)sender
@@ -722,17 +764,17 @@
 
 - (void)xmppRoom:(XMPPRoom *)sender didFetchModeratorsList:(NSArray *)items
 {
-	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 
 - (void)xmppRoom:(XMPPRoom *)sender didNotFetchModeratorsList:(XMPPIQ *)iqError
 {
-	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 
 - (void)handleDidLeaveRoom:(XMPPRoom *)room
 {
-	DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
+	//DDLogInfo(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 
 - (void)xmppRoom:(XMPPRoom *)sender didChangeOccupants:(NSDictionary *)occupants {
@@ -797,9 +839,7 @@
     frameTimestamp = 0;
     elapsedTime = 0;
     hasStartTimer = NO;
-    //start the game timer
-    gameTimer = [[GameTimer alloc] init];
-    [gameTimer startTimer];
+
     
     displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(refreshCalorieTotals)];
  
@@ -902,12 +942,7 @@
    // [_playerDataDelegate overlayNeedsUpdateWith:_starvingElapsed With:_survivingElapsed With:_prosperousElapsed];
 }
 
-double patch_a = 0;
-double patch_b = 0;
-double patch_c = 0;
-double patch_d = 0;
-double patch_e = 0;
-double patch_f = 0;
+
 -(void)updatePlayerScores {
  
         
@@ -1159,10 +1194,10 @@ double patch_f = 0;
     
     for (NSManagedObject *managedObject in items) {
     	[[self managedObjectContext ] deleteObject:managedObject];
-    	NSLog(@"%@ object deleted",entityDescription);
+    	//NSLog(@"%@ object deleted",entityDescription);
     }
     if (![[self managedObjectContext ] save:&error]) {
-    	NSLog(@"Error deleting %@ - error:%@",entityDescription,error);
+    	//NSLog(@"Error deleting %@ - error:%@",entityDescription,error);
     }
     
 }
