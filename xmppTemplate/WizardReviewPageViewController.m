@@ -64,9 +64,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         
         [[self appDelegate] setupConfigurationAndRosterWithRunId:_configurationInfo.run_id WithPatchId:nil];
 
-        [[self appDelegate] disconnect];
-        [[self appDelegate] connect];
-    }];
+        }];
     
     
 }

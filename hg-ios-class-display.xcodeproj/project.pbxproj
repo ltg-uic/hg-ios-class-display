@@ -182,6 +182,7 @@
 		707FE57117D9412B0036DBAB /* PatchMapUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 707FE57017D9412B0036DBAB /* PatchMapUIView.m */; };
 		70879019160BB0A50099DD5D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70879018160BB0A50099DD5D /* CoreData.framework */; };
 		708CD68918118B9F00AEDFF3 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 708CD68818118B9F00AEDFF3 /* MainStoryboard_iPad.storyboard */; };
+		70A8C65E1824781C0080F47B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A8C65D1824781C0080F47B /* Reachability.m */; };
 		70AAC26A17C325460018A84B /* WizardClassPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AAC26917C325460018A84B /* WizardClassPageViewController.m */; };
 		70AF73B41813605C0068B726 /* UIView+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AF73B31813605C0068B726 /* UIView+Animation.m */; };
 		70AFBDB917C7B9E900868211 /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AFBDB617C7B9E900868211 /* GraphViewController.m */; };
@@ -626,6 +627,8 @@
 		707FE57017D9412B0036DBAB /* PatchMapUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatchMapUIView.m; sourceTree = "<group>"; };
 		70879018160BB0A50099DD5D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		708CD68818118B9F00AEDFF3 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		70A8C65C1824781C0080F47B /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		70A8C65D1824781C0080F47B /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		70A97B6E1618E73900148530 /* XMPPBaseNewMessageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPBaseNewMessageDelegate.h; sourceTree = "<group>"; };
 		70AAC26517C31AE90018A84B /* wizard.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = wizard.xcassets; sourceTree = "<group>"; };
 		70AAC26817C325460018A84B /* WizardClassPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardClassPageViewController.h; sourceTree = "<group>"; };
@@ -781,8 +784,6 @@
 				705583B91822176F006CF54F /* LaunchScreen@2x.png */,
 				70CD9B3517B49BF2008625BF /* logon_sound.aif */,
 				70CEF76317C8443A00ED0CBE /* Default-568h@2x.png */,
-				70AF73B21813605C0068B726 /* UIView+Animation.h */,
-				70AF73B31813605C0068B726 /* UIView+Animation.m */,
 				700C3A59160427DA005A9E34 /* hg-ios-class-display-Info.plist */,
 				700C3A5A160427DA005A9E34 /* InfoPlist.strings */,
 				700C3A5D160427DA005A9E34 /* main.m */,
@@ -1716,9 +1717,13 @@
 				70BC894B17CBB35300DC0AD1 /* UIColor-Expanded.h */,
 				70BC894C17CBB35300DC0AD1 /* UIColor-Expanded.m */,
 				705BECBA17EA63610042D313 /* XMPPFramework.h */,
+				70A8C65C1824781C0080F47B /* Reachability.h */,
+				70A8C65D1824781C0080F47B /* Reachability.m */,
 				70E866EF17C66279003C5BD2 /* Constants.h */,
 				70DF2E9F17DE8EC300AFC798 /* CoreDataTableViewController.h */,
 				70DF2EA017DE8EC300AFC798 /* CoreDataTableViewController.m */,
+				70AF73B21813605C0068B726 /* UIView+Animation.h */,
+				70AF73B31813605C0068B726 /* UIView+Animation.m */,
 			);
 			name = library;
 			sourceTree = "<group>";
@@ -1877,6 +1882,7 @@
 				703D86FC17D91E0500523417 /* MapViewController.m in Sources */,
 				705BECD017EA63EF0042D313 /* XMPPDeprecatedDigestAuthentication.m in Sources */,
 				705BEE5B17EA643A0042D313 /* XMPPCapabilitiesCoreDataStorage.m in Sources */,
+				70A8C65E1824781C0080F47B /* Reachability.m in Sources */,
 				705BEE3C17EA643A0042D313 /* XMPPRoomMessageMemoryStorageObject.m in Sources */,
 				705BED0D17EA64000042D313 /* XMPPStringPrep.m in Sources */,
 				7025694518026CC500D0C39B /* PatchEView.m in Sources */,

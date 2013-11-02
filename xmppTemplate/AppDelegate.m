@@ -21,6 +21,7 @@
 #import "SidebarViewController.h"
 #import "NonPlayerDataPoint.h"
 #import "XMPPLogging.h"
+#import "Reachability.h"
 
 // Log levels: off, error, warn, info, verbose
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
@@ -95,13 +96,12 @@ double patch_f = 0;
     
     
     //[self pullConfigurationData];
-    
     //[self importTestData];
-  
-    
     //setup test user
     //[self setupTestUser];
     
+    //set reachability
+    [self setReachability];
    
     NSString * applicationDocumentsDirectory = [[[[NSFileManager defaultManager]
                                                   URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject] path];
@@ -131,6 +131,46 @@ double patch_f = 0;
     
 
     return YES;
+}
+
+
+-(void)setReachability {
+    // Allocate a reachability object
+    Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Tell the reachability that we DON'T want to be reachable on 3G/EDGE/CDMA
+    reach.reachableOnWWAN = NO;
+    
+    // Here we set up a NSNotification observer. The Reachability that caused the notification
+    // is passed in the object parameter
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reachabilityChanged:)
+                                                 name:kReachabilityChangedNotification
+                                               object:nil];
+    
+    [reach startNotifier];
+}
+
+-(void)reachabilityChanged:(NSNotification*)note
+{
+    Reachability * reach = [note object];
+    NSString *noNetwork;
+    
+    if([reach isReachable])
+    {
+        //@"Notification Says Reachable";
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Network out yo"
+                                                            message:@"Hello how are you? Network is out"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+
+    }
+
 }
 
 -(void)setupInterface {
@@ -787,6 +827,10 @@ double patch_f = 0;
 
 -(void)setupConfigurationAndRosterWithRunId:(NSString *)run_id WithPatchId: (NSString*)currentPatchId {
     
+  
+   
+
+    
     _configurationInfo = [self getConfigurationInfoWithRunId:run_id];
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"player_id" ascending:NO selector:@selector(caseInsensitiveCompare:)];
@@ -799,14 +843,25 @@ double patch_f = 0;
     
     if( _xmppStream == nil ) {
         [self setupStream];
+        [self connect];
+
     } else {
         [_xmppRoom leaveRoom];
         [_xmppRoom deactivate];
         [_xmppRoom removeDelegate:self];
-        _xmppRoom = [[XMPPRoom alloc] initWithRoomStorage:self jid:[self getRoomJID]];
+        
+        [self disconnect];
+        [self connect];
+        
+        [_xmppRoom addDelegate:self delegateQueue:dispatch_get_main_queue()];
         [_xmppRoom  activate:_xmppStream];
 
     }
+    
+   // [_xmppReconnect activate:_xmppStream];
+    
+	// Add ourself as a delegate to anything we may be interested in
+    
     
 }
 
