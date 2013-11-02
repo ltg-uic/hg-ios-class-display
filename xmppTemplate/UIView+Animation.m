@@ -12,8 +12,10 @@
 
 - (void) moveTo:(CGPoint)destination duration:(float)secs option:(UIViewAnimationOptions)option
 {
+    
     [UIView animateWithDuration:secs delay:0.0 options:option
                      animations:^{
+                         self.alpha = 1.0;
                          self.frame = CGRectMake(destination.x,destination.y, self.frame.size.width, self.frame.size.height);
                      }
                      completion:nil];
@@ -70,7 +72,9 @@
 - (void) showViewWithFadeAnimation:(UIView*)view duration:(float)secs option:(UIViewAnimationOptions)option
 {
 	view.alpha = 0.0;	// make the view transparent
-    
+    if( view.hidden == YES ) {
+        view.hidden = NO;
+    }
 	[UIView animateWithDuration:secs delay:0.0 options:option
                      animations:^{view.alpha = 1.0;}
                      completion:nil];	// animate the return to visible

@@ -26,6 +26,8 @@
 
 @implementation MapViewController
 
+float moveDuration = .4f;
+float fadeDuration = .2f;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder])
@@ -69,45 +71,32 @@
         pmp.player_id = pdp.player_id;
         pmp.nameLabel.text = [pdp.player_id uppercaseString];
         pmp.nameLabel.textColor = [self getTextColor:hexColor];
-        pmp.hidden = YES;
+        pmp.hidden = NO;
+        pmp.alpha = 0;
         pmp.tag = pdp.player_id;
-        //[playersAndViews setObject:pmp forKey:pdp.player_id];
         
         [self.view addSubview:pmp];
-        
-        [self updateMapFromCache];
         
     }
 }
 
 -(void)updateMapFromCache {
-    [playersAtPatch enumerateKeysAndObjectsUsingBlock: ^(NSString *player_id, NSString *patch_id, BOOL *stop) {
-        
-        if( ![[NSNull null] isEqual:patch_id]) {
-            PlayerMapUIView *moveMe = (PlayerMapUIView*)[self.view viewWithTag:player_id];
-            if( moveMe == nil ) {
-                
-            
-                [self addPlayerToMapWith:moveMe WithPatch:patch_id];
-                    
-                
-            } else {
-                PlayerMapUIView *moveMe = (PlayerMapUIView*)[self.view viewWithTag:player_id];
-                
-                CGPoint point = [self placePlayerWithPatchId:patch_id];
-                
-               
-                
-                [moveMe moveTo:point duration:.4 option:UIViewAnimationOptionCurveEaseInOut];
-            }
+    
+    NSArray *players = [[[[self appDelegate] configurationInfo ] players] allObjects];
+    
+    NSArray *atPatch = [players filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"currentPatch != nil"]];
 
+    for( PlayerDataPoint *pmp in atPatch ) {
+        PlayerMapUIView *moveMe = (PlayerMapUIView*)[self.view viewWithTag:pmp.player_id];
+        
+        if( moveMe != nil ) {
+            CGPoint point = [self placePlayerWithPatchId:pmp.currentPatch];            
+            [self.view showViewWithFadeAnimation:moveMe duration:fadeDuration option:nil];
+            [moveMe moveTo:point duration:moveDuration option:UIViewAnimationOptionCurveEaseInOut];
         }
-        
-        
-        
-        
-     
-    }];
+    }
+    
+    
 }
 
 #pragma mark - PLAYER DATA DELEGATE
@@ -144,11 +133,6 @@
         hasSetup = YES;
     }
     
-//    if( [[[self appDelegate] killList ] containsObject:playerDataPoint.player_id]) {
-//        return;
-//    }
-    //[self updateMapFromCache];
-    
     //first time arriving in the game
     if( ![[NSNull null] isEqual: arrival_patch_id ] && [[NSNull null] isEqual: departure_patch_id ] ) {
     
@@ -163,7 +147,7 @@
         
         PlayerMapUIView *moveMe = (PlayerMapUIView*)[self.view viewWithTag:playerDataPoint.player_id];
 
-        [moveMe removeSubviewWithFadeAnimationWithDuration:.4 option:nil];
+        [moveMe removeSubviewWithFadeAnimationWithDuration:fadeDuration option:nil];
         
     } else if( ![[NSNull null] isEqual: arrival_patch_id ] && ![[NSNull null] isEqual: departure_patch_id ]  ) {
         //get the view
@@ -178,9 +162,9 @@
             moveMe.frame = CGRectMake(point.x,point.y, moveMe.frame.size.width, moveMe.frame.size.height);
             moveMe.alpha = 0.0;
             moveMe.hidden = NO;
-             [self.view showViewWithFadeAnimation:moveMe duration:.4 option:nil];
+             [self.view showViewWithFadeAnimation:moveMe duration:fadeDuration option:nil];
         } else {
-            [moveMe moveTo:point duration:.4 option:UIViewAnimationOptionCurveEaseInOut];
+            [moveMe moveTo:point duration:moveDuration option:UIViewAnimationOptionCurveEaseInOut];
         }
         
         
@@ -195,9 +179,8 @@
     pmp.frame = CGRectMake(point.x, point.y, pmp.frame.size.width,pmp.frame.size.height);
     pmp.hidden = NO;
     
-    //[playersAndViews setObject:pmp forKey:playerDataPoint.player_id];
-    [self.view showViewWithFadeAnimation:pmp duration:.4 option:nil];
-    //[self.view addSubviewWithFadeAnimation:pmp duration:.8 option:nil];
+    [self.view showViewWithFadeAnimation:pmp duration:fadeDuration option:nil];
+
 }
 
 
@@ -241,11 +224,11 @@
     
     [self.revealButtonItem setTarget: self.revealViewController];
     [self.revealButtonItem setAction: @selector( revealToggle: )];
-  //  [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-
+   // [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
    
     //check player map
     [self setupPatches];
+    [self updateMapFromCache];
 }
 
 
