@@ -55,6 +55,13 @@
 @property (strong, nonatomic) NSMutableArray *killList;
 @property (nonatomic) DDFileLogger *fileLogger;
 
+@property (nonatomic) double patch_a_elapsed_time;
+@property (nonatomic) double patch_b_elapsed_time;
+@property (nonatomic) double patch_c_elapsed_time;
+@property (nonatomic) double patch_d_elapsed_time;
+@property (nonatomic) double patch_e_elapsed_time;
+@property (nonatomic) double patch_f_elapsed_time;
+
 
 
 

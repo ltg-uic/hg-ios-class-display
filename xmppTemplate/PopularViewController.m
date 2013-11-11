@@ -7,7 +7,7 @@
 //
 
 #import "PopularViewController.h"
-
+#import "PatchInfo.h"
 @interface PopularViewController ()
 
 @end
@@ -80,6 +80,21 @@
     }
 }
 
+-(void)fuckingHack:(NSString *)patch_id {
+    if( [patch_id isEqualToString:@"patch-a"] ) {
+        patch_a_label.text = [NSString stringWithFormat:@"%.0f", trunc([self.appDelegate patch_a_elapsed_time]/60)];
+    } else if( [patch_id isEqualToString:@"patch-b"] ) {
+        patch_b_label.text = [NSString stringWithFormat:@"%.0f", trunc([self.appDelegate patch_b_elapsed_time]/60)];
+    } else if( [patch_id isEqualToString:@"patch-c"] ) {
+        patch_c_label.text = [NSString stringWithFormat:@"%.0f", trunc([self.appDelegate patch_c_elapsed_time]/60)];
+    } else if( [patch_id isEqualToString:@"patch-d"] ) {
+        patch_d_label.text = [NSString stringWithFormat:@"%.0f", trunc([self.appDelegate patch_d_elapsed_time]/60)];
+    } else if( [patch_id isEqualToString:@"patch-e"] ) {
+        patch_e_label.text = [NSString stringWithFormat:@"%.0f", trunc([self.appDelegate patch_e_elapsed_time]/60)];        
+    } else if( [patch_id isEqualToString:@"patch-f"] ) {
+        patch_f_label.text = [NSString stringWithFormat:@"%.0f", trunc([self.appDelegate patch_f_elapsed_time]/60)];
+    }
+}
 
 
 
@@ -93,8 +108,10 @@
     [self.revealButtonItem setAction: @selector( revealToggle: )];
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    
-    
+    NSArray *ps = [self.appDelegate patcheInfos];
+    for(PatchInfo *pi in ps ) {
+        [self fuckingHack:pi.patch_id];
+    }
     
 }
 

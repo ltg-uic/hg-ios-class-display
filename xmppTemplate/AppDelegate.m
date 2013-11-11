@@ -49,12 +49,6 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_INFO;
 
 @implementation AppDelegate
 
-double patch_a = 0;
-double patch_b = 0;
-double patch_c = 0;
-double patch_d = 0;
-double patch_e = 0;
-double patch_f = 0;
 
 #pragma mark APPDELEGATE METHODS
 
@@ -154,7 +148,6 @@ double patch_f = 0;
 -(void)reachabilityChanged:(NSNotification*)note
 {
     Reachability * reach = [note object];
-    NSString *noNetwork;
     
     if([reach isReachable])
     {
@@ -926,10 +919,10 @@ double patch_f = 0;
     frameTimestamp = 0;
     startTime = 0;
     hasStartTimer = NO ;
-    patch_a = 0;
-    patch_b = 0;
-    patch_c = 0;
-    patch_d = 0;
+    _patch_a_elapsed_time = 0;
+    _patch_b_elapsed_time = 0;
+    _patch_c_elapsed_time = 0;
+    _patch_d_elapsed_time = 0;
     
     [displayLink invalidate];
     
@@ -1085,28 +1078,28 @@ double patch_f = 0;
         }
         
         if( [patch.patch_id isEqual:@"patch-a"] ) {
-            patch_a += renderTime * playersNotKilled.count;
-            [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:patch_a];
+            _patch_a_elapsed_time += renderTime * playersNotKilled.count;
+            [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:_patch_a_elapsed_time];
            // NSLog(@"PATCH A TIME %f",patch_a);
         } else if( [patch.patch_id isEqual:@"patch-b"] ) {
-            patch_b += renderTime * playersNotKilled.count;
-            [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:patch_b];
+            _patch_b_elapsed_time += renderTime * playersNotKilled.count;
+            [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:_patch_b_elapsed_time];
             //NSLog(@"PATCH B TIME %f",patch_b);
         } else if( [patch.patch_id isEqual:@"patch-c"] ) {
-            patch_c += renderTime * playersNotKilled.count;
-            [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:patch_c];
+            _patch_c_elapsed_time += renderTime * playersNotKilled.count;
+            [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:_patch_c_elapsed_time];
             //NSLog(@"PATCH C TIME %f",patch_c);
         } else if( [patch.patch_id isEqual:@"patch-d"] ) {
-            patch_d += renderTime * playersNotKilled.count;
-            [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:patch_d];
+            _patch_d_elapsed_time += renderTime * playersNotKilled.count;
+            [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:_patch_d_elapsed_time];
             //NSLog(@"PATCH D TIME %f",patch_d);
         } else if( [patch.patch_id isEqual:@"patch-e"] ) {
-            patch_e += renderTime * playersNotKilled.count;
-            [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:patch_e];
+            _patch_e_elapsed_time += renderTime * playersNotKilled.count;
+            [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:_patch_e_elapsed_time];
             //NSLog(@"PATCH E TIME %f",patch_e);
         }else if( [patch.patch_id isEqual:@"patch-f"] ) {
-            patch_f += renderTime * playersNotKilled.count;
-            [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:patch_f];
+            _patch_f_elapsed_time += renderTime * playersNotKilled.count;
+            [_playerDataDelegate timeMapUpdateWithPatch:patch.patch_id WithTime:_patch_f_elapsed_time];
             //NSLog(@"PATCH F TIME %f",patch_f);
         }
         
