@@ -27,6 +27,8 @@
 #define ARRIVED             @"ARRIVED"
 #define DEPARTED            @"DEPARTED"
 #define GAME_RESET          @"GAME_RESET"
+#define FTP_DEST            @""
+#define FTP_USER            @"anonymous"
 
 
 #endif

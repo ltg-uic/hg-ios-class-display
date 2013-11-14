@@ -36,6 +36,7 @@
 		7025949B17C3FFE7006E596B /* WizardStudentPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025949A17C3FFE7006E596B /* WizardStudentPageViewController.m */; };
 		7025949E17C40065006E596B /* WizardStudentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7025949D17C40065006E596B /* WizardStudentCell.m */; };
 		703047E217C9DEB80043FD7B /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B44C1F17B3607A00C47B61 /* libiconv.2.4.0.dylib */; };
+		7036608918316BF700E648D7 /* FTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7036608818316BF700E648D7 /* FTPManager.m */; };
 		703D86FC17D91E0500523417 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 703D86FB17D91E0500523417 /* MapViewController.m */; };
 		703D870017D938C900523417 /* awareness.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 703D86FF17D938C900523417 /* awareness.xcassets */; };
 		704AA4C117E3F3E200A7FF9C /* PlayerMapUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 704AA4C017E3F3E200A7FF9C /* PlayerMapUIView.m */; };
@@ -257,6 +258,8 @@
 		7025949A17C3FFE7006E596B /* WizardStudentPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardStudentPageViewController.m; sourceTree = "<group>"; };
 		7025949C17C40065006E596B /* WizardStudentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardStudentCell.h; sourceTree = "<group>"; };
 		7025949D17C40065006E596B /* WizardStudentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardStudentCell.m; sourceTree = "<group>"; };
+		7036608718316BF700E648D7 /* FTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPManager.h; sourceTree = "<group>"; };
+		7036608818316BF700E648D7 /* FTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPManager.m; sourceTree = "<group>"; };
 		703D86FA17D91E0500523417 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		703D86FB17D91E0500523417 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		703D86FF17D938C900523417 /* awareness.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = awareness.xcassets; path = ../awareness.xcassets; sourceTree = "<group>"; };
@@ -1717,6 +1720,8 @@
 				70BC894B17CBB35300DC0AD1 /* UIColor-Expanded.h */,
 				70BC894C17CBB35300DC0AD1 /* UIColor-Expanded.m */,
 				705BECBA17EA63610042D313 /* XMPPFramework.h */,
+				7036608718316BF700E648D7 /* FTPManager.h */,
+				7036608818316BF700E648D7 /* FTPManager.m */,
 				70A8C65C1824781C0080F47B /* Reachability.h */,
 				70A8C65D1824781C0080F47B /* Reachability.m */,
 				70E866EF17C66279003C5BD2 /* Constants.h */,
@@ -1987,6 +1992,7 @@
 				705BED3B17EA64140042D313 /* ContextFilterLogFormatter.m in Sources */,
 				705BEE6D17EA643A0042D313 /* NSXMLElement+XEP_0203.m in Sources */,
 				7025693A180260BE00D0C39B /* PatchCView.m in Sources */,
+				7036608918316BF700E648D7 /* FTPManager.m in Sources */,
 				705BEE6817EA643A0042D313 /* XMPPMessageDeliveryReceipts.m in Sources */,
 				705BEE6C17EA643A0042D313 /* XMPPTime.m in Sources */,
 				705BEE2D17EA643A0042D313 /* XMPPIQ+JabberRPC.m in Sources */,

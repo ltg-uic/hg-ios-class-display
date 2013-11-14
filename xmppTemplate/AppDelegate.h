@@ -54,6 +54,8 @@
 @property (strong, nonatomic) NSMutableDictionary *patchPlayerMap;
 @property (strong, nonatomic) NSMutableArray *killList;
 @property (nonatomic) DDFileLogger *fileLogger;
+@property (nonatomic) DDLogFileManagerDefault *documentsFileManager;
+
 
 @property (nonatomic) double patch_a_elapsed_time;
 @property (nonatomic) double patch_b_elapsed_time;
@@ -64,7 +66,7 @@
 
 
 
-
+-(void)ftpLog;
 
 - (NSURL *)applicationDocumentsDirectory;
 - (void)saveContext;

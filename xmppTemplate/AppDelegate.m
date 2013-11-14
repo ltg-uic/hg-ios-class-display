@@ -22,6 +22,7 @@
 #import "NonPlayerDataPoint.h"
 #import "XMPPLogging.h"
 #import "Reachability.h"
+#import "FTPManager.h"
 
 // Log levels: off, error, warn, info, verbose
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
@@ -99,10 +100,10 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_INFO;
    
     NSString * applicationDocumentsDirectory = [[[[NSFileManager defaultManager]
                                                   URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject] path];
-    DDLogFileManagerDefault *documentsFileManager = [[DDLogFileManagerDefault alloc]
+    _documentsFileManager = [[DDLogFileManagerDefault alloc]
                                                      initWithLogsDirectory:applicationDocumentsDirectory];
     _fileLogger = [[DDFileLogger alloc]
-                                initWithLogFileManager:documentsFileManager];
+                                initWithLogFileManager:_documentsFileManager];
     
     // Configure CocoaLumberjack
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
@@ -126,6 +127,41 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_INFO;
 
     return YES;
 }
+
+-(void)ftpLog {
+    
+    FMServer* server = [FMServer anonymousServerWithDestination:FTP_DEST];
+    BOOL success;
+    FTPManager *ftpManager = [[FTPManager alloc] init];
+    NSArray *logFileInfos = [_documentsFileManager sortedLogFileInfos];
+    for (DDLogFileInfo *logFileInfo in logFileInfos ) {
+        
+        success = [ftpManager uploadData:[NSData dataWithContentsOfFile:logFileInfo.filePath] withFileName:[logFileInfo fileName] toServer:server];
+        
+        
+    }
+    
+    if( success ) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"It Worked!"
+                                                            message:@"FTP'ed"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    } else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Way!"
+                                                            message:@"ruh roh"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+
+    
+    
+  }
+
+
 
 
 -(void)setReachability {

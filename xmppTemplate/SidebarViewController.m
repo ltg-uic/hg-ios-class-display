@@ -246,6 +246,15 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         DDLogVerbose(@"HARVEST: USER %@ DID SELECT popular",xmppUsername );
 
 	}
+    else if (row == 6)
+	{
+		
+        NSLog(@"HELOOOOOOOO");
+        
+        [[self appDelegate] ftpLog];
+    
+        
+	}
 
     
 }
